@@ -43,3 +43,4 @@ jobs:
           ./mvnw --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/multi-module/pom.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
           ./mvnw --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/kotlin.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
           ./mvnw --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/spring.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
+          ./mvnw test

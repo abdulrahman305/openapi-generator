@@ -978,7 +978,7 @@ Here is a list of template creators:
    * C++ UE4: @Kahncode
    * C# (.NET 2.0): @who
    * C# (.NET Standard 1.3 ): @Gronsak
-   * C# (.NET 4.5 refactored): @jimschubert [:heart:](https://www.patreon.com/jimschubert)
+   * C# (refactored): @jimschubert [:heart:](https://www.patreon.com/jimschubert)
    * C# (GenericHost): @devhl-labs
    * C# (HttpClient): @Blackclaws
    * Clojure: @xhh
@@ -1302,3 +1302,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ---
+
+## Contributing
+
+We welcome contributions from the community! If you would like to contribute to the project, please refer to our [contribution guidelines](CONTRIBUTING.md). There you will find information on how to get started, coding standards, and how to submit a pull request.
+
