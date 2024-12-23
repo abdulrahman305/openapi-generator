@@ -4,7 +4,7 @@
   <artifactId>jaxrs-cxf-jackson-petstore-client</artifactId>
   <packaging>jar</packaging>
   <name>jaxrs-cxf-jackson-petstore-client</name>
-  <description>This is a sample server Petstore server. For this sample, you can use the api key &#x60;special-key&#x60; to test the authorization filters.</description>
+  <description>This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.</description>
   <version>1.0.0</version>
 
 
