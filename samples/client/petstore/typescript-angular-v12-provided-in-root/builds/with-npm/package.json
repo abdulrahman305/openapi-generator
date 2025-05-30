@@ -22,7 +22,7 @@
   "devDependencies": {
     "@angular/common": "^12.2.0",
     "@angular/compiler": "^12.2.0",
-    "@angular/compiler-cli": "^12.2.0",
+    "@angular/compiler-cli": "^20.0.0",
     "@angular/core": "^12.2.0",
     "@angular/platform-browser": "^12.2.0",
     "ng-packagr": "^12.2.1",
