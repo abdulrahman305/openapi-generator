@@ -35,6 +35,7 @@
     "@types/node-fetch": "^2.5.7",
     "@types/node": "*",
     "form-data": "^4.0.4",
+    "form-data": "^2.5.5",
     "es6-promise": "^4.2.4"
   },
   "devDependencies": {
