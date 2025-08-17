@@ -4,7 +4,7 @@
   <artifactId>microprofile-rest-client-3-jackson</artifactId>
   <packaging>jar</packaging>
   <name>microprofile-rest-client-3-jackson</name>
-  <description>This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \&quot; \\</description>
+  <description>This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\</description>
   <version>1.0.0</version>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -172,6 +172,6 @@
     <jandex.maven.plugin.version>1.1.0</jandex.maven.plugin.version>
     <maven.failsafe.plugin.version>2.6</maven.failsafe.plugin.version>
     <build.helper.maven.plugin.version>1.9.1</build.helper.maven.plugin.version>
-    <commons.lang3.version>3.17.0</commons.lang3.version>
+    <commons.lang3.version>3.18.0</commons.lang3.version>
   </properties>
 </project>
