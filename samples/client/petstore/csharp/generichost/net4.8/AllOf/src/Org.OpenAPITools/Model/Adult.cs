@@ -192,14 +192,3 @@ namespace Org.OpenAPITools.Model
             {
                 writer.WritePropertyName("children");
                 JsonSerializer.Serialize(writer, adult.Children, jsonSerializerOptions);
-            }
-            if (adult.FirstNameOption.IsSet)
-                writer.WriteString("firstName", adult.FirstName);
-
-            if (adult.LastNameOption.IsSet)
-                writer.WriteString("lastName", adult.LastName);
-
-            writer.WriteString("$_type", adult.Type);
-        }
-    }
-}
