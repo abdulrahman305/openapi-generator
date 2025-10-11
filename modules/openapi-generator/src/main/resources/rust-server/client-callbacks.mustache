@@ -18,14 +18,11 @@ use crate::{{{operationId}}}Response;
 
 {{#callbacks}}
 {{>server-paths}}
-
 {{/callbacks}}
 
 {{>server-make-service}}
 
-
 {{>server-service-header}}
-
 {{#apiInfo}}
   {{#apis}}
     {{#operations}}
@@ -34,7 +31,6 @@ use crate::{{{operationId}}}Response;
           {{#urls}}
             {{#requests}}
 {{>server-operation}}
-
             {{/requests}}
           {{/urls}}
         {{/callbacks}}
@@ -48,7 +44,6 @@ use crate::{{{operationId}}}Response;
   {{/pathSet}}
 {{/callbacks}}
 {{>server-service-footer}}
-
 /// Request parser for `Api`.
 pub struct ApiRequestParser;
 impl<T> RequestParser<T> for ApiRequestParser {

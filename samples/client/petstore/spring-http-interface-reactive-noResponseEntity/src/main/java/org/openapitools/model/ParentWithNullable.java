@@ -33,7 +33,7 @@ import jakarta.annotation.Generated;
   @JsonSubTypes.Type(value = ChildWithNullable.class, name = "ChildWithNullable")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ParentWithNullable {
 
   /**
@@ -73,7 +73,7 @@ public class ParentWithNullable {
 
   private JsonNullable<String> nullableProperty = JsonNullable.<String>undefined();
 
-  public ParentWithNullable type(@Nullable TypeEnum type) {
+  public ParentWithNullable type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -84,11 +84,11 @@ public class ParentWithNullable {
    */
   
   @JsonProperty("type")
-  public @Nullable TypeEnum getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@Nullable TypeEnum type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

@@ -86,7 +86,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// AllOfGet - GET /allOf
     async fn all_of_get(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -97,7 +96,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// DummyGet - GET /dummy
     async fn dummy_get(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -106,7 +104,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// DummyPut - PUT /dummy
     async fn dummy_put(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -118,7 +115,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// FileResponseGet - GET /file_response
     async fn file_response_get(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -127,7 +123,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// GetStructuredYaml - GET /get-structured-yaml
     async fn get_structured_yaml(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -138,7 +133,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// HtmlPost - POST /html
     async fn html_post(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -148,7 +142,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// PostYaml - POST /post-yaml
     async fn post_yaml(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -160,7 +153,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// RawJsonGet - GET /raw_json
     async fn raw_json_get(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -171,7 +163,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// SoloObjectPost - POST /solo-object
     async fn solo_object_post(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,

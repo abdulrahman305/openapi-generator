@@ -11,11 +11,9 @@ import java.io.Serializable;
 {{#model}}
 {{#isEnum}}
 {{>enumOuterClass}}
-
 {{/isEnum}}
 {{^isEnum}}
 {{>pojo}}
-
 {{/isEnum}}
 {{/model}}
 {{/models}}

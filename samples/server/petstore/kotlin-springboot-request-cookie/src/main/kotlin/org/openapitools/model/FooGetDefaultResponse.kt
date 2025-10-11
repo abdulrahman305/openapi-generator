@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.openapitools.model.Foo
@@ -24,7 +23,7 @@ data class FooGetDefaultResponse(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("string") val string: Foo? = null
-) {
+    ) {
 
 }
 

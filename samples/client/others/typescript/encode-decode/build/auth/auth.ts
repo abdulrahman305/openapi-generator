@@ -21,6 +21,7 @@ export interface TokenProvider {
   getToken(): Promise<string> | string;
 }
 
+
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
 }

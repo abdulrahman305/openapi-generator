@@ -44,7 +44,6 @@ interface PetApi {
     /**
     * enum for parameter status
     */
-    @Serializable
     enum class StatusFindPetsByStatus(val value: kotlin.String) {
         @SerialName(value = "available") AVAILABLE("available"),
         @SerialName(value = "pending") PENDING("pending"),

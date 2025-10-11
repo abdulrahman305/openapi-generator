@@ -55,12 +55,8 @@ export class StoreApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-
-        let urlPath = `/store/order/{orderId}`;
-        urlPath = urlPath.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters['orderId'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/store/order/{orderId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters['orderId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -90,11 +86,8 @@ export class StoreApi extends runtime.BaseAPI {
             headerParameters["api_key"] = await this.configuration.apiKey("api_key"); // api_key authentication
         }
 
-
-        let urlPath = `/store/inventory`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/store/inventory`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -128,12 +121,8 @@ export class StoreApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-
-        let urlPath = `/store/order/{orderId}`;
-        urlPath = urlPath.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters['orderId'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/store/order/{orderId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters['orderId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -169,11 +158,8 @@ export class StoreApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/store/order`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/store/order`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

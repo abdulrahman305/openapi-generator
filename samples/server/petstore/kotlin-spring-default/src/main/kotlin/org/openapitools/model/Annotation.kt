@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import javax.validation.constraints.DecimalMax
@@ -22,7 +21,7 @@ data class Annotation(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("id") val id: java.util.UUID? = null
-) {
+    ) {
 
 }
 

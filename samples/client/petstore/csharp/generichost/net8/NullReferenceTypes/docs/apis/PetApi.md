@@ -20,6 +20,60 @@ All URIs are relative to *http://petstore.swagger.io:80/v2*
 
 Add a new pet to the store
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class AddPetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            // Configure OAuth2 access token for authorization: petstore_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PetApi(config);
+            var pet = new Pet(); // Pet | Pet object that needs to be added to the store
+
+            try
+            {
+                // Add a new pet to the store
+                apiInstance.AddPet(pet);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PetApi.AddPet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AddPetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add a new pet to the store
+    apiInstance.AddPetWithHttpInfo(pet);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PetApi.AddPetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -54,6 +108,61 @@ void (empty response body)
 
 Deletes a pet
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class DeletePetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            // Configure OAuth2 access token for authorization: petstore_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PetApi(config);
+            var petId = 789L;  // long | Pet id to delete
+            var apiKey = "apiKey_example";  // string |  (optional) 
+
+            try
+            {
+                // Deletes a pet
+                apiInstance.DeletePet(petId, apiKey);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PetApi.DeletePet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeletePetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Deletes a pet
+    apiInstance.DeletePetWithHttpInfo(petId, apiKey);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PetApi.DeletePetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -91,6 +200,64 @@ Finds Pets by status
 
 Multiple status values can be provided with comma separated strings
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class FindPetsByStatusExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            // Configure OAuth2 access token for authorization: petstore_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PetApi(config);
+            var status = new List<string>(); // List<string> | Status values that need to be considered for filter
+
+            try
+            {
+                // Finds Pets by status
+                List<Pet> result = apiInstance.FindPetsByStatus(status);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PetApi.FindPetsByStatus: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the FindPetsByStatusWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Finds Pets by status
+    ApiResponse<List<Pet>> response = apiInstance.FindPetsByStatusWithHttpInfo(status);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PetApi.FindPetsByStatusWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -130,6 +297,64 @@ Finds Pets by tags
 
 Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class FindPetsByTagsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            // Configure OAuth2 access token for authorization: petstore_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PetApi(config);
+            var tags = new List<string>(); // List<string> | Tags to filter by
+
+            try
+            {
+                // Finds Pets by tags
+                List<Pet> result = apiInstance.FindPetsByTags(tags);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PetApi.FindPetsByTags: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the FindPetsByTagsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Finds Pets by tags
+    ApiResponse<List<Pet>> response = apiInstance.FindPetsByTagsWithHttpInfo(tags);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PetApi.FindPetsByTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -167,177 +392,21 @@ Find pet by ID
 
 Returns a single pet
 
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **petId** | **long** | ID of pet to return |  |
-
-### Return type
-
-[**Pet**](Pet.md)
-
-### Authorization
-
-[api_key](../README.md#api_key), [api_key_query](../README.md#api_key_query)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | successful operation |  -  |
-| **400** | Invalid ID supplied |  -  |
-| **404** | Pet not found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="updatepet"></a>
-# **UpdatePet**
-> void UpdatePet (Pet pet)
-
-Update an existing pet
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **pet** | [**Pet**](Pet.md) | Pet object that needs to be added to the store |  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth), [http_signature_test](../README.md#http_signature_test)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **400** | Invalid ID supplied |  -  |
-| **404** | Pet not found |  -  |
-| **405** | Validation exception |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="updatepetwithform"></a>
-# **UpdatePetWithForm**
-> void UpdatePetWithForm (long petId, string name = null, string status = null)
-
-Updates a pet in the store with form data
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **petId** | **long** | ID of pet that needs to be updated |  |
-| **name** | **string** | Updated name of the pet | [optional]  |
-| **status** | **string** | Updated status of the pet | [optional]  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **405** | Invalid input |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="uploadfile"></a>
-# **UploadFile**
-> ApiResponse UploadFile (long petId, string additionalMetadata = null, System.IO.Stream file = null)
-
-uploads an image
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **petId** | **long** | ID of pet to update |  |
-| **additionalMetadata** | **string** | Additional data to pass to server | [optional]  |
-| **file** | **System.IO.Stream****System.IO.Stream** | file to upload | [optional]  |
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="uploadfilewithrequiredfile"></a>
-# **UploadFileWithRequiredFile**
-> ApiResponse UploadFileWithRequiredFile (long petId, System.IO.Stream requiredFile, string additionalMetadata = null)
-
-uploads an image (required)
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **petId** | **long** | ID of pet to update |  |
-| **requiredFile** | **System.IO.Stream****System.IO.Stream** | file to upload |  |
-| **additionalMetadata** | **string** | Additional data to pass to server | [optional]  |
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[petstore_auth](../README.md#petstore_auth)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class GetPetByIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            // Configure API key authorization: api_key
+            config.

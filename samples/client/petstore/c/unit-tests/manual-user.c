@@ -14,30 +14,9 @@
 #define USER_STATUS 4
 
 int main() {
-
-	char *username = malloc(strlen(USER_NAME) + 1);
-	strcpy(username, USER_NAME);
-	char *firstname = malloc(strlen(FIRST_NAME) + 1);
-	strcpy(firstname, FIRST_NAME);
-	char *lastname = malloc(strlen(LAST_NAME) + 1);
-	strcpy(lastname, LAST_NAME);
-	char *email = malloc(strlen(EMAIL) + 1);
-	strcpy(email, EMAIL);
-	char *password = malloc(strlen(PASSWORD) + 1);
-	strcpy(password, PASSWORD);
-	char *phone = malloc(strlen(PHONE) + 1);
-	strcpy(phone, PHONE);
-	
-	user_t *newuser = user_create(USER_ID,
-	                              username,
-	                              firstname,
-	                              lastname,
-	                              email,
-	                              password,
-	                              phone,
-	                              USER_STATUS,
-	                              NULL,
-	                              openapi_petstore_preference__cats);
+	user_t *newuser = user_create(USER_ID, USER_NAME, FIRST_NAME, LAST_NAME,
+	                              EMAIL,
+	                              PASSWORD, PHONE, USER_STATUS);
 
 	cJSON *JSONNODE = user_convertToJSON(newuser);
 

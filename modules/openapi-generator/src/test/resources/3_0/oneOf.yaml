@@ -22,7 +22,6 @@ components:
          oneOf:
             - $ref: '#/components/schemas/apple'
             - $ref: '#/components/schemas/banana'
-            - $ref: '#/components/schemas/orange'
          # additionalProperties:
          #    type: string
          # uncomment this when https://github.com/swagger-api/swagger-parser/issues/1252 is resolved
@@ -38,9 +37,3 @@ components:
          properties:
             count:
                type: number
-      orange:
-         title: orange
-         type: object
-         properties:
-            sweet:
-               type: boolean

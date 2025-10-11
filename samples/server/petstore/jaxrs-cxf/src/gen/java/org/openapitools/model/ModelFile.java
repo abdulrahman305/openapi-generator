@@ -1,26 +1,25 @@
 package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import io.swagger.annotations.ApiModel;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Must be named `File` for test.
- */
+  * Must be named `File` for test.
+ **/
 @ApiModel(description="Must be named `File` for test.")
 
 public class ModelFile  {
   
- /**
-  * Test capitalization
-  */
   @ApiModelProperty(value = "Test capitalization")
-
+ /**
+   * Test capitalization
+  **/
   private String sourceURI;
  /**
    * Test capitalization

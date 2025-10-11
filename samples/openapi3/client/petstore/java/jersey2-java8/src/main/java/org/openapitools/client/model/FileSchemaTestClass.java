@@ -18,7 +18,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +38,7 @@ import org.openapitools.client.JSON;
   FileSchemaTestClass.JSON_PROPERTY_FILE,
   FileSchemaTestClass.JSON_PROPERTY_FILES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class FileSchemaTestClass {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nullable
@@ -62,7 +61,7 @@ public class FileSchemaTestClass {
    * @return _file
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILE, required = false)
+  @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ModelFile getFile() {
@@ -70,7 +69,7 @@ public class FileSchemaTestClass {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILE, required = false)
+  @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFile(@javax.annotation.Nullable ModelFile _file) {
     this._file = _file;
@@ -95,7 +94,7 @@ public class FileSchemaTestClass {
    * @return files
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILES, required = false)
+  @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<ModelFile> getFiles() {
@@ -103,7 +102,7 @@ public class FileSchemaTestClass {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILES, required = false)
+  @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFiles(@javax.annotation.Nullable List<ModelFile> files) {
     this.files = files;

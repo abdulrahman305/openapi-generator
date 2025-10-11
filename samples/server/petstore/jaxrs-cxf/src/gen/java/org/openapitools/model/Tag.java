@@ -11,11 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Tag  {
   
   @ApiModelProperty(value = "")
-
   private Long id;
 
   @ApiModelProperty(value = "")
-
   private String name;
  /**
    * Get id

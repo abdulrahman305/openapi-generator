@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * ResponseObjectWithDifferentFieldNames
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ResponseObjectWithDifferentFieldNames {
 
   private @Nullable String normalPropertyName;
@@ -45,7 +45,7 @@ public class ResponseObjectWithDifferentFieldNames {
       this.propertyNameWithSpaces = propertyNameWithSpaces;
   }
 
-  public ResponseObjectWithDifferentFieldNames normalPropertyName(@Nullable String normalPropertyName) {
+  public ResponseObjectWithDifferentFieldNames normalPropertyName(String normalPropertyName) {
     this.normalPropertyName = normalPropertyName;
     return this;
   }
@@ -57,15 +57,15 @@ public class ResponseObjectWithDifferentFieldNames {
   
   @ApiModelProperty(value = "")
   @JsonProperty("normalPropertyName")
-  public @Nullable String getNormalPropertyName() {
+  public String getNormalPropertyName() {
     return normalPropertyName;
   }
 
-  public void setNormalPropertyName(@Nullable String normalPropertyName) {
+  public void setNormalPropertyName(String normalPropertyName) {
     this.normalPropertyName = normalPropertyName;
   }
 
-  public ResponseObjectWithDifferentFieldNames UPPER_CASE_PROPERTY_SNAKE(@Nullable String UPPER_CASE_PROPERTY_SNAKE) {
+  public ResponseObjectWithDifferentFieldNames UPPER_CASE_PROPERTY_SNAKE(String UPPER_CASE_PROPERTY_SNAKE) {
     this.UPPER_CASE_PROPERTY_SNAKE = UPPER_CASE_PROPERTY_SNAKE;
     return this;
   }
@@ -77,15 +77,15 @@ public class ResponseObjectWithDifferentFieldNames {
   
   @ApiModelProperty(value = "")
   @JsonProperty("UPPER_CASE_PROPERTY_SNAKE")
-  public @Nullable String getUPPERCASEPROPERTYSNAKE() {
+  public String getUPPERCASEPROPERTYSNAKE() {
     return UPPER_CASE_PROPERTY_SNAKE;
   }
 
-  public void setUPPERCASEPROPERTYSNAKE(@Nullable String UPPER_CASE_PROPERTY_SNAKE) {
+  public void setUPPERCASEPROPERTYSNAKE(String UPPER_CASE_PROPERTY_SNAKE) {
     this.UPPER_CASE_PROPERTY_SNAKE = UPPER_CASE_PROPERTY_SNAKE;
   }
 
-  public ResponseObjectWithDifferentFieldNames lowerCasePropertyDashes(@Nullable String lowerCasePropertyDashes) {
+  public ResponseObjectWithDifferentFieldNames lowerCasePropertyDashes(String lowerCasePropertyDashes) {
     this.lowerCasePropertyDashes = lowerCasePropertyDashes;
     return this;
   }
@@ -97,15 +97,15 @@ public class ResponseObjectWithDifferentFieldNames {
   
   @ApiModelProperty(value = "")
   @JsonProperty("lower-case-property-dashes")
-  public @Nullable String getLowerCasePropertyDashes() {
+  public String getLowerCasePropertyDashes() {
     return lowerCasePropertyDashes;
   }
 
-  public void setLowerCasePropertyDashes(@Nullable String lowerCasePropertyDashes) {
+  public void setLowerCasePropertyDashes(String lowerCasePropertyDashes) {
     this.lowerCasePropertyDashes = lowerCasePropertyDashes;
   }
 
-  public ResponseObjectWithDifferentFieldNames propertyNameWithSpaces(@Nullable String propertyNameWithSpaces) {
+  public ResponseObjectWithDifferentFieldNames propertyNameWithSpaces(String propertyNameWithSpaces) {
     this.propertyNameWithSpaces = propertyNameWithSpaces;
     return this;
   }
@@ -117,11 +117,11 @@ public class ResponseObjectWithDifferentFieldNames {
   
   @ApiModelProperty(value = "")
   @JsonProperty("property name with spaces")
-  public @Nullable String getPropertyNameWithSpaces() {
+  public String getPropertyNameWithSpaces() {
     return propertyNameWithSpaces;
   }
 
-  public void setPropertyNameWithSpaces(@Nullable String propertyNameWithSpaces) {
+  public void setPropertyNameWithSpaces(String propertyNameWithSpaces) {
     this.propertyNameWithSpaces = propertyNameWithSpaces;
   }
 

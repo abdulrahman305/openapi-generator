@@ -42,10 +42,6 @@ Test query parameter(s)
 Test query parameter(s).
 Test query parameter(s)
 
-- `GET` to `/query/style_jsonSerialization/object`, OperationId: `test/query/style_jsonSerialization/object`:
-Test query parameter(s).
-Test query parameter(s)
-
 """.
 
 -behaviour(cowboy_rest).
@@ -78,8 +74,7 @@ Test query parameter(s)
     | 'test/query/style_form/explode_false/array_string' %% Test query parameter(s)
     | 'test/query/style_form/explode_true/array_string' %% Test query parameter(s)
     | 'test/query/style_form/explode_true/object' %% Test query parameter(s)
-    | 'test/query/style_form/explode_true/object/allOf' %% Test query parameter(s)
-    | 'test/query/style_jsonSerialization/object'. %% Test query parameter(s)
+    | 'test/query/style_form/explode_true/object/allOf'. %% Test query parameter(s)
 
 
 -record(state,
@@ -127,8 +122,6 @@ allowed_methods(Req, #state{operation_id = 'test/query/style_form/explode_true/o
     {[<<"GET">>], Req, State};
 allowed_methods(Req, #state{operation_id = 'test/query/style_form/explode_true/object/allOf'} = State) ->
     {[<<"GET">>], Req, State};
-allowed_methods(Req, #state{operation_id = 'test/query/style_jsonSerialization/object'} = State) ->
-    {[<<"GET">>], Req, State};
 allowed_methods(Req, State) ->
     {[], Req, State}.
 
@@ -159,8 +152,6 @@ content_types_accepted(Req, #state{operation_id = 'test/query/style_form/explode
     {[], Req, State};
 content_types_accepted(Req, #state{operation_id = 'test/query/style_form/explode_true/object/allOf'} = State) ->
     {[], Req, State};
-content_types_accepted(Req, #state{operation_id = 'test/query/style_jsonSerialization/object'} = State) ->
-    {[], Req, State};
 content_types_accepted(Req, State) ->
     {[], Req, State}.
 
@@ -185,8 +176,6 @@ valid_content_headers(Req, #state{operation_id = 'test/query/style_form/explode_
 valid_content_headers(Req, #state{operation_id = 'test/query/style_form/explode_true/object'} = State) ->
     {true, Req, State};
 valid_content_headers(Req, #state{operation_id = 'test/query/style_form/explode_true/object/allOf'} = State) ->
-    {true, Req, State};
-valid_content_headers(Req, #state{operation_id = 'test/query/style_jsonSerialization/object'} = State) ->
     {true, Req, State};
 valid_content_headers(Req, State) ->
     {false, Req, State}.
@@ -230,10 +219,6 @@ content_types_provided(Req, #state{operation_id = 'test/query/style_form/explode
       {<<"text/plain">>, handle_type_provided}
      ], Req, State};
 content_types_provided(Req, #state{operation_id = 'test/query/style_form/explode_true/object/allOf'} = State) ->
-    {[
-      {<<"text/plain">>, handle_type_provided}
-     ], Req, State};
-content_types_provided(Req, #state{operation_id = 'test/query/style_jsonSerialization/object'} = State) ->
     {[
       {<<"text/plain">>, handle_type_provided}
      ], Req, State};

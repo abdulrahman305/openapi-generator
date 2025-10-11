@@ -19,7 +19,7 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("User")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class UserDto {
 
   private @Nullable Long id;
@@ -38,7 +38,7 @@ public class UserDto {
 
   private @Nullable Integer userStatus;
 
-  public UserDto id(@Nullable Long id) {
+  public UserDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -49,15 +49,15 @@ public class UserDto {
    */
   
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public UserDto username(@Nullable String username) {
+  public UserDto username(String username) {
     this.username = username;
     return this;
   }
@@ -68,15 +68,15 @@ public class UserDto {
    */
   
   @JsonProperty("username")
-  public @Nullable String getUsername() {
+  public String getUsername() {
     return username;
   }
 
-  public void setUsername(@Nullable String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
-  public UserDto firstName(@Nullable String firstName) {
+  public UserDto firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -87,15 +87,15 @@ public class UserDto {
    */
   
   @JsonProperty("firstName")
-  public @Nullable String getFirstName() {
+  public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(@Nullable String firstName) {
+  public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
-  public UserDto lastName(@Nullable String lastName) {
+  public UserDto lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -106,15 +106,15 @@ public class UserDto {
    */
   
   @JsonProperty("lastName")
-  public @Nullable String getLastName() {
+  public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(@Nullable String lastName) {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
-  public UserDto email(@Nullable String email) {
+  public UserDto email(String email) {
     this.email = email;
     return this;
   }
@@ -125,15 +125,15 @@ public class UserDto {
    */
   
   @JsonProperty("email")
-  public @Nullable String getEmail() {
+  public String getEmail() {
     return email;
   }
 
-  public void setEmail(@Nullable String email) {
+  public void setEmail(String email) {
     this.email = email;
   }
 
-  public UserDto password(@Nullable String password) {
+  public UserDto password(String password) {
     this.password = password;
     return this;
   }
@@ -144,15 +144,15 @@ public class UserDto {
    */
   
   @JsonProperty("password")
-  public @Nullable String getPassword() {
+  public String getPassword() {
     return password;
   }
 
-  public void setPassword(@Nullable String password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
-  public UserDto phone(@Nullable String phone) {
+  public UserDto phone(String phone) {
     this.phone = phone;
     return this;
   }
@@ -163,15 +163,15 @@ public class UserDto {
    */
   
   @JsonProperty("phone")
-  public @Nullable String getPhone() {
+  public String getPhone() {
     return phone;
   }
 
-  public void setPhone(@Nullable String phone) {
+  public void setPhone(String phone) {
     this.phone = phone;
   }
 
-  public UserDto userStatus(@Nullable Integer userStatus) {
+  public UserDto userStatus(Integer userStatus) {
     this.userStatus = userStatus;
     return this;
   }
@@ -182,11 +182,11 @@ public class UserDto {
    */
   
   @JsonProperty("userStatus")
-  public @Nullable Integer getUserStatus() {
+  public Integer getUserStatus() {
     return userStatus;
   }
 
-  public void setUserStatus(@Nullable Integer userStatus) {
+  public void setUserStatus(Integer userStatus) {
     this.userStatus = userStatus;
   }
 

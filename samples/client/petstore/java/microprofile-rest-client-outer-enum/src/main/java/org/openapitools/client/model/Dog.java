@@ -1,4 +1,4 @@
-/*
+/**
  * Petstore API
  * API for managing pets in a pet store
  *
@@ -14,9 +14,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import org.openapitools.client.model.Status;
 import java.lang.reflect.Type;
 import javax.json.bind.annotation.JsonbTypeDeserializer;
@@ -41,7 +38,6 @@ public class Dog  {
 
   @JsonbProperty("status")
   private Status status;
-
 
   /**
    * Get id

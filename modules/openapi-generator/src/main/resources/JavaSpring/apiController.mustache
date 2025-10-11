@@ -51,7 +51,6 @@ import java.util.Optional;
 import {{javaxPackage}}.annotation.Generated;
 
 {{>generatedAnnotation}}
-
 {{#useResponseEntity}}
 @Controller
 {{/useResponseEntity}}
@@ -127,13 +126,13 @@ public class {{classname}}Controller implements {{classname}} {
     ) {
     {{^isDelegate}}
         {{^async}}
-        {{>methodBody}}{{! prevent indent}}
+        {{>methodBody}}
         {{/async}}
         {{#async}}
         return new Callable<{{#useResponseEntity}}ResponseEntity<{{/useResponseEntity}}{{>returnTypes}}{{#useResponseEntity}}>{{/useResponseEntity}}>() {
             @Override
             public {{#useResponseEntity}}ResponseEntity<{{/useResponseEntity}}{{>returnTypes}}{{#useResponseEntity}}>{{/useResponseEntity}} call() {
-                {{>methodBody}}{{! prevent indent}}
+                {{>methodBody}}
             }
         };
         {{/async}}

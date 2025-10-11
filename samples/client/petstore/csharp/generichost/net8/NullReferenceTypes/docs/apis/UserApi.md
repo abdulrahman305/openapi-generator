@@ -21,6 +21,57 @@ Create user
 
 This can only be done by the logged in user.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class CreateUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            var apiInstance = new UserApi(config);
+            var user = new User(); // User | Created user object
+
+            try
+            {
+                // Create user
+                apiInstance.CreateUser(user);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UserApi.CreateUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create user
+    apiInstance.CreateUserWithHttpInfo(user);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UserApi.CreateUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -55,6 +106,57 @@ No authorization required
 
 Creates list of users with given input array
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class CreateUsersWithArrayInputExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            var apiInstance = new UserApi(config);
+            var user = new List<User>(); // List<User> | List of user object
+
+            try
+            {
+                // Creates list of users with given input array
+                apiInstance.CreateUsersWithArrayInput(user);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UserApi.CreateUsersWithArrayInput: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateUsersWithArrayInputWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Creates list of users with given input array
+    apiInstance.CreateUsersWithArrayInputWithHttpInfo(user);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UserApi.CreateUsersWithArrayInputWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -89,6 +191,57 @@ No authorization required
 
 Creates list of users with given input array
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class CreateUsersWithListInputExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            var apiInstance = new UserApi(config);
+            var user = new List<User>(); // List<User> | List of user object
+
+            try
+            {
+                // Creates list of users with given input array
+                apiInstance.CreateUsersWithListInput(user);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UserApi.CreateUsersWithListInput: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateUsersWithListInputWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Creates list of users with given input array
+    apiInstance.CreateUsersWithListInputWithHttpInfo(user);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UserApi.CreateUsersWithListInputWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -125,6 +278,57 @@ Delete user
 
 This can only be done by the logged in user.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class DeleteUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            var apiInstance = new UserApi(config);
+            var username = "username_example";  // string | The name that needs to be deleted
+
+            try
+            {
+                // Delete user
+                apiInstance.DeleteUser(username);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UserApi.DeleteUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete user
+    apiInstance.DeleteUserWithHttpInfo(username);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UserApi.DeleteUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -160,6 +364,61 @@ No authorization required
 
 Get user by user name
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class GetUserByNameExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://petstore.swagger.io:80/v2";
+            var apiInstance = new UserApi(config);
+            var username = "username_example";  // string | The name that needs to be fetched. Use user1 for testing.
+
+            try
+            {
+                // Get user by user name
+                User result = apiInstance.GetUserByName(username);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UserApi.GetUserByName: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetUserByNameWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get user by user name
+    ApiResponse<User> response = apiInstance.GetUserByNameWithHttpInfo(username);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UserApi.GetUserByNameWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
 
 ### Parameters
 
@@ -177,122 +436,4 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | successful operation |  -  |
-| **400** | Invalid username supplied |  -  |
-| **404** | User not found |  -  |
-| **598** | Not a real HTTP status code |  -  |
-| **599** | Not a real HTTP status code with a return object |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="loginuser"></a>
-# **LoginUser**
-> string LoginUser (string password, string username)
-
-Logs user into the system
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **password** | **string** | The password for login in clear text |  |
-| **username** | **string** | The user name for login |  |
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | successful operation |  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  |
-| **400** | Invalid username/password supplied |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="logoutuser"></a>
-# **LogoutUser**
-> void LogoutUser ()
-
-Logs out current logged in user session
-
-
-### Parameters
-This endpoint does not need any parameter.
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **0** | successful operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="updateuser"></a>
-# **UpdateUser**
-> void UpdateUser (User user, string username)
-
-Updated user
-
-This can only be done by the logged in user.
-
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **user** | [**User**](User.md) | Updated user object |  |
-| **username** | **string** | name that need to be deleted |  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **400** | Invalid user supplied |  -  |
-| **404** | User not found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+ - **

@@ -13,7 +13,6 @@ import AnyCodable
 public enum Fruit: Codable, JSONEncodable, Hashable {
     case typeApple(Apple)
     case typeBanana(Banana)
-    case typeOrange(Orange)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -21,8 +20,6 @@ public enum Fruit: Codable, JSONEncodable, Hashable {
         case .typeApple(let value):
             try container.encode(value)
         case .typeBanana(let value):
-            try container.encode(value)
-        case .typeOrange(let value):
             try container.encode(value)
         }
     }
@@ -33,8 +30,6 @@ public enum Fruit: Codable, JSONEncodable, Hashable {
             self = .typeApple(value)
         } else if let value = try? container.decode(Banana.self) {
             self = .typeBanana(value)
-        } else if let value = try? container.decode(Orange.self) {
-            self = .typeOrange(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of Fruit"))
         }

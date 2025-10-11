@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,7 +36,7 @@ import jakarta.validation.Valid;
   FileSchemaTestClass.JSON_PROPERTY_FILE,
   FileSchemaTestClass.JSON_PROPERTY_FILES
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class FileSchemaTestClass {
   public static final String JSON_PROPERTY_FILE = "file";
   @jakarta.annotation.Nullable
@@ -63,7 +62,7 @@ public class FileSchemaTestClass {
   @jakarta.annotation.Nullable
   @Valid
 
-  @JsonProperty(value = JSON_PROPERTY_FILE, required = false)
+  @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ModelFile getFile() {
@@ -71,7 +70,7 @@ public class FileSchemaTestClass {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILE, required = false)
+  @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFile(@jakarta.annotation.Nullable ModelFile _file) {
     this._file = _file;
@@ -98,7 +97,7 @@ public class FileSchemaTestClass {
   @jakarta.annotation.Nullable
   @Valid
 
-  @JsonProperty(value = JSON_PROPERTY_FILES, required = false)
+  @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<@Valid ModelFile> getFiles() {
@@ -106,7 +105,7 @@ public class FileSchemaTestClass {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILES, required = false)
+  @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFiles(@jakarta.annotation.Nullable List<@Valid ModelFile> files) {
     this.files = files;

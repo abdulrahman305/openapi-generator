@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import javax.validation.constraints.DecimalMax
@@ -27,7 +26,7 @@ data class Category(
     @get:Pattern(regexp="^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$")
     @Schema(example = "null", description = "")
     @get:JsonProperty("name") val name: kotlin.String? = null
-) {
+    ) {
 
 }
 

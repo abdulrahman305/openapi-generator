@@ -80,7 +80,8 @@ namespace {{packageName}}.{{clientPackage}}
 
             {{/useSourceGeneration}}
             _services.AddSingleton<IApiFactory, ApiFactory>();{{#apiInfo}}{{#apis}}
-            _services.AddSingleton<{{classname}}Events>();{{/apis}}{{/apiInfo}}
+            _services.AddSingleton<{{classname}}Events>();
+            _services.AddTransient<{{interfacePrefix}}{{classname}}, {{classname}}>();{{/apis}}{{/apiInfo}}
         }
 
         /// <summary>

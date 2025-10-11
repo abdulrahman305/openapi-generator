@@ -49,13 +49,6 @@ pub enum ComplexQueryParamGetResponse {
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum ExamplesTestResponse {
-    /// OK
-    OK
-    (models::AdditionalPropertiesReferencedAnyOfObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub enum FormTestResponse {
     /// OK
     OK
@@ -313,6 +306,10 @@ pub enum GetRepoInfoResponse {
 #[async_trait]
 #[allow(clippy::too_many_arguments, clippy::ptr_arg)]
 pub trait Api<C: Send + Sync> {
+    fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>> {
+        Poll::Ready(Ok(()))
+    }
+
     async fn any_of_get(
         &self,
         any_of: Option<&Vec<models::AnyOfObject>>,
@@ -327,12 +324,6 @@ pub trait Api<C: Send + Sync> {
         &self,
         list_of_strings: Option<&Vec<models::StringObject>>,
         context: &C) -> Result<ComplexQueryParamGetResponse, ApiError>;
-
-    /// Test examples
-    async fn examples_test(
-        &self,
-        ids: Option<&Vec<String>>,
-        context: &C) -> Result<ExamplesTestResponse, ApiError>;
 
     /// Test a Form Post
     async fn form_test(
@@ -475,6 +466,8 @@ pub trait Api<C: Send + Sync> {
 #[allow(clippy::too_many_arguments, clippy::ptr_arg)]
 pub trait ApiNoContext<C: Send + Sync> {
 
+    fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>>;
+
     fn context(&self) -> &C;
 
     async fn any_of_get(
@@ -491,12 +484,6 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         list_of_strings: Option<&Vec<models::StringObject>>,
         ) -> Result<ComplexQueryParamGetResponse, ApiError>;
-
-    /// Test examples
-    async fn examples_test(
-        &self,
-        ids: Option<&Vec<String>>,
-        ) -> Result<ExamplesTestResponse, ApiError>;
 
     /// Test a Form Post
     async fn form_test(
@@ -649,6 +636,10 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ContextWrapperExt<C> for T
 
 #[async_trait]
 impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for ContextWrapper<T, C> {
+    fn poll_ready(&self, cx: &mut Context) -> Poll<Result<(), ServiceError>> {
+        self.api().poll_ready(cx)
+    }
+
     fn context(&self) -> &C {
         ContextWrapper::context(self)
     }
@@ -678,16 +669,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().complex_query_param_get(list_of_strings, &context).await
-    }
-
-    /// Test examples
-    async fn examples_test(
-        &self,
-        ids: Option<&Vec<String>>,
-        ) -> Result<ExamplesTestResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().examples_test(ids, &context).await
     }
 
     /// Test a Form Post
@@ -951,6 +932,9 @@ pub enum CallbackCallbackPostResponse {
 /// Callback API
 #[async_trait]
 pub trait CallbackApi<C: Send + Sync> {
+    fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>> {
+        Poll::Ready(Ok(()))
+    }
 
     async fn callback_callback_with_header_post(
         &self,
@@ -968,6 +952,7 @@ pub trait CallbackApi<C: Send + Sync> {
 /// Callback API without a `Context`
 #[async_trait]
 pub trait CallbackApiNoContext<C: Send + Sync> {
+    fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>>;
 
     fn context(&self) -> &C;
 
@@ -998,6 +983,9 @@ impl<T: CallbackApi<C> + Send + Sync, C: Clone + Send + Sync> CallbackContextWra
 
 #[async_trait]
 impl<T: CallbackApi<C> + Send + Sync, C: Clone + Send + Sync> CallbackApiNoContext<C> for ContextWrapper<T, C> {
+    fn poll_ready(&self, cx: &mut Context) -> Poll<Result<(), ServiceError>> {
+        self.api().poll_ready(cx)
+    }
 
     fn context(&self) -> &C {
         ContextWrapper::context(self)

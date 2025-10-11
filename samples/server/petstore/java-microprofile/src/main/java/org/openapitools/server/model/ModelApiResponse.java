@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
  *
@@ -14,9 +14,6 @@ package org.openapitools.server.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -49,12 +46,11 @@ public class ModelApiResponse  {
   
   private String message;
 
-
   /**
    * Get code
    * @return code
    **/
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCode() {
     return code;
@@ -63,7 +59,7 @@ public class ModelApiResponse  {
   /**
    * Set code
    */
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCode(Integer code) {
     this.code = code;
@@ -78,7 +74,7 @@ public class ModelApiResponse  {
    * Get type
    * @return type
    **/
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getType() {
     return type;
@@ -87,7 +83,7 @@ public class ModelApiResponse  {
   /**
    * Set type
    */
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
@@ -102,7 +98,7 @@ public class ModelApiResponse  {
    * Get message
    * @return message
    **/
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMessage() {
     return message;
@@ -111,7 +107,7 @@ public class ModelApiResponse  {
   /**
    * Set message
    */
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMessage(String message) {
     this.message = message;

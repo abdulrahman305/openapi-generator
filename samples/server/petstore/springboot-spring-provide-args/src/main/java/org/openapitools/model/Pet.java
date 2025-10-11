@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * Pet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Pet {
 
   private @Nullable Long id;
@@ -91,7 +91,7 @@ public class Pet {
     this.photoUrls = photoUrls;
   }
 
-  public Pet id(@Nullable Long id) {
+  public Pet id(Long id) {
     this.id = id;
     return this;
   }
@@ -103,15 +103,15 @@ public class Pet {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public Pet category(@Nullable Category category) {
+  public Pet category(Category category) {
     this.category = category;
     return this;
   }
@@ -123,11 +123,11 @@ public class Pet {
   @Valid 
   @Schema(name = "category", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("category")
-  public @Nullable Category getCategory() {
+  public Category getCategory() {
     return category;
   }
 
-  public void setCategory(@Nullable Category category) {
+  public void setCategory(Category category) {
     this.category = category;
   }
 
@@ -207,7 +207,7 @@ public class Pet {
     this.tags = tags;
   }
 
-  public Pet status(@Nullable StatusEnum status) {
+  public Pet status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -219,11 +219,11 @@ public class Pet {
   
   @Schema(name = "status", description = "pet status in the store", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public @Nullable StatusEnum getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(@Nullable StatusEnum status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 

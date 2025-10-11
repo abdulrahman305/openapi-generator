@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -55,7 +52,6 @@ public class Name  {
   
   private Integer _123number;
 
-
   public Name() {
   }
 
@@ -72,7 +68,7 @@ public class Name  {
    * Get name
    * @return name
    **/
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Integer getName() {
     return name;
@@ -81,7 +77,7 @@ public class Name  {
   /**
    * Set name
    */
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(Integer name) {
     this.name = name;
@@ -96,7 +92,7 @@ public class Name  {
    * Get snakeCase
    * @return snakeCase
    **/
-  @JsonProperty(value = JSON_PROPERTY_SNAKE_CASE, required = false)
+  @JsonProperty(JSON_PROPERTY_SNAKE_CASE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getSnakeCase() {
     return snakeCase;
@@ -107,7 +103,7 @@ public class Name  {
    * Get property
    * @return property
    **/
-  @JsonProperty(value = JSON_PROPERTY_PROPERTY, required = false)
+  @JsonProperty(JSON_PROPERTY_PROPERTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProperty() {
     return property;
@@ -116,7 +112,7 @@ public class Name  {
   /**
    * Set property
    */
-  @JsonProperty(value = JSON_PROPERTY_PROPERTY, required = false)
+  @JsonProperty(JSON_PROPERTY_PROPERTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProperty(String property) {
     this.property = property;
@@ -131,7 +127,7 @@ public class Name  {
    * Get _123number
    * @return _123number
    **/
-  @JsonProperty(value = JSON_PROPERTY_123NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_123NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer get123number() {
     return _123number;

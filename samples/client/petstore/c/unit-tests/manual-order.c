@@ -12,12 +12,11 @@
 #define COMPLETE 1
 
 int main() {
-	char *shipDate = malloc(strlen(SHIP_DATE) + 1);
-	strcpy(shipDate, SHIP_DATE);
+	status_e STATUS = placed;
 
-	order_t *neworder = order_create(ORDER_ID, PET_ID, QUANTITY, shipDate,
-		openapi_petstore_order_STATUS_placed,
-		COMPLETE);
+	order_t *neworder = order_create(ORDER_ID, PET_ID, QUANTITY, SHIP_DATE,
+	                                 STATUS,
+	                                 COMPLETE);
 
 	cJSON *JSONNODE = order_convertToJSON(neworder);
 

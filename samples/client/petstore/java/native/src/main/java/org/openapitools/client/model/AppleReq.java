@@ -21,7 +21,6 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +38,7 @@ import org.openapitools.client.ApiClient;
   AppleReq.JSON_PROPERTY_CULTIVAR,
   AppleReq.JSON_PROPERTY_MEALY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class AppleReq {
   public static final String JSON_PROPERTY_CULTIVAR = "cultivar";
   @javax.annotation.Nonnull
@@ -62,14 +61,14 @@ public class AppleReq {
    * @return cultivar
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CULTIVAR, required = true)
+  @JsonProperty(JSON_PROPERTY_CULTIVAR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCultivar() {
     return cultivar;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CULTIVAR, required = true)
+  @JsonProperty(JSON_PROPERTY_CULTIVAR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCultivar(@javax.annotation.Nonnull String cultivar) {
     this.cultivar = cultivar;
@@ -86,14 +85,14 @@ public class AppleReq {
    * @return mealy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEALY, required = false)
+  @JsonProperty(JSON_PROPERTY_MEALY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getMealy() {
     return mealy;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MEALY, required = false)
+  @JsonProperty(JSON_PROPERTY_MEALY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMealy(@javax.annotation.Nullable Boolean mealy) {
     this.mealy = mealy;
@@ -168,12 +167,12 @@ public class AppleReq {
 
     // add `cultivar` to the URL query string
     if (getCultivar() != null) {
-      joiner.add(String.format(Locale.ROOT, "%scultivar%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCultivar()))));
+      joiner.add(String.format("%scultivar%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCultivar()))));
     }
 
     // add `mealy` to the URL query string
     if (getMealy() != null) {
-      joiner.add(String.format(Locale.ROOT, "%smealy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMealy()))));
+      joiner.add(String.format("%smealy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMealy()))));
     }
 
     return joiner.toString();

@@ -11,11 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Category  {
   
   @ApiModelProperty(value = "")
-
   private Long id;
 
   @ApiModelProperty(required = true, value = "")
-
   private String name = "default-name";
  /**
    * Get id

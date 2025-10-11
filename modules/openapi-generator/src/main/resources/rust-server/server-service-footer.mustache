@@ -1,5 +1,5 @@
                 _ => Ok(Response::builder().status(StatusCode::NOT_FOUND)
-                        .body(BoxBody::new(http_body_util::Empty::new()))
+                        .body(Body::empty())
                         .expect("Unable to create Not Found response"))
             }
         }

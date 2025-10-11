@@ -17,6 +17,11 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 
 object Serializer {
+    @Deprecated("Use Serializer.kotlinxSerializationAdapters instead", replaceWith = ReplaceWith("Serializer.kotlinxSerializationAdapters"), level = DeprecationLevel.ERROR)
+    @JvmStatic
+    val kotlinSerializationAdapters: SerializersModule
+        get() { return kotlinxSerializationAdapters }
+
     private var isAdaptersInitialized = false
 
     @JvmStatic
@@ -47,6 +52,11 @@ object Serializer {
             }
             field = value
         }
+
+    @Deprecated("Use Serializer.kotlinxSerializationJson instead", replaceWith = ReplaceWith("Serializer.kotlinxSerializationJson"), level = DeprecationLevel.ERROR)
+    @JvmStatic
+    val jvmJson: Json
+        get() { return kotlinxSerializationJson }
 
     private var isJsonInitialized = false
 

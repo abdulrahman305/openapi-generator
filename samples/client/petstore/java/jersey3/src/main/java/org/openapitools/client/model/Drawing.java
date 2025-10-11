@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -54,7 +53,7 @@ import org.openapitools.client.JSON;
   Drawing.JSON_PROPERTY_NULLABLE_SHAPE,
   Drawing.JSON_PROPERTY_SHAPES
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Drawing {
   public static final String JSON_PROPERTY_MAIN_SHAPE = "mainShape";
   @jakarta.annotation.Nullable
@@ -85,7 +84,7 @@ public class Drawing {
   @jakarta.annotation.Nullable
   @Valid
 
-  @JsonProperty(value = JSON_PROPERTY_MAIN_SHAPE, required = false)
+  @JsonProperty(JSON_PROPERTY_MAIN_SHAPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Shape getMainShape() {
@@ -93,7 +92,7 @@ public class Drawing {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MAIN_SHAPE, required = false)
+  @JsonProperty(JSON_PROPERTY_MAIN_SHAPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMainShape(@jakarta.annotation.Nullable Shape mainShape) {
     this.mainShape = mainShape;
@@ -118,7 +117,7 @@ public class Drawing {
         return shapeOrNull.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_SHAPE_OR_NULL, required = false)
+  @JsonProperty(JSON_PROPERTY_SHAPE_OR_NULL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<ShapeOrNull> getShapeOrNull_JsonNullable() {
@@ -153,7 +152,7 @@ public class Drawing {
         return nullableShape.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_NULLABLE_SHAPE, required = false)
+  @JsonProperty(JSON_PROPERTY_NULLABLE_SHAPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<NullableShape> getNullableShape_JsonNullable() {
@@ -190,7 +189,7 @@ public class Drawing {
   @jakarta.annotation.Nullable
   @Valid
 
-  @JsonProperty(value = JSON_PROPERTY_SHAPES, required = false)
+  @JsonProperty(JSON_PROPERTY_SHAPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<Shape> getShapes() {
@@ -198,7 +197,7 @@ public class Drawing {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SHAPES, required = false)
+  @JsonProperty(JSON_PROPERTY_SHAPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShapes(@jakarta.annotation.Nullable List<Shape> shapes) {
     this.shapes = shapes;

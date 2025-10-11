@@ -94,7 +94,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// AddPet - POST /v2/pet
     async fn add_pet(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -106,7 +105,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// DeletePet - DELETE /v2/pet/{petId}
     async fn delete_pet(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -119,7 +117,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// FindPetsByStatus - GET /v2/pet/findByStatus
     async fn find_pets_by_status(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -131,7 +128,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// FindPetsByTags - GET /v2/pet/findByTags
     async fn find_pets_by_tags(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -143,7 +139,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// GetPetById - GET /v2/pet/{petId}
     async fn get_pet_by_id(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -156,7 +151,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// UpdatePet - PUT /v2/pet
     async fn update_pet(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -168,7 +162,6 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// UpdatePetWithForm - POST /v2/pet/{petId}
     async fn update_pet_with_form(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
@@ -181,11 +174,10 @@ pub trait Pet<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHand
     /// UploadFile - POST /v2/pet/{petId}/uploadImage
     async fn upload_file(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,
         path_params: &models::UploadFilePathParams,
-        body: Multipart,
+        body: &Multipart,
     ) -> Result<UploadFileResponse, E>;
 }

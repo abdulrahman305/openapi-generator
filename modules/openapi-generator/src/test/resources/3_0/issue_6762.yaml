@@ -13,9 +13,6 @@ paths:
       operationId: getGiraffes
       parameters:
         - $ref: '#/components/parameters/refStatus'
-      responses:
-        "204":
-          description: Successful response
   /zebras/{status}:
     get:
       operationId: getZebras
@@ -27,17 +24,11 @@ paths:
             type: integer
             enum: [0,1]
             default: 0
-      responses:
-        "204":
-          description: Successful response
   /bears/{refCondition}:
     get:
       operationId: getBears
       parameters:
         - $ref: '#/components/parameters/refCondition'
-      responses:
-        "204":
-          description: Successful response
   /camels/{condition}:
     get:
       operationId: getCamels
@@ -50,9 +41,6 @@ paths:
             enum:
               - sleeping
               - awake
-      responses:
-        "204":
-          description: Successful response
 components:
   parameters:
     refStatus:

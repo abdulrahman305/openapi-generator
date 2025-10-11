@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  */
 
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Bar extends Entity implements BarRefOrValue {
 
   private String id;
@@ -68,7 +68,7 @@ public class Bar extends Entity implements BarRefOrValue {
     this.id = id;
   }
 
-  public Bar barPropA(@Nullable String barPropA) {
+  public Bar barPropA(String barPropA) {
     this.barPropA = barPropA;
     return this;
   }
@@ -80,15 +80,15 @@ public class Bar extends Entity implements BarRefOrValue {
   
   @Schema(name = "barPropA", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("barPropA")
-  public @Nullable String getBarPropA() {
+  public String getBarPropA() {
     return barPropA;
   }
 
-  public void setBarPropA(@Nullable String barPropA) {
+  public void setBarPropA(String barPropA) {
     this.barPropA = barPropA;
   }
 
-  public Bar fooPropB(@Nullable String fooPropB) {
+  public Bar fooPropB(String fooPropB) {
     this.fooPropB = fooPropB;
     return this;
   }
@@ -100,15 +100,15 @@ public class Bar extends Entity implements BarRefOrValue {
   
   @Schema(name = "fooPropB", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fooPropB")
-  public @Nullable String getFooPropB() {
+  public String getFooPropB() {
     return fooPropB;
   }
 
-  public void setFooPropB(@Nullable String fooPropB) {
+  public void setFooPropB(String fooPropB) {
     this.fooPropB = fooPropB;
   }
 
-  public Bar foo(@Nullable FooRefOrValue foo) {
+  public Bar foo(FooRefOrValue foo) {
     this.foo = foo;
     return this;
   }
@@ -120,11 +120,11 @@ public class Bar extends Entity implements BarRefOrValue {
   @Valid 
   @Schema(name = "foo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foo")
-  public @Nullable FooRefOrValue getFoo() {
+  public FooRefOrValue getFoo() {
     return foo;
   }
 
-  public void setFoo(@Nullable FooRefOrValue foo) {
+  public void setFoo(FooRefOrValue foo) {
     this.foo = foo;
   }
 

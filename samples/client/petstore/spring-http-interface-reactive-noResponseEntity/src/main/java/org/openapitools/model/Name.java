@@ -17,7 +17,7 @@ import jakarta.annotation.Generated;
  * Model for testing model name same as property name
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Name {
 
   private Integer name;
@@ -58,7 +58,7 @@ public class Name {
     this.name = name;
   }
 
-  public Name snakeCase(@Nullable Integer snakeCase) {
+  public Name snakeCase(Integer snakeCase) {
     this.snakeCase = snakeCase;
     return this;
   }
@@ -69,15 +69,15 @@ public class Name {
    */
   
   @JsonProperty("snake_case")
-  public @Nullable Integer getSnakeCase() {
+  public Integer getSnakeCase() {
     return snakeCase;
   }
 
-  public void setSnakeCase(@Nullable Integer snakeCase) {
+  public void setSnakeCase(Integer snakeCase) {
     this.snakeCase = snakeCase;
   }
 
-  public Name property(@Nullable String property) {
+  public Name property(String property) {
     this.property = property;
     return this;
   }
@@ -88,15 +88,15 @@ public class Name {
    */
   
   @JsonProperty("property")
-  public @Nullable String getProperty() {
+  public String getProperty() {
     return property;
   }
 
-  public void setProperty(@Nullable String property) {
+  public void setProperty(String property) {
     this.property = property;
   }
 
-  public Name _123number(@Nullable Integer _123number) {
+  public Name _123number(Integer _123number) {
     this._123number = _123number;
     return this;
   }
@@ -107,11 +107,11 @@ public class Name {
    */
   
   @JsonProperty("123Number")
-  public @Nullable Integer get123number() {
+  public Integer get123number() {
     return _123number;
   }
 
-  public void set123number(@Nullable Integer _123number) {
+  public void set123number(Integer _123number) {
     this._123number = _123number;
   }
 

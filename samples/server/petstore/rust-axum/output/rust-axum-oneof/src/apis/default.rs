@@ -22,7 +22,6 @@ pub trait Default<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Error
     /// Foo - POST /
     async fn foo(
         &self,
-
         method: &Method,
         host: &Host,
         cookies: &CookieJar,

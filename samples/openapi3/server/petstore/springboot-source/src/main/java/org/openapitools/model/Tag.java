@@ -18,14 +18,14 @@ import javax.annotation.Generated;
  * A tag for a pet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Tag {
 
   private @Nullable Long id;
 
   private @Nullable String name;
 
-  public Tag id(@Nullable Long id) {
+  public Tag id(Long id) {
     this.id = id;
     return this;
   }
@@ -36,15 +36,15 @@ public class Tag {
    */
   
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public Tag name(@Nullable String name) {
+  public Tag name(String name) {
     this.name = name;
     return this;
   }
@@ -55,11 +55,11 @@ public class Tag {
    */
   
   @JsonProperty("name")
-  public @Nullable String getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(String name) {
     this.name = name;
   }
 

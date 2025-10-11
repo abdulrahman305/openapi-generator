@@ -66,6 +66,7 @@ export class HttpBearerAuthAuthentication implements SecurityAuthentication {
     }
 }
 
+
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
     "http_auth"?: SecurityAuthentication,

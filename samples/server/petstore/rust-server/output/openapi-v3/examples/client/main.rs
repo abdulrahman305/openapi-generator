@@ -9,7 +9,6 @@ use openapi_v3::{Api, ApiNoContext, Claims, Client, ContextWrapperExt, models,
                       AnyOfGetResponse,
                       CallbackWithHeaderPostResponse,
                       ComplexQueryParamGetResponse,
-                      ExamplesTestResponse,
                       FormTestResponse,
                       GetWithBooleanParameterResponse,
                       JsonComplexQueryParamGetResponse,
@@ -38,7 +37,7 @@ use openapi_v3::{Api, ApiNoContext, Claims, Client, ContextWrapperExt, models,
                       CreateRepoResponse,
                       GetRepoInfoResponse,
                      };
-use clap::{Command, Arg};
+use clap::{App, Arg};
 
 // NOTE: Set environment variable RUST_LOG to the name of the executable (or "cargo run") to activate console logging for all loglevels.
 //     See https://docs.rs/env_logger/latest/env_logger/  for more details
@@ -61,14 +60,13 @@ use client_auth::build_token;
 fn main() {
     env_logger::init();
 
-    let matches = Command::new("client")
-        .arg(Arg::new("operation")
+    let matches = App::new("client")
+        .arg(Arg::with_name("operation")
             .help("Sets the operation to run")
-            .value_parser([
+            .possible_values(&[
                 "AnyOfGet",
                 "CallbackWithHeaderPost",
                 "ComplexQueryParamGet",
-                "ExamplesTest",
                 "FormTest",
                 "GetWithBooleanParameter",
                 "JsonComplexQueryParamGet",
@@ -92,22 +90,23 @@ fn main() {
                 "XmlOtherPut",
                 "XmlPost",
                 "XmlPut",
-                "EnumInPathPathParamGet",
                 "MultiplePathParamsWithVeryLongPathToTestFormattingPathParamAPathParamBGet",
                 "CreateRepo",
                 "GetRepoInfo",
             ])
             .required(true)
             .index(1))
-        .arg(Arg::new("https")
+        .arg(Arg::with_name("https")
             .long("https")
             .help("Whether to use HTTPS or not"))
-        .arg(Arg::new("host")
+        .arg(Arg::with_name("host")
             .long("host")
+            .takes_value(true)
             .default_value("localhost")
             .help("Hostname to contact"))
-        .arg(Arg::new("port")
+        .arg(Arg::with_name("port")
             .long("port")
+            .takes_value(true)
             .default_value("8080")
             .help("Port to contact"))
         .get_matches();
@@ -136,22 +135,22 @@ fn main() {
             b"secret").unwrap();
 
     let auth_data = if !auth_token.is_empty() {
-        Some(AuthData::Bearer(auth_token))
+        Some(AuthData::Bearer(swagger::auth::Bearer { token: auth_token}))
     } else {
         // No Bearer-token available, so return None
         None
     };
 
-    let is_https = matches.contains_id("https");
+    let is_https = matches.is_present("https");
     let base_url = format!("{}://{}:{}",
         if is_https { "https" } else { "http" },
-        matches.get_one::<String>("host").unwrap(),
-        matches.get_one::<u16>("port").unwrap());
+        matches.value_of("host").unwrap(),
+        matches.value_of("port").unwrap());
 
     let context: ClientContext =
         swagger::make_context!(ContextBuilder, EmptyContext, auth_data, XSpanIdString::default());
 
-    let mut client : Box<dyn ApiNoContext<ClientContext>> = if is_https {
+    let mut client : Box<dyn ApiNoContext<ClientContext>> = if matches.is_present("https") {
         // Using Simple HTTPS
         let client = Box::new(Client::try_new_https(&base_url)
             .expect("Failed to create HTTPS client"));
@@ -169,7 +168,7 @@ fn main() {
     // We could do HTTPS here, but for simplicity we don't
     rt.spawn(server::create("127.0.0.1:8081", false));
 
-    match matches.get_one::<String>("operation").map(String::as_str) {
+    match matches.value_of("operation") {
         Some("AnyOfGet") => {
             let result = rt.block_on(client.any_of_get(
                   Some(&Vec::new())
@@ -185,12 +184,6 @@ fn main() {
         Some("ComplexQueryParamGet") => {
             let result = rt.block_on(client.complex_query_param_get(
                   Some(&Vec::new())
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("ExamplesTest") => {
-            let result = rt.block_on(client.examples_test(
-                  Some(&vec!["foo".to_string()])
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },

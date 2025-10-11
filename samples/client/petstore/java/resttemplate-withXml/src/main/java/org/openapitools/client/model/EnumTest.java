@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -50,7 +49,7 @@ import io.github.threetenjaxb.core.*;
   EnumTest.JSON_PROPERTY_OUTER_ENUM_INTEGER_DEFAULT_VALUE
 })
 @JsonTypeName("Enum_Test")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 @XmlRootElement(name = "EnumTest")
 @XmlAccessorType(XmlAccessType.FIELD)
 @JacksonXmlRootElement(localName = "EnumTest")
@@ -271,7 +270,7 @@ public class EnumTest {
    * @return enumString
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENUM_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_string")
 
@@ -280,7 +279,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ENUM_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_string")
   public void setEnumString(@javax.annotation.Nullable EnumStringEnum enumString) {
@@ -298,7 +297,7 @@ public class EnumTest {
    * @return enumStringRequired
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ENUM_STRING_REQUIRED, required = true)
+  @JsonProperty(JSON_PROPERTY_ENUM_STRING_REQUIRED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   @JacksonXmlProperty(localName = "enum_string_required")
 
@@ -307,7 +306,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ENUM_STRING_REQUIRED, required = true)
+  @JsonProperty(JSON_PROPERTY_ENUM_STRING_REQUIRED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   @JacksonXmlProperty(localName = "enum_string_required")
   public void setEnumStringRequired(@javax.annotation.Nonnull EnumStringRequiredEnum enumStringRequired) {
@@ -325,7 +324,7 @@ public class EnumTest {
    * @return enumInteger
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENUM_INTEGER, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_integer")
 
@@ -334,7 +333,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ENUM_INTEGER, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_integer")
   public void setEnumInteger(@javax.annotation.Nullable EnumIntegerEnum enumInteger) {
@@ -352,7 +351,7 @@ public class EnumTest {
    * @return enumNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENUM_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_number")
 
@@ -361,7 +360,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ENUM_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_ENUM_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "enum_number")
   public void setEnumNumber(@javax.annotation.Nullable EnumNumberEnum enumNumber) {
@@ -385,7 +384,7 @@ public class EnumTest {
         return outerEnum.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnum")
 
@@ -413,7 +412,7 @@ public class EnumTest {
    * @return outerEnumInteger
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_INTEGER, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumInteger")
 
@@ -422,7 +421,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_INTEGER, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_INTEGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumInteger")
   public void setOuterEnumInteger(@javax.annotation.Nullable OuterEnumInteger outerEnumInteger) {
@@ -440,7 +439,7 @@ public class EnumTest {
    * @return outerEnumDefaultValue
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_DEFAULT_VALUE, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_DEFAULT_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumDefaultValue")
 
@@ -449,7 +448,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_DEFAULT_VALUE, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_DEFAULT_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumDefaultValue")
   public void setOuterEnumDefaultValue(@javax.annotation.Nullable OuterEnumDefaultValue outerEnumDefaultValue) {
@@ -467,7 +466,7 @@ public class EnumTest {
    * @return outerEnumIntegerDefaultValue
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_INTEGER_DEFAULT_VALUE, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_INTEGER_DEFAULT_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumIntegerDefaultValue")
 
@@ -476,7 +475,7 @@ public class EnumTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OUTER_ENUM_INTEGER_DEFAULT_VALUE, required = false)
+  @JsonProperty(JSON_PROPERTY_OUTER_ENUM_INTEGER_DEFAULT_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "outerEnumIntegerDefaultValue")
   public void setOuterEnumIntegerDefaultValue(@javax.annotation.Nullable OuterEnumIntegerDefaultValue outerEnumIntegerDefaultValue) {

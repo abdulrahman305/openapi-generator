@@ -21,7 +21,6 @@ import {{invokerPackage}}.Configuration;
 import {{invokerPackage}}.Pair;
 
 {{>generatedAnnotation}}
-
 {{#operations}}
 public class {{classname}}Impl implements {{classname}} {
 
@@ -113,7 +112,7 @@ public class {{classname}}Impl implements {{classname}} {
 
     private String encodeParameter(String parameter) {
         try {
-            return URLEncoder.encode(parameter, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20");
+            return URLEncoder.encode(parameter, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
             return parameter;
         }

@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -32,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   HasOnlyReadOnly.JSON_PROPERTY_FOO
 })
 @JsonTypeName("hasOnlyReadOnly")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class HasOnlyReadOnly {
   public static final String JSON_PROPERTY_BAR = "bar";
   @javax.annotation.Nullable
@@ -49,8 +48,8 @@ public class HasOnlyReadOnly {
    */
   @JsonCreator
   public HasOnlyReadOnly(
-    @JsonProperty(value = JSON_PROPERTY_BAR, required = false) String bar, 
-    @JsonProperty(value = JSON_PROPERTY_FOO, required = false) String foo
+    @JsonProperty(JSON_PROPERTY_BAR) String bar, 
+    @JsonProperty(JSON_PROPERTY_FOO) String foo
   ) {
     this();
     this.bar = bar;
@@ -62,7 +61,7 @@ public class HasOnlyReadOnly {
    * @return bar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BAR, required = false)
+  @JsonProperty(JSON_PROPERTY_BAR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getBar() {
@@ -76,7 +75,7 @@ public class HasOnlyReadOnly {
    * @return foo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOO, required = false)
+  @JsonProperty(JSON_PROPERTY_FOO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getFoo() {

@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("Category")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class CategoryDto {
 
   private @Nullable Long id;
@@ -40,7 +40,7 @@ public class CategoryDto {
     this.name = name;
   }
 
-  public CategoryDto id(@Nullable Long id) {
+  public CategoryDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -52,11 +52,11 @@ public class CategoryDto {
   
   @ApiModelProperty(value = "")
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

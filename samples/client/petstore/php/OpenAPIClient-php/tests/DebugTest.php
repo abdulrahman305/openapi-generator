@@ -11,16 +11,15 @@ class DebugTest extends TestCase
         parent::setUpBeforeClass();
         $newPet = new Model\Pet;
         $newPet->setId(1);
-	$newPet->setName("PHP Unit Test");
-	$config = (new Configuration())->setHost('http://localhost/v2');
-        (new Api\PetApi(null, $config))->addPetWithHttpInfo($newPet);
+        $newPet->setName("PHP Unit Test");
+        (new Api\PetApi())->addPetWithHttpInfo($newPet);
     }
 
     public function testEnableDebugOutput()
     {
         $this->expectOutputRegex('#GET /v2/pet/1 HTTP/1.1#');
 
-	$config = (new Configuration())->setHost('http://localhost/v2');
+        $config = new Configuration();
         $config->setDebug(true);
         $api = new Api\PetApi(null, $config);
         $api->getPetById(1);
@@ -30,7 +29,7 @@ class DebugTest extends TestCase
     {
         $this->expectOutputRegex('#GET /v2/pet/1 HTTP/1.1#');
 
-	$config = (new Configuration())->setHost('http://localhost/v2');
+        $config = new Configuration();
         $config->setDebug(true);
         $api = new Api\PetApi(null, $config);
         $promise = $api->getPetByIdAsync(1);

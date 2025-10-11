@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.Supplier;
 import java.util.TimeZone;
-import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,7 +83,7 @@ import org.openapitools.client.auth.HttpBearerAuth;
 import org.openapitools.client.auth.ApiKeyAuth;
 import org.openapitools.client.auth.OAuth;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ApiClient extends JavaTimeFormatter {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   protected Map<String, String> defaultCookieMap = new HashMap<String, String>();
@@ -149,8 +149,8 @@ public class ApiClient extends JavaTimeFormatter {
 
   protected Map<String, Authentication> authentications;
 
-  protected ThreadLocal<Integer> lastStatusCode = new ThreadLocal<>();
-  protected ThreadLocal<Map<String, List<String>>> lastResponseHeaders = new ThreadLocal<>();
+  protected Map<Long, Integer> lastStatusCodeByThread = new ConcurrentHashMap<>();
+  protected Map<Long, Map<String, List<String>>> lastResponseHeadersByThread = new ConcurrentHashMap<>();
 
   protected DateFormat dateFormat;
 
@@ -302,7 +302,7 @@ public class ApiClient extends JavaTimeFormatter {
    */
   @Deprecated
   public int getStatusCode() {
-    return lastStatusCode.get();
+    return lastStatusCodeByThread.get(Thread.currentThread().getId());
   }
 
   /**
@@ -311,7 +311,7 @@ public class ApiClient extends JavaTimeFormatter {
    */
   @Deprecated
   public Map<String, List<String>> getResponseHeaders() {
-    return lastResponseHeaders.get();
+    return lastResponseHeadersByThread.get(Thread.currentThread().getId());
   }
 
   /**
@@ -940,7 +940,6 @@ public class ApiClient extends JavaTimeFormatter {
     if (serverIndex != null) {
       if (serverIndex < 0 || serverIndex >= servers.size()) {
         throw new ArrayIndexOutOfBoundsException(String.format(
-          Locale.ROOT,
           "Invalid index %d when selecting the host settings. Must be less than %d", serverIndex, servers.size()
         ));
       }
@@ -1026,13 +1025,13 @@ public class ApiClient extends JavaTimeFormatter {
 
   protected <T> T processResponse(CloseableHttpResponse response, TypeReference<T> returnType) throws ApiException, IOException, ParseException {
     int statusCode = response.getCode();
-    lastStatusCode.set(statusCode);
+    lastStatusCodeByThread.put(Thread.currentThread().getId(), statusCode);
     if (statusCode == HttpStatus.SC_NO_CONTENT) {
       return null;
     }
 
     Map<String, List<String>> responseHeaders = transformResponseHeaders(response.getHeaders());
-    lastResponseHeaders.set(responseHeaders);
+    lastResponseHeadersByThread.put(Thread.currentThread().getId(), responseHeaders);
 
     if (isSuccessfulStatus(statusCode)) {
       return this.deserialize(response, returnType);

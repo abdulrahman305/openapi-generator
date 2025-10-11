@@ -25,7 +25,6 @@ import misk.web.QueryParam
 import misk.web.RequestBody
 import misk.web.RequestContentType
 import misk.web.RequestHeader
-import misk.web.Response
 import misk.web.ResponseContentType
 import misk.web.mediatype.MediaTypes
 import org.openapitools.server.api.model.ModelApiResponse
@@ -45,8 +44,7 @@ class PetApiAction @Inject constructor(
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 2.0)
     @Suppress("unused")
     fun addPet(
-        @Valid @RequestBody pet: Pet
-    ): Pet {
+        @Valid @RequestBody pet: Pet): Pet {
         TODO()
     }
 
@@ -56,8 +54,7 @@ class PetApiAction @Inject constructor(
     @Suppress("unused")
     fun deletePet(
         @PathParam("petId") petId: kotlin.Long, 
-        @RequestHeader(value = "api_key") apiKey: kotlin.String?
-    ): Response<Unit> {
+        @RequestHeader(value = "api_key") apiKey: kotlin.String?) {
         TODO()
     }
 
@@ -67,8 +64,7 @@ class PetApiAction @Inject constructor(
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 2.0)
     @Suppress("unused")
     fun findPetsByStatus(
-         @QueryParam(value = "status") status: kotlin.collections.List<kotlin.String>
-    ): kotlin.collections.List<Pet> {
+         @QueryParam(value = "status") status: kotlin.Array<kotlin.String>): kotlin.Array<Pet> {
         TODO()
     }
 
@@ -78,8 +74,7 @@ class PetApiAction @Inject constructor(
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 2.0)
     @Suppress("unused")
     fun findPetsByTags(
-         @QueryParam(value = "tags") tags: kotlin.collections.List<kotlin.String>
-    ): kotlin.collections.List<Pet> {
+         @QueryParam(value = "tags") tags: kotlin.Array<kotlin.String>): kotlin.Array<Pet> {
         TODO()
     }
 
@@ -89,8 +84,7 @@ class PetApiAction @Inject constructor(
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 2.0)
     @Suppress("unused")
     fun getPetById(
-        @PathParam("petId") petId: kotlin.Long
-    ): Pet {
+        @PathParam("petId") petId: kotlin.Long): Pet {
         TODO()
     }
 
@@ -101,8 +95,7 @@ class PetApiAction @Inject constructor(
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 2.0)
     @Suppress("unused")
     fun updatePet(
-        @Valid @RequestBody pet: Pet
-    ): Pet {
+        @Valid @RequestBody pet: Pet): Pet {
         TODO()
     }
 
@@ -114,8 +107,7 @@ class PetApiAction @Inject constructor(
     fun updatePetWithForm(
         @PathParam("petId") petId: kotlin.Long, 
         @QueryParam(value = "name") name: kotlin.String? , 
-        @QueryParam(value = "status") status: kotlin.String? 
-    ): Response<Unit> {
+        @QueryParam(value = "status") status: kotlin.String? ) {
         TODO()
     }
 
@@ -128,8 +120,7 @@ class PetApiAction @Inject constructor(
     fun uploadFile(
         @PathParam("petId") petId: kotlin.Long, 
         @QueryParam(value = "additionalMetadata") additionalMetadata: kotlin.String? , 
-        @Valid file: HttpCall
-    ): ModelApiResponse {
+        @Valid file: HttpCall): ModelApiResponse {
         TODO()
     }
 }

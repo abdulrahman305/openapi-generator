@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -33,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   NumberPropertiesOnly.JSON_PROPERTY_FLOAT,
   NumberPropertiesOnly.JSON_PROPERTY_DOUBLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class NumberPropertiesOnly {
   public static final String JSON_PROPERTY_NUMBER = "number";
   @javax.annotation.Nullable
@@ -61,7 +60,7 @@ public class NumberPropertiesOnly {
    * @return number
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getNumber() {
@@ -69,7 +68,7 @@ public class NumberPropertiesOnly {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNumber(@javax.annotation.Nullable BigDecimal number) {
     this.number = number;
@@ -86,7 +85,7 @@ public class NumberPropertiesOnly {
    * @return _float
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FLOAT, required = false)
+  @JsonProperty(JSON_PROPERTY_FLOAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Float getFloat() {
@@ -94,7 +93,7 @@ public class NumberPropertiesOnly {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FLOAT, required = false)
+  @JsonProperty(JSON_PROPERTY_FLOAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFloat(@javax.annotation.Nullable Float _float) {
     this._float = _float;
@@ -113,7 +112,7 @@ public class NumberPropertiesOnly {
    * @return _double
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOUBLE, required = false)
+  @JsonProperty(JSON_PROPERTY_DOUBLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Double getDouble() {
@@ -121,7 +120,7 @@ public class NumberPropertiesOnly {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DOUBLE, required = false)
+  @JsonProperty(JSON_PROPERTY_DOUBLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDouble(@javax.annotation.Nullable Double _double) {
     this._double = _double;

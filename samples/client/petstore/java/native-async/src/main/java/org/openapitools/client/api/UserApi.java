@@ -50,33 +50,12 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 import java.util.function.Consumer;
 
 import java.util.concurrent.CompletableFuture;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class UserApi {
-  /**
-   * Utility class for extending HttpRequest.Builder functionality.
-   */
-  private static class HttpRequestBuilderExtensions {
-    /**
-     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
-     *
-     * @param builder the HttpRequest.Builder to which headers will be added
-     * @param headers a map of header names and values to add; may be null
-     * @return the same HttpRequest.Builder instance with the additional headers set
-     */
-    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
-        if (headers != null) {
-            for (Map.Entry<String, String> entry : headers.entrySet()) {
-                builder.header(entry.getKey(), entry.getValue());
-            }
-        }
-        return builder;
-    }
-  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
@@ -99,7 +78,6 @@ public class UserApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-
   private ApiException getApiException(String operationId, HttpResponse<String> response) {
     String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
     return new ApiException(response.statusCode(), message, response.headers(), response.body());
@@ -113,54 +91,6 @@ public class UserApi {
   }
 
   /**
-   * Download file from the given response.
-   *
-   * @param response Response
-   * @return File
-   * @throws ApiException If fail to read file content from response and write to disk
-   */
-  public File downloadFileFromResponse(HttpResponse<InputStream> response) throws ApiException {
-    try {
-      File file = prepareDownloadFile(response);
-      java.nio.file.Files.copy(response.body(), file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-      return file;
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-  }
-
-  /**
-   * <p>Prepare the file for download from the response.</p>
-   *
-   * @param response a {@link java.net.http.HttpResponse} object.
-   * @return a {@link java.io.File} object.
-   * @throws java.io.IOException if any.
-   */
-  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
-    String filename = null;
-    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
-    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
-      // Get filename from the Content-Disposition header.
-      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
-      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
-      if (matcher.find())
-        filename = matcher.group(1);
-    }
-    File file = null;
-    if (filename != null) {
-      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
-      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
-      file = filePath.toFile();
-      tempDir.toFile().deleteOnExit();   // best effort cleanup
-      file.deleteOnExit(); // best effort cleanup
-    } else {
-      file = java.nio.file.Files.createTempFile("download-", "").toFile();
-      file.deleteOnExit(); // best effort cleanup
-    }
-    return file;
-  }
-
-  /**
    * Create user
    * This can only be done by the logged in user.
    * @param user Created user object (required)
@@ -168,20 +98,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> createUser(@javax.annotation.Nonnull User user) throws ApiException {
-    return createUser(user, null);
-  }
-
-  /**
-   * Create user
-   * This can only be done by the logged in user.
-   * @param user Created user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> createUser(@javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -204,20 +122,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> createUserWithHttpInfo(@javax.annotation.Nonnull User user) throws ApiException {
-    return createUserWithHttpInfo(user, null);
-  }
-
-  /**
-   * Create user
-   * This can only be done by the logged in user.
-   * @param user Created user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> createUserWithHttpInfo(@javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -238,7 +144,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder createUserRequestBuilder(@javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createUserRequestBuilder(@javax.annotation.Nonnull User user) throws ApiException {
     // verify the required parameter 'user' is set
     if (user == null) {
       throw new ApiException(400, "Missing the required parameter 'user' when calling createUser");
@@ -262,8 +168,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -278,20 +182,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> createUsersWithArrayInput(@javax.annotation.Nonnull List<User> user) throws ApiException {
-    return createUsersWithArrayInput(user, null);
-  }
-
-  /**
-   * Creates list of users with given input array
-   * 
-   * @param user List of user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> createUsersWithArrayInput(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUsersWithArrayInputRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUsersWithArrayInputRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -314,20 +206,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> createUsersWithArrayInputWithHttpInfo(@javax.annotation.Nonnull List<User> user) throws ApiException {
-    return createUsersWithArrayInputWithHttpInfo(user, null);
-  }
-
-  /**
-   * Creates list of users with given input array
-   * 
-   * @param user List of user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> createUsersWithArrayInputWithHttpInfo(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUsersWithArrayInputRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUsersWithArrayInputRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -348,7 +228,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder createUsersWithArrayInputRequestBuilder(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createUsersWithArrayInputRequestBuilder(@javax.annotation.Nonnull List<User> user) throws ApiException {
     // verify the required parameter 'user' is set
     if (user == null) {
       throw new ApiException(400, "Missing the required parameter 'user' when calling createUsersWithArrayInput");
@@ -372,8 +252,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -388,20 +266,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> createUsersWithListInput(@javax.annotation.Nonnull List<User> user) throws ApiException {
-    return createUsersWithListInput(user, null);
-  }
-
-  /**
-   * Creates list of users with given input array
-   * 
-   * @param user List of user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> createUsersWithListInput(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUsersWithListInputRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUsersWithListInputRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -424,20 +290,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> createUsersWithListInputWithHttpInfo(@javax.annotation.Nonnull List<User> user) throws ApiException {
-    return createUsersWithListInputWithHttpInfo(user, null);
-  }
-
-  /**
-   * Creates list of users with given input array
-   * 
-   * @param user List of user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> createUsersWithListInputWithHttpInfo(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = createUsersWithListInputRequestBuilder(user, headers);
+      HttpRequest.Builder localVarRequestBuilder = createUsersWithListInputRequestBuilder(user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -458,7 +312,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder createUsersWithListInputRequestBuilder(@javax.annotation.Nonnull List<User> user, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createUsersWithListInputRequestBuilder(@javax.annotation.Nonnull List<User> user) throws ApiException {
     // verify the required parameter 'user' is set
     if (user == null) {
       throw new ApiException(400, "Missing the required parameter 'user' when calling createUsersWithListInput");
@@ -482,8 +336,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -498,20 +350,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> deleteUser(@javax.annotation.Nonnull String username) throws ApiException {
-    return deleteUser(username, null);
-  }
-
-  /**
-   * Delete user
-   * This can only be done by the logged in user.
-   * @param username The name that needs to be deleted (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> deleteUser(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(username, headers);
+      HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(username);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -534,20 +374,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> deleteUserWithHttpInfo(@javax.annotation.Nonnull String username) throws ApiException {
-    return deleteUserWithHttpInfo(username, null);
-  }
-
-  /**
-   * Delete user
-   * This can only be done by the logged in user.
-   * @param username The name that needs to be deleted (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> deleteUserWithHttpInfo(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(username, headers);
+      HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(username);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -568,7 +396,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder deleteUserRequestBuilder(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteUserRequestBuilder(@javax.annotation.Nonnull String username) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(400, "Missing the required parameter 'username' when calling deleteUser");
@@ -587,8 +415,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -603,20 +429,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<User> getUserByName(@javax.annotation.Nonnull String username) throws ApiException {
-    return getUserByName(username, null);
-  }
-
-  /**
-   * Get user by user name
-   * 
-   * @param username The name that needs to be fetched. Use user1 for testing. (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;User&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<User> getUserByName(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = getUserByNameRequestBuilder(username, headers);
+      HttpRequest.Builder localVarRequestBuilder = getUserByNameRequestBuilder(username);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -646,20 +460,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<User>> getUserByNameWithHttpInfo(@javax.annotation.Nonnull String username) throws ApiException {
-    return getUserByNameWithHttpInfo(username, null);
-  }
-
-  /**
-   * Get user by user name
-   * 
-   * @param username The name that needs to be fetched. Use user1 for testing. (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;User&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<User>> getUserByNameWithHttpInfo(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = getUserByNameRequestBuilder(username, headers);
+      HttpRequest.Builder localVarRequestBuilder = getUserByNameRequestBuilder(username);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -688,7 +490,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder getUserByNameRequestBuilder(@javax.annotation.Nonnull String username, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getUserByNameRequestBuilder(@javax.annotation.Nonnull String username) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(400, "Missing the required parameter 'username' when calling getUserByName");
@@ -707,8 +509,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -724,21 +524,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<String> loginUser(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password) throws ApiException {
-    return loginUser(username, password, null);
-  }
-
-  /**
-   * Logs user into the system
-   * 
-   * @param username The user name for login (required)
-   * @param password The password for login in clear text (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;String&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<String> loginUser(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = loginUserRequestBuilder(username, password, headers);
+      HttpRequest.Builder localVarRequestBuilder = loginUserRequestBuilder(username, password);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -769,21 +556,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<String>> loginUserWithHttpInfo(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password) throws ApiException {
-    return loginUserWithHttpInfo(username, password, null);
-  }
-
-  /**
-   * Logs user into the system
-   * 
-   * @param username The user name for login (required)
-   * @param password The password for login in clear text (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;String&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<String>> loginUserWithHttpInfo(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = loginUserRequestBuilder(username, password, headers);
+      HttpRequest.Builder localVarRequestBuilder = loginUserRequestBuilder(username, password);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -812,7 +586,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder loginUserRequestBuilder(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder loginUserRequestBuilder(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull String password) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(400, "Missing the required parameter 'username' when calling loginUser");
@@ -851,8 +625,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -866,19 +638,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> logoutUser() throws ApiException {
-    return logoutUser(null);
-  }
-
-  /**
-   * Logs out current logged in user session
-   * 
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> logoutUser(Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = logoutUserRequestBuilder(headers);
+      HttpRequest.Builder localVarRequestBuilder = logoutUserRequestBuilder();
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -900,19 +661,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> logoutUserWithHttpInfo() throws ApiException {
-    return logoutUserWithHttpInfo(null);
-  }
-
-  /**
-   * Logs out current logged in user session
-   * 
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> logoutUserWithHttpInfo(Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = logoutUserRequestBuilder(headers);
+      HttpRequest.Builder localVarRequestBuilder = logoutUserRequestBuilder();
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -933,7 +683,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder logoutUserRequestBuilder(Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder logoutUserRequestBuilder() throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -947,8 +697,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -964,21 +712,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<Void> updateUser(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user) throws ApiException {
-    return updateUser(username, user, null);
-  }
-
-  /**
-   * Updated user
-   * This can only be done by the logged in user.
-   * @param username name that need to be deleted (required)
-   * @param user Updated user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<Void> updateUser(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(username, user, headers);
+      HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(username, user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -1002,21 +737,8 @@ public class UserApi {
    * @throws ApiException if fails to make API call
    */
   public CompletableFuture<ApiResponse<Void>> updateUserWithHttpInfo(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user) throws ApiException {
-    return updateUserWithHttpInfo(username, user, null);
-  }
-
-  /**
-   * Updated user
-   * This can only be done by the logged in user.
-   * @param username name that need to be deleted (required)
-   * @param user Updated user object (required)
-   * @param headers Optional headers to include in the request
-   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public CompletableFuture<ApiResponse<Void>> updateUserWithHttpInfo(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
     try {
-      HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(username, user, headers);
+      HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(username, user);
       return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
           HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
@@ -1037,7 +759,7 @@ public class UserApi {
     }
   }
 
-  private HttpRequest.Builder updateUserRequestBuilder(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateUserRequestBuilder(@javax.annotation.Nonnull String username, @javax.annotation.Nonnull User user) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(400, "Missing the required parameter 'username' when calling updateUser");
@@ -1066,8 +788,6 @@ public class UserApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

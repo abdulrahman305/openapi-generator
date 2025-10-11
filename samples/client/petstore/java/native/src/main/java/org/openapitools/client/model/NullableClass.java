@@ -25,7 +25,6 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -64,8 +63,8 @@ import org.openapitools.client.ApiClient;
   NullableClass.JSON_PROPERTY_OBJECT_AND_ITEMS_NULLABLE_PROP,
   NullableClass.JSON_PROPERTY_OBJECT_ITEMS_NULLABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
-public class NullableClass {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
+public class NullableClass extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_INTEGER_PROP = "integer_prop";
   private JsonNullable<Integer> integerProp = JsonNullable.<Integer>undefined();
 
@@ -122,7 +121,7 @@ public class NullableClass {
         return integerProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_INTEGER_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_INTEGER_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Integer> getIntegerProp_JsonNullable() {
@@ -154,7 +153,7 @@ public class NullableClass {
         return numberProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_NUMBER_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_NUMBER_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<BigDecimal> getNumberProp_JsonNullable() {
@@ -186,7 +185,7 @@ public class NullableClass {
         return booleanProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_BOOLEAN_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_BOOLEAN_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Boolean> getBooleanProp_JsonNullable() {
@@ -218,7 +217,7 @@ public class NullableClass {
         return stringProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_STRING_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_STRING_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<String> getStringProp_JsonNullable() {
@@ -250,7 +249,7 @@ public class NullableClass {
         return dateProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_DATE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_DATE_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<LocalDate> getDateProp_JsonNullable() {
@@ -282,7 +281,7 @@ public class NullableClass {
         return datetimeProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_DATETIME_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_DATETIME_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<OffsetDateTime> getDatetimeProp_JsonNullable() {
@@ -326,7 +325,7 @@ public class NullableClass {
         return arrayNullableProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_ARRAY_NULLABLE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_ARRAY_NULLABLE_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<List<Object>> getArrayNullableProp_JsonNullable() {
@@ -370,7 +369,7 @@ public class NullableClass {
         return arrayAndItemsNullableProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_ARRAY_AND_ITEMS_NULLABLE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_ARRAY_AND_ITEMS_NULLABLE_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<List<Object>> getArrayAndItemsNullableProp_JsonNullable() {
@@ -405,14 +404,14 @@ public class NullableClass {
    * @return arrayItemsNullable
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ARRAY_ITEMS_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_ARRAY_ITEMS_NULLABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Object> getArrayItemsNullable() {
     return arrayItemsNullable;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ARRAY_ITEMS_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_ARRAY_ITEMS_NULLABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArrayItemsNullable(@javax.annotation.Nullable List<Object> arrayItemsNullable) {
     this.arrayItemsNullable = arrayItemsNullable;
@@ -446,7 +445,7 @@ public class NullableClass {
         return objectNullableProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_NULLABLE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_NULLABLE_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Map<String, Object>> getObjectNullableProp_JsonNullable() {
@@ -490,7 +489,7 @@ public class NullableClass {
         return objectAndItemsNullableProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_AND_ITEMS_NULLABLE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_AND_ITEMS_NULLABLE_PROP)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Map<String, Object>> getObjectAndItemsNullableProp_JsonNullable() {
@@ -525,14 +524,14 @@ public class NullableClass {
    * @return objectItemsNullable
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_ITEMS_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_ITEMS_NULLABLE)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getObjectItemsNullable() {
     return objectItemsNullable;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_ITEMS_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_ITEMS_NULLABLE)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectItemsNullable(@javax.annotation.Nullable Map<String, Object> objectItemsNullable) {
     this.objectItemsNullable = objectItemsNullable;
@@ -610,6 +609,7 @@ public class NullableClass {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NullableClass {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    integerProp: ").append(toIndentedString(integerProp)).append("\n");
     sb.append("    numberProp: ").append(toIndentedString(numberProp)).append("\n");
     sb.append("    booleanProp: ").append(toIndentedString(booleanProp)).append("\n");
@@ -672,39 +672,39 @@ public class NullableClass {
 
     // add `integer_prop` to the URL query string
     if (getIntegerProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%sinteger_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIntegerProp()))));
+      joiner.add(String.format("%sinteger_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIntegerProp()))));
     }
 
     // add `number_prop` to the URL query string
     if (getNumberProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%snumber_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberProp()))));
+      joiner.add(String.format("%snumber_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberProp()))));
     }
 
     // add `boolean_prop` to the URL query string
     if (getBooleanProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%sboolean_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBooleanProp()))));
+      joiner.add(String.format("%sboolean_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBooleanProp()))));
     }
 
     // add `string_prop` to the URL query string
     if (getStringProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%sstring_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStringProp()))));
+      joiner.add(String.format("%sstring_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStringProp()))));
     }
 
     // add `date_prop` to the URL query string
     if (getDateProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%sdate_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDateProp()))));
+      joiner.add(String.format("%sdate_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDateProp()))));
     }
 
     // add `datetime_prop` to the URL query string
     if (getDatetimeProp() != null) {
-      joiner.add(String.format(Locale.ROOT, "%sdatetime_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDatetimeProp()))));
+      joiner.add(String.format("%sdatetime_prop%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDatetimeProp()))));
     }
 
     // add `array_nullable_prop` to the URL query string
     if (getArrayNullableProp() != null) {
       for (int i = 0; i < getArrayNullableProp().size(); i++) {
-        joiner.add(String.format(Locale.ROOT, "%sarray_nullable_prop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format("%sarray_nullable_prop%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getArrayNullableProp().get(i)))));
       }
     }
@@ -712,8 +712,8 @@ public class NullableClass {
     // add `array_and_items_nullable_prop` to the URL query string
     if (getArrayAndItemsNullableProp() != null) {
       for (int i = 0; i < getArrayAndItemsNullableProp().size(); i++) {
-        joiner.add(String.format(Locale.ROOT, "%sarray_and_items_nullable_prop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format("%sarray_and_items_nullable_prop%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getArrayAndItemsNullableProp().get(i)))));
       }
     }
@@ -721,8 +721,8 @@ public class NullableClass {
     // add `array_items_nullable` to the URL query string
     if (getArrayItemsNullable() != null) {
       for (int i = 0; i < getArrayItemsNullable().size(); i++) {
-        joiner.add(String.format(Locale.ROOT, "%sarray_items_nullable%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format("%sarray_items_nullable%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getArrayItemsNullable().get(i)))));
       }
     }
@@ -730,8 +730,8 @@ public class NullableClass {
     // add `object_nullable_prop` to the URL query string
     if (getObjectNullableProp() != null) {
       for (String _key : getObjectNullableProp().keySet()) {
-        joiner.add(String.format(Locale.ROOT, "%sobject_nullable_prop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format("%sobject_nullable_prop%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
             getObjectNullableProp().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getObjectNullableProp().get(_key)))));
       }
     }
@@ -739,8 +739,8 @@ public class NullableClass {
     // add `object_and_items_nullable_prop` to the URL query string
     if (getObjectAndItemsNullableProp() != null) {
       for (String _key : getObjectAndItemsNullableProp().keySet()) {
-        joiner.add(String.format(Locale.ROOT, "%sobject_and_items_nullable_prop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format("%sobject_and_items_nullable_prop%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
             getObjectAndItemsNullableProp().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getObjectAndItemsNullableProp().get(_key)))));
       }
     }
@@ -748,8 +748,8 @@ public class NullableClass {
     // add `object_items_nullable` to the URL query string
     if (getObjectItemsNullable() != null) {
       for (String _key : getObjectItemsNullable().keySet()) {
-        joiner.add(String.format(Locale.ROOT, "%sobject_items_nullable%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format("%sobject_items_nullable%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
             getObjectItemsNullable().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getObjectItemsNullable().get(_key)))));
       }
     }

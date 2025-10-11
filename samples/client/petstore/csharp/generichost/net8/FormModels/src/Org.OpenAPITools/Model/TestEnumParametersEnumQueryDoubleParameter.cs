@@ -124,7 +124,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, TestEnumParametersEnumQueryDoubleParameter testEnumParametersEnumQueryDoubleParameter, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(TestEnumParametersEnumQueryDoubleParameterValueConverter.ToJsonValue(testEnumParametersEnumQueryDoubleParameter).ToString());
+            writer.WriteStringValue(testEnumParametersEnumQueryDoubleParameter.ToString());
         }
     }
 
@@ -155,14 +155,14 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Writes the TestEnumParametersEnumQueryDoubleParameter to the json writer
+        /// Writes the DateTime to the json writer
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="testEnumParametersEnumQueryDoubleParameter"></param>
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, TestEnumParametersEnumQueryDoubleParameter? testEnumParametersEnumQueryDoubleParameter, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(testEnumParametersEnumQueryDoubleParameter.HasValue ? TestEnumParametersEnumQueryDoubleParameterValueConverter.ToJsonValue(testEnumParametersEnumQueryDoubleParameter.Value).ToString() : "null");
+            writer.WriteStringValue(testEnumParametersEnumQueryDoubleParameter?.ToString() ?? "null");
         }
     }
 }

@@ -1,4 +1,4 @@
-.cargo/config.toml
+.cargo/config
 .gitignore
 Cargo.toml
 README.md
@@ -17,7 +17,7 @@ docs/Category.md
 docs/ClassModel.md
 docs/Client.md
 docs/Dog.md
-docs/DollarSpecialLeftSquareBracketModelNameRightSquareBracket.md
+docs/DollarSpecialLeftSquareBracketModelPeriodNameRightSquareBracket.md
 docs/EnumArrays.md
 docs/EnumArraysArrayArrayEnumInnerInner.md
 docs/EnumArraysArrayEnumInner.md

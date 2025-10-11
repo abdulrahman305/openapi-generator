@@ -41,7 +41,6 @@ import openapitools.OpenAPIUtils.ApiAction;
 {{/wrapCalls}}
 
 {{>generatedAnnotation}}
-
 {{#operations}}
 public class {{classname}}Controller extends Controller {
     {{^controllerOnly}}
@@ -226,7 +225,7 @@ public class {{classname}}Controller extends Controller {
         {{/controllerOnly}}
         {{/useInterfaces}}
         {{^useInterfaces}}
-        {{>responseToResult}}{{! prevent indent}}
+        {{>responseToResult}}
         {{/useInterfaces}}
     }
 

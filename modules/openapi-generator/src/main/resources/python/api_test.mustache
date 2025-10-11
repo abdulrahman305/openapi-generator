@@ -2,37 +2,36 @@
 
 {{>partial_header}}
 
-
 import unittest
 
 from {{apiPackage}}.{{classFilename}} import {{classname}}
 
 
-class {{#operations}}Test{{classname}}(unittest.{{#async}}IsolatedAsyncio{{/async}}TestCase):
+class {{#operations}}Test{{classname}}(unittest.{{#asyncio}}IsolatedAsyncio{{/asyncio}}TestCase):
     """{{classname}} unit test stubs"""
 
-    {{#async}}
+    {{#asyncio}}
     async def asyncSetUp(self) -> None:
         self.api = {{classname}}()
 
     async def asyncTearDown(self) -> None:
         await self.api.api_client.close()
-    {{/async}}
-    {{^async}}
+    {{/asyncio}}
+    {{^asyncio}}
     def setUp(self) -> None:
         self.api = {{classname}}()
 
     def tearDown(self) -> None:
         pass
-    {{/async}}
+    {{/asyncio}}
 
     {{#operation}}
-    {{#async}}
+    {{#asyncio}}
     async def test_{{operationId}}(self) -> None:
-    {{/async}}
-    {{^async}}
+    {{/asyncio}}
+    {{^asyncio}}
     def test_{{operationId}}(self) -> None:
-    {{/async}}
+    {{/asyncio}}
         """Test case for {{{operationId}}}
 
 {{#summary}}

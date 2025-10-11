@@ -17,7 +17,7 @@ import jakarta.annotation.Generated;
  * Capitalization
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Capitalization {
 
   private @Nullable String smallCamel;
@@ -32,7 +32,7 @@ public class Capitalization {
 
   private @Nullable String ATT_NAME;
 
-  public Capitalization smallCamel(@Nullable String smallCamel) {
+  public Capitalization smallCamel(String smallCamel) {
     this.smallCamel = smallCamel;
     return this;
   }
@@ -43,15 +43,15 @@ public class Capitalization {
    */
   
   @JsonProperty("smallCamel")
-  public @Nullable String getSmallCamel() {
+  public String getSmallCamel() {
     return smallCamel;
   }
 
-  public void setSmallCamel(@Nullable String smallCamel) {
+  public void setSmallCamel(String smallCamel) {
     this.smallCamel = smallCamel;
   }
 
-  public Capitalization capitalCamel(@Nullable String capitalCamel) {
+  public Capitalization capitalCamel(String capitalCamel) {
     this.capitalCamel = capitalCamel;
     return this;
   }
@@ -62,15 +62,15 @@ public class Capitalization {
    */
   
   @JsonProperty("CapitalCamel")
-  public @Nullable String getCapitalCamel() {
+  public String getCapitalCamel() {
     return capitalCamel;
   }
 
-  public void setCapitalCamel(@Nullable String capitalCamel) {
+  public void setCapitalCamel(String capitalCamel) {
     this.capitalCamel = capitalCamel;
   }
 
-  public Capitalization smallSnake(@Nullable String smallSnake) {
+  public Capitalization smallSnake(String smallSnake) {
     this.smallSnake = smallSnake;
     return this;
   }
@@ -81,15 +81,15 @@ public class Capitalization {
    */
   
   @JsonProperty("small_Snake")
-  public @Nullable String getSmallSnake() {
+  public String getSmallSnake() {
     return smallSnake;
   }
 
-  public void setSmallSnake(@Nullable String smallSnake) {
+  public void setSmallSnake(String smallSnake) {
     this.smallSnake = smallSnake;
   }
 
-  public Capitalization capitalSnake(@Nullable String capitalSnake) {
+  public Capitalization capitalSnake(String capitalSnake) {
     this.capitalSnake = capitalSnake;
     return this;
   }
@@ -100,15 +100,15 @@ public class Capitalization {
    */
   
   @JsonProperty("Capital_Snake")
-  public @Nullable String getCapitalSnake() {
+  public String getCapitalSnake() {
     return capitalSnake;
   }
 
-  public void setCapitalSnake(@Nullable String capitalSnake) {
+  public void setCapitalSnake(String capitalSnake) {
     this.capitalSnake = capitalSnake;
   }
 
-  public Capitalization scAETHFlowPoints(@Nullable String scAETHFlowPoints) {
+  public Capitalization scAETHFlowPoints(String scAETHFlowPoints) {
     this.scAETHFlowPoints = scAETHFlowPoints;
     return this;
   }
@@ -119,15 +119,15 @@ public class Capitalization {
    */
   
   @JsonProperty("SCA_ETH_Flow_Points")
-  public @Nullable String getScAETHFlowPoints() {
+  public String getScAETHFlowPoints() {
     return scAETHFlowPoints;
   }
 
-  public void setScAETHFlowPoints(@Nullable String scAETHFlowPoints) {
+  public void setScAETHFlowPoints(String scAETHFlowPoints) {
     this.scAETHFlowPoints = scAETHFlowPoints;
   }
 
-  public Capitalization ATT_NAME(@Nullable String ATT_NAME) {
+  public Capitalization ATT_NAME(String ATT_NAME) {
     this.ATT_NAME = ATT_NAME;
     return this;
   }
@@ -138,11 +138,11 @@ public class Capitalization {
    */
   
   @JsonProperty("ATT_NAME")
-  public @Nullable String getATTNAME() {
+  public String getATTNAME() {
     return ATT_NAME;
   }
 
-  public void setATTNAME(@Nullable String ATT_NAME) {
+  public void setATTNAME(String ATT_NAME) {
     this.ATT_NAME = ATT_NAME;
   }
 

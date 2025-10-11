@@ -2,7 +2,7 @@ package org.openapitools.client.infrastructure
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
-import kotlin.time.Instant
+import kotlinx.datetime.Instant
 
 class InstantAdapter {
     @ToJson

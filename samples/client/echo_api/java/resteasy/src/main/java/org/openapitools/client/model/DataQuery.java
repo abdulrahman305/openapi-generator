@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   DataQuery.JSON_PROPERTY_TEXT,
   DataQuery.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class DataQuery extends Query {
   public static final String JSON_PROPERTY_SUFFIX = "suffix";
   @javax.annotation.Nullable
@@ -66,7 +65,7 @@ public class DataQuery extends Query {
    * @return suffix
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUFFIX, required = false)
+  @JsonProperty(JSON_PROPERTY_SUFFIX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getSuffix() {
@@ -74,7 +73,7 @@ public class DataQuery extends Query {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SUFFIX, required = false)
+  @JsonProperty(JSON_PROPERTY_SUFFIX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSuffix(@javax.annotation.Nullable String suffix) {
     this.suffix = suffix;
@@ -91,7 +90,7 @@ public class DataQuery extends Query {
    * @return text
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
+  @JsonProperty(JSON_PROPERTY_TEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getText() {
@@ -99,7 +98,7 @@ public class DataQuery extends Query {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
+  @JsonProperty(JSON_PROPERTY_TEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setText(@javax.annotation.Nullable String text) {
     this.text = text;
@@ -116,7 +115,7 @@ public class DataQuery extends Query {
    * @return date
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DATE, required = false)
+  @JsonProperty(JSON_PROPERTY_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDate() {
@@ -124,7 +123,7 @@ public class DataQuery extends Query {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DATE, required = false)
+  @JsonProperty(JSON_PROPERTY_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDate(@javax.annotation.Nullable OffsetDateTime date) {
     this.date = date;

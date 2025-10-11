@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -36,7 +35,7 @@ import io.github.threetenjaxb.core.*;
   AllOfWithSingleRef.JSON_PROPERTY_USERNAME,
   AllOfWithSingleRef.JSON_PROPERTY_SINGLE_REF_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 @XmlRootElement(name = "AllOfWithSingleRef")
 @XmlAccessorType(XmlAccessType.FIELD)
 @JacksonXmlRootElement(localName = "AllOfWithSingleRef")
@@ -65,7 +64,7 @@ public class AllOfWithSingleRef {
    * @return username
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
+  @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "username")
 
@@ -74,7 +73,7 @@ public class AllOfWithSingleRef {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
+  @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "username")
   public void setUsername(@javax.annotation.Nullable String username) {
@@ -92,7 +91,7 @@ public class AllOfWithSingleRef {
    * @return singleRefType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SINGLE_REF_TYPE, required = false)
+  @JsonProperty(JSON_PROPERTY_SINGLE_REF_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "SingleRefType")
 
@@ -101,7 +100,7 @@ public class AllOfWithSingleRef {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SINGLE_REF_TYPE, required = false)
+  @JsonProperty(JSON_PROPERTY_SINGLE_REF_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "SingleRefType")
   public void setSingleRefType(@javax.annotation.Nullable SingleRefType singleRefType) {

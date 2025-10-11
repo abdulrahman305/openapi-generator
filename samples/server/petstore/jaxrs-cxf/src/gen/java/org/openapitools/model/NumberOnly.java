@@ -12,9 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class NumberOnly  {
   
   @ApiModelProperty(value = "")
-
   @Valid
-
   private BigDecimal justNumber;
  /**
    * Get justNumber

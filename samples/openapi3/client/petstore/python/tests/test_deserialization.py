@@ -297,12 +297,7 @@ class DeserializationTests(unittest.TestCase):
         json_str = '{"className": "Cat", "color": "red", "declawed": true}'
 
         deserialized = petstore_api.Animal.from_json(json_str)
-
-        # the following is necessary for mypy as it does not handle isinstance() within self.assertTrue() well
-        if not isinstance(deserialized, petstore_api.Cat):
-            self.assertTrue(False)
-            return
-
+        self.assertTrue(isinstance(deserialized, petstore_api.Cat))
         self.assertEqual(deserialized.class_name, "Cat")
         self.assertEqual(deserialized.declawed, True)
         self.assertEqual(deserialized.to_json(), '{"className": "Cat", "color": "red", "declawed": true}')
@@ -342,7 +337,5 @@ class DeserializationTests(unittest.TestCase):
 
         with self.assertRaises(petstore_api.ApiException) as cm:
             deserialized = self.deserialize(response, "Dict[str, str]", 'application/jsonnnnn')
-
-        with self.assertRaises(petstore_api.ApiException) as cm:
-            deserialized = self.deserialize(response, "Dict[str, str]", 'application/<+json')
+        
 

@@ -51,9 +51,7 @@ export function TestResponseFromJSONTyped(json: any, ignoreDiscriminator: boolea
     if (instanceOfTestB(json)) {
         return TestBFromJSONTyped(json, true);
     }
-    if (typeof json === 'string') {
-        return json;
-    }
+
     return {} as any;
 }
 
@@ -74,9 +72,7 @@ export function TestResponseToJSONTyped(value?: TestResponse | null, ignoreDiscr
     if (instanceOfTestB(value)) {
         return TestBToJSON(value as TestB);
     }
-    if (typeof value === 'string') {
-        return value;
-    }
+
     return {};
 }
 

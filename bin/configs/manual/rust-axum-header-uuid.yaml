@@ -5,8 +5,7 @@ templateDir: modules/openapi-generator/src/main/resources/rust-axum
 generateAliasAsModel: true
 additionalProperties:
   hideGenerationTimestamp: "true"
-  packageName: rust-axum-header-uuid
-  homePageUrl: https://github.com/openapitools/openapi-generator
+  packageName: rust-axum-header-uui
 globalProperties:
   skipFormModel: "false"
 enablePostProcessFile: true

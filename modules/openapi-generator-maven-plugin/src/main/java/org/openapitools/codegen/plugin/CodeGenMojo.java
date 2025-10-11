@@ -322,12 +322,6 @@ public class CodeGenMojo extends AbstractMojo {
     private Boolean generateAliasAsModel;
 
     /**
-     * Only write output files that have changed.
-     */
-    @Parameter(name = "minimalUpdate", property = "openapi.generator.maven.plugin.minimalUpdate")
-    private Boolean minimalUpdate;
-
-    /**
      * A map of language-specific parameters as passed with the -c option to the command line
      */
     @Parameter(name = "configOptions")
@@ -573,7 +567,7 @@ public class CodeGenMojo extends AbstractMojo {
             inputSpecRootDirectory = inputSpecRootDirectory.replaceAll("\\\\", "/");
 
             inputSpec = new MergedSpecBuilder(inputSpecRootDirectory, mergedFileName,
-                    mergedFileInfoName, mergedFileInfoDescription, mergedFileInfoVersion, auth)
+                    mergedFileInfoName, mergedFileInfoDescription, mergedFileInfoVersion)
                     .buildMergedSpec();
             LOGGER.info("Merge input spec would be used - {}", inputSpec);
         }
@@ -702,10 +696,6 @@ public class CodeGenMojo extends AbstractMojo {
 
             if (generateAliasAsModel != null) {
                 configurator.setGenerateAliasAsModel(generateAliasAsModel);
-            }
-
-            if (minimalUpdate != null) {
-                configurator.setEnableMinimalUpdate(minimalUpdate);
             }
 
             if (isNotEmpty(generatorName)) {
@@ -1076,7 +1066,7 @@ public class CodeGenMojo extends AbstractMojo {
         String name = inputSpecFile.getName();
 
         URL url = inputSpecRemoteUrl();
-        if (url != null) {
+        if (inputSpecFile.exists() && url != null) {
             String[] segments = url.getPath().split("/");
             name = Files.getNameWithoutExtension(segments[segments.length - 1]);
         }

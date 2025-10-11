@@ -51,31 +51,10 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 import java.util.function.Consumer;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class PetApi {
-  /**
-   * Utility class for extending HttpRequest.Builder functionality.
-   */
-  private static class HttpRequestBuilderExtensions {
-    /**
-     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
-     *
-     * @param builder the HttpRequest.Builder to which headers will be added
-     * @param headers a map of header names and values to add; may be null
-     * @return the same HttpRequest.Builder instance with the additional headers set
-     */
-    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
-        if (headers != null) {
-            for (Map.Entry<String, String> entry : headers.entrySet()) {
-                builder.header(entry.getKey(), entry.getValue());
-            }
-        }
-        return builder;
-    }
-  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
@@ -98,7 +77,6 @@ public class PetApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
     String body = response.body() == null ? null : new String(response.body().readAllBytes());
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
@@ -113,54 +91,6 @@ public class PetApi {
   }
 
   /**
-   * Download file from the given response.
-   *
-   * @param response Response
-   * @return File
-   * @throws ApiException If fail to read file content from response and write to disk
-   */
-  public File downloadFileFromResponse(HttpResponse<InputStream> response) throws ApiException {
-    try {
-      File file = prepareDownloadFile(response);
-      java.nio.file.Files.copy(response.body(), file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-      return file;
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-  }
-
-  /**
-   * <p>Prepare the file for download from the response.</p>
-   *
-   * @param response a {@link java.net.http.HttpResponse} object.
-   * @return a {@link java.io.File} object.
-   * @throws java.io.IOException if any.
-   */
-  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
-    String filename = null;
-    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
-    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
-      // Get filename from the Content-Disposition header.
-      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
-      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
-      if (matcher.find())
-        filename = matcher.group(1);
-    }
-    File file = null;
-    if (filename != null) {
-      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
-      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
-      file = filePath.toFile();
-      tempDir.toFile().deleteOnExit();   // best effort cleanup
-      file.deleteOnExit(); // best effort cleanup
-    } else {
-      file = java.nio.file.Files.createTempFile("download-", "").toFile();
-      file.deleteOnExit(); // best effort cleanup
-    }
-    return file;
-  }
-
-  /**
    * Add a new pet to the store
    * 
    * @param pet Pet object that needs to be added to the store (required)
@@ -168,19 +98,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public Pet addPet(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
-    return addPet(pet, null);
-  }
-
-  /**
-   * Add a new pet to the store
-   * 
-   * @param pet Pet object that needs to be added to the store (required)
-   * @param headers Optional headers to include in the request
-   * @return Pet
-   * @throws ApiException if fails to make API call
-   */
-  public Pet addPet(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
-    ApiResponse<Pet> localVarResponse = addPetWithHttpInfo(pet, headers);
+    ApiResponse<Pet> localVarResponse = addPetWithHttpInfo(pet);
     return localVarResponse.getData();
   }
 
@@ -192,19 +110,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Pet> addPetWithHttpInfo(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
-    return addPetWithHttpInfo(pet, null);
-  }
-
-  /**
-   * Add a new pet to the store
-   * 
-   * @param pet Pet object that needs to be added to the store (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Pet&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Pet> addPetWithHttpInfo(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = addPetRequestBuilder(pet, headers);
+    HttpRequest.Builder localVarRequestBuilder = addPetRequestBuilder(pet);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -224,17 +130,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        Pet responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<Pet>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {})
         );
       } finally {
       }
@@ -247,7 +149,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder addPetRequestBuilder(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder addPetRequestBuilder(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
     // verify the required parameter 'pet' is set
     if (pet == null) {
       throw new ApiException(400, "Missing the required parameter 'pet' when calling addPet");
@@ -271,8 +173,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -287,19 +187,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public void deletePet(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey) throws ApiException {
-    deletePet(petId, apiKey, null);
-  }
-
-  /**
-   * Deletes a pet
-   * 
-   * @param petId Pet id to delete (required)
-   * @param apiKey  (optional)
-   * @param headers Optional headers to include in the request
-   * @throws ApiException if fails to make API call
-   */
-  public void deletePet(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey, Map<String, String> headers) throws ApiException {
-    deletePetWithHttpInfo(petId, apiKey, headers);
+    deletePetWithHttpInfo(petId, apiKey);
   }
 
   /**
@@ -311,20 +199,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deletePetWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey) throws ApiException {
-    return deletePetWithHttpInfo(petId, apiKey, null);
-  }
-
-  /**
-   * Deletes a pet
-   * 
-   * @param petId Pet id to delete (required)
-   * @param apiKey  (optional)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> deletePetWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deletePetRequestBuilder(petId, apiKey, headers);
+    HttpRequest.Builder localVarRequestBuilder = deletePetRequestBuilder(petId, apiKey);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -357,7 +232,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder deletePetRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deletePetRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String apiKey) throws ApiException {
     // verify the required parameter 'petId' is set
     if (petId == null) {
       throw new ApiException(400, "Missing the required parameter 'petId' when calling deletePet");
@@ -379,8 +254,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -395,19 +268,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public List<Pet> findPetsByStatus(@jakarta.annotation.Nonnull List<String> status) throws ApiException {
-    return findPetsByStatus(status, null);
-  }
-
-  /**
-   * Finds Pets by status
-   * Multiple status values can be provided with comma separated strings
-   * @param status Status values that need to be considered for filter (required)
-   * @param headers Optional headers to include in the request
-   * @return List&lt;Pet&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<Pet> findPetsByStatus(@jakarta.annotation.Nonnull List<String> status, Map<String, String> headers) throws ApiException {
-    ApiResponse<List<Pet>> localVarResponse = findPetsByStatusWithHttpInfo(status, headers);
+    ApiResponse<List<Pet>> localVarResponse = findPetsByStatusWithHttpInfo(status);
     return localVarResponse.getData();
   }
 
@@ -419,19 +280,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<List<Pet>> findPetsByStatusWithHttpInfo(@jakarta.annotation.Nonnull List<String> status) throws ApiException {
-    return findPetsByStatusWithHttpInfo(status, null);
-  }
-
-  /**
-   * Finds Pets by status
-   * Multiple status values can be provided with comma separated strings
-   * @param status Status values that need to be considered for filter (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<Pet>> findPetsByStatusWithHttpInfo(@jakarta.annotation.Nonnull List<String> status, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = findPetsByStatusRequestBuilder(status, headers);
+    HttpRequest.Builder localVarRequestBuilder = findPetsByStatusRequestBuilder(status);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -451,17 +300,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        List<Pet> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<Pet>>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<List<Pet>>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<Pet>>() {})
         );
       } finally {
       }
@@ -474,7 +319,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder findPetsByStatusRequestBuilder(@jakarta.annotation.Nonnull List<String> status, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder findPetsByStatusRequestBuilder(@jakarta.annotation.Nonnull List<String> status) throws ApiException {
     // verify the required parameter 'status' is set
     if (status == null) {
       throw new ApiException(400, "Missing the required parameter 'status' when calling findPetsByStatus");
@@ -507,8 +352,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -525,21 +368,7 @@ public class PetApi {
    */
   @Deprecated
   public List<Pet> findPetsByTags(@jakarta.annotation.Nonnull List<String> tags) throws ApiException {
-    return findPetsByTags(tags, null);
-  }
-
-  /**
-   * Finds Pets by tags
-   * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-   * @param tags Tags to filter by (required)
-   * @param headers Optional headers to include in the request
-   * @return List&lt;Pet&gt;
-   * @throws ApiException if fails to make API call
-   * @deprecated
-   */
-  @Deprecated
-  public List<Pet> findPetsByTags(@jakarta.annotation.Nonnull List<String> tags, Map<String, String> headers) throws ApiException {
-    ApiResponse<List<Pet>> localVarResponse = findPetsByTagsWithHttpInfo(tags, headers);
+    ApiResponse<List<Pet>> localVarResponse = findPetsByTagsWithHttpInfo(tags);
     return localVarResponse.getData();
   }
 
@@ -553,21 +382,7 @@ public class PetApi {
    */
   @Deprecated
   public ApiResponse<List<Pet>> findPetsByTagsWithHttpInfo(@jakarta.annotation.Nonnull List<String> tags) throws ApiException {
-    return findPetsByTagsWithHttpInfo(tags, null);
-  }
-
-  /**
-   * Finds Pets by tags
-   * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-   * @param tags Tags to filter by (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
-   * @throws ApiException if fails to make API call
-   * @deprecated
-   */
-  @Deprecated
-  public ApiResponse<List<Pet>> findPetsByTagsWithHttpInfo(@jakarta.annotation.Nonnull List<String> tags, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = findPetsByTagsRequestBuilder(tags, headers);
+    HttpRequest.Builder localVarRequestBuilder = findPetsByTagsRequestBuilder(tags);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -587,17 +402,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        List<Pet> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<Pet>>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<List<Pet>>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<Pet>>() {})
         );
       } finally {
       }
@@ -610,7 +421,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder findPetsByTagsRequestBuilder(@jakarta.annotation.Nonnull List<String> tags, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder findPetsByTagsRequestBuilder(@jakarta.annotation.Nonnull List<String> tags) throws ApiException {
     // verify the required parameter 'tags' is set
     if (tags == null) {
       throw new ApiException(400, "Missing the required parameter 'tags' when calling findPetsByTags");
@@ -643,8 +454,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -659,19 +468,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public Pet getPetById(@jakarta.annotation.Nonnull Long petId) throws ApiException {
-    return getPetById(petId, null);
-  }
-
-  /**
-   * Find pet by ID
-   * Returns a single pet
-   * @param petId ID of pet to return (required)
-   * @param headers Optional headers to include in the request
-   * @return Pet
-   * @throws ApiException if fails to make API call
-   */
-  public Pet getPetById(@jakarta.annotation.Nonnull Long petId, Map<String, String> headers) throws ApiException {
-    ApiResponse<Pet> localVarResponse = getPetByIdWithHttpInfo(petId, headers);
+    ApiResponse<Pet> localVarResponse = getPetByIdWithHttpInfo(petId);
     return localVarResponse.getData();
   }
 
@@ -683,19 +480,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Pet> getPetByIdWithHttpInfo(@jakarta.annotation.Nonnull Long petId) throws ApiException {
-    return getPetByIdWithHttpInfo(petId, null);
-  }
-
-  /**
-   * Find pet by ID
-   * Returns a single pet
-   * @param petId ID of pet to return (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Pet&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Pet> getPetByIdWithHttpInfo(@jakarta.annotation.Nonnull Long petId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPetByIdRequestBuilder(petId, headers);
+    HttpRequest.Builder localVarRequestBuilder = getPetByIdRequestBuilder(petId);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -715,17 +500,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        Pet responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<Pet>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {})
         );
       } finally {
       }
@@ -738,7 +519,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder getPetByIdRequestBuilder(@jakarta.annotation.Nonnull Long petId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getPetByIdRequestBuilder(@jakarta.annotation.Nonnull Long petId) throws ApiException {
     // verify the required parameter 'petId' is set
     if (petId == null) {
       throw new ApiException(400, "Missing the required parameter 'petId' when calling getPetById");
@@ -757,8 +538,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -775,21 +554,7 @@ public class PetApi {
    * @see <a href="http://petstore.swagger.io/v2/doc/updatePet">Update an existing pet Documentation</a>
    */
   public Pet updatePet(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
-    return updatePet(pet, null);
-  }
-
-  /**
-   * Update an existing pet
-   * 
-   * @param pet Pet object that needs to be added to the store (required)
-   * @param headers Optional headers to include in the request
-   * @return Pet
-   * @throws ApiException if fails to make API call
-   * API documentation for the updatePet operation
-   * @see <a href="http://petstore.swagger.io/v2/doc/updatePet">Update an existing pet Documentation</a>
-   */
-  public Pet updatePet(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
-    ApiResponse<Pet> localVarResponse = updatePetWithHttpInfo(pet, headers);
+    ApiResponse<Pet> localVarResponse = updatePetWithHttpInfo(pet);
     return localVarResponse.getData();
   }
 
@@ -803,21 +568,7 @@ public class PetApi {
    * @see <a href="http://petstore.swagger.io/v2/doc/updatePet">Update an existing pet Documentation</a>
    */
   public ApiResponse<Pet> updatePetWithHttpInfo(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
-    return updatePetWithHttpInfo(pet, null);
-  }
-
-  /**
-   * Update an existing pet
-   * 
-   * @param pet Pet object that needs to be added to the store (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Pet&gt;
-   * @throws ApiException if fails to make API call
-   * API documentation for the updatePet operation
-   * @see <a href="http://petstore.swagger.io/v2/doc/updatePet">Update an existing pet Documentation</a>
-   */
-  public ApiResponse<Pet> updatePetWithHttpInfo(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updatePetRequestBuilder(pet, headers);
+    HttpRequest.Builder localVarRequestBuilder = updatePetRequestBuilder(pet);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -837,17 +588,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        Pet responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<Pet>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Pet>() {})
         );
       } finally {
       }
@@ -860,7 +607,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder updatePetRequestBuilder(@jakarta.annotation.Nonnull Pet pet, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updatePetRequestBuilder(@jakarta.annotation.Nonnull Pet pet) throws ApiException {
     // verify the required parameter 'pet' is set
     if (pet == null) {
       throw new ApiException(400, "Missing the required parameter 'pet' when calling updatePet");
@@ -884,8 +631,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -901,20 +646,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public void updatePetWithForm(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status) throws ApiException {
-    updatePetWithForm(petId, name, status, null);
-  }
-
-  /**
-   * Updates a pet in the store with form data
-   * 
-   * @param petId ID of pet that needs to be updated (required)
-   * @param name Updated name of the pet (optional)
-   * @param status Updated status of the pet (optional)
-   * @param headers Optional headers to include in the request
-   * @throws ApiException if fails to make API call
-   */
-  public void updatePetWithForm(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
-    updatePetWithFormWithHttpInfo(petId, name, status, headers);
+    updatePetWithFormWithHttpInfo(petId, name, status);
   }
 
   /**
@@ -927,21 +659,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updatePetWithFormWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status) throws ApiException {
-    return updatePetWithFormWithHttpInfo(petId, name, status, null);
-  }
-
-  /**
-   * Updates a pet in the store with form data
-   * 
-   * @param petId ID of pet that needs to be updated (required)
-   * @param name Updated name of the pet (optional)
-   * @param status Updated status of the pet (optional)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> updatePetWithFormWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updatePetWithFormRequestBuilder(petId, name, status, headers);
+    HttpRequest.Builder localVarRequestBuilder = updatePetWithFormRequestBuilder(petId, name, status);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -974,7 +692,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder updatePetWithFormRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updatePetWithFormRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String name, @jakarta.annotation.Nullable String status) throws ApiException {
     // verify the required parameter 'petId' is set
     if (petId == null) {
       throw new ApiException(400, "Missing the required parameter 'petId' when calling updatePetWithForm");
@@ -1010,8 +728,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1028,21 +744,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ModelApiResponse uploadFile(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file) throws ApiException {
-    return uploadFile(petId, additionalMetadata, _file, null);
-  }
-
-  /**
-   * uploads an image
-   * 
-   * @param petId ID of pet to update (required)
-   * @param additionalMetadata Additional data to pass to server (optional)
-   * @param _file file to upload (optional)
-   * @param headers Optional headers to include in the request
-   * @return ModelApiResponse
-   * @throws ApiException if fails to make API call
-   */
-  public ModelApiResponse uploadFile(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
-    ApiResponse<ModelApiResponse> localVarResponse = uploadFileWithHttpInfo(petId, additionalMetadata, _file, headers);
+    ApiResponse<ModelApiResponse> localVarResponse = uploadFileWithHttpInfo(petId, additionalMetadata, _file);
     return localVarResponse.getData();
   }
 
@@ -1056,21 +758,7 @@ public class PetApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<ModelApiResponse> uploadFileWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file) throws ApiException {
-    return uploadFileWithHttpInfo(petId, additionalMetadata, _file, null);
-  }
-
-  /**
-   * uploads an image
-   * 
-   * @param petId ID of pet to update (required)
-   * @param additionalMetadata Additional data to pass to server (optional)
-   * @param _file file to upload (optional)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ModelApiResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ModelApiResponse> uploadFileWithHttpInfo(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = uploadFileRequestBuilder(petId, additionalMetadata, _file, headers);
+    HttpRequest.Builder localVarRequestBuilder = uploadFileRequestBuilder(petId, additionalMetadata, _file);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1090,17 +778,13 @@ public class PetApi {
           );
         }
 
-        
-        
         String responseBody = new String(localVarResponse.body().readAllBytes());
-        ModelApiResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ModelApiResponse>() {});
-        
         localVarResponse.body().close();
 
         return new ApiResponse<ModelApiResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseValue
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ModelApiResponse>() {})
         );
       } finally {
       }
@@ -1113,7 +797,7 @@ public class PetApi {
     }
   }
 
-  private HttpRequest.Builder uploadFileRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder uploadFileRequestBuilder(@jakarta.annotation.Nonnull Long petId, @jakarta.annotation.Nullable String additionalMetadata, @jakarta.annotation.Nullable File _file) throws ApiException {
     // verify the required parameter 'petId' is set
     if (petId == null) {
       throw new ApiException(400, "Missing the required parameter 'petId' when calling uploadFile");
@@ -1130,9 +814,7 @@ public class PetApi {
 
     MultipartEntityBuilder multiPartBuilder = MultipartEntityBuilder.create();
     boolean hasFiles = false;
-    if (additionalMetadata != null) {
-        multiPartBuilder.addTextBody("additionalMetadata", additionalMetadata.toString());
-    }
+    multiPartBuilder.addTextBody("additionalMetadata", additionalMetadata.toString());
     multiPartBuilder.addBinaryBody("file", _file);
     hasFiles = true;
     HttpEntity entity = multiPartBuilder.build();
@@ -1168,8 +850,6 @@ public class PetApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

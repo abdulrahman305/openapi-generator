@@ -17,7 +17,7 @@ import jakarta.annotation.Generated;
  * User
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class User {
 
   private @Nullable Long id;
@@ -36,7 +36,7 @@ public class User {
 
   private @Nullable Integer userStatus;
 
-  public User id(@Nullable Long id) {
+  public User id(Long id) {
     this.id = id;
     return this;
   }
@@ -47,15 +47,15 @@ public class User {
    */
   
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public User username(@Nullable String username) {
+  public User username(String username) {
     this.username = username;
     return this;
   }
@@ -66,15 +66,15 @@ public class User {
    */
   
   @JsonProperty("username")
-  public @Nullable String getUsername() {
+  public String getUsername() {
     return username;
   }
 
-  public void setUsername(@Nullable String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
-  public User firstName(@Nullable String firstName) {
+  public User firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -85,15 +85,15 @@ public class User {
    */
   
   @JsonProperty("firstName")
-  public @Nullable String getFirstName() {
+  public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(@Nullable String firstName) {
+  public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
-  public User lastName(@Nullable String lastName) {
+  public User lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -104,15 +104,15 @@ public class User {
    */
   
   @JsonProperty("lastName")
-  public @Nullable String getLastName() {
+  public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(@Nullable String lastName) {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
-  public User email(@Nullable String email) {
+  public User email(String email) {
     this.email = email;
     return this;
   }
@@ -123,15 +123,15 @@ public class User {
    */
   
   @JsonProperty("email")
-  public @Nullable String getEmail() {
+  public String getEmail() {
     return email;
   }
 
-  public void setEmail(@Nullable String email) {
+  public void setEmail(String email) {
     this.email = email;
   }
 
-  public User password(@Nullable String password) {
+  public User password(String password) {
     this.password = password;
     return this;
   }
@@ -142,15 +142,15 @@ public class User {
    */
   
   @JsonProperty("password")
-  public @Nullable String getPassword() {
+  public String getPassword() {
     return password;
   }
 
-  public void setPassword(@Nullable String password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
-  public User phone(@Nullable String phone) {
+  public User phone(String phone) {
     this.phone = phone;
     return this;
   }
@@ -161,15 +161,15 @@ public class User {
    */
   
   @JsonProperty("phone")
-  public @Nullable String getPhone() {
+  public String getPhone() {
     return phone;
   }
 
-  public void setPhone(@Nullable String phone) {
+  public void setPhone(String phone) {
     this.phone = phone;
   }
 
-  public User userStatus(@Nullable Integer userStatus) {
+  public User userStatus(Integer userStatus) {
     this.userStatus = userStatus;
     return this;
   }
@@ -180,11 +180,11 @@ public class User {
    */
   
   @JsonProperty("userStatus")
-  public @Nullable Integer getUserStatus() {
+  public Integer getUserStatus() {
     return userStatus;
   }
 
-  public void setUserStatus(@Nullable Integer userStatus) {
+  public void setUserStatus(Integer userStatus) {
     this.userStatus = userStatus;
   }
 

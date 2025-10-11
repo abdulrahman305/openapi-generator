@@ -5,7 +5,6 @@
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/apple.dart';
 import 'package:openapi/src/model/banana.dart';
-import 'package:openapi/src/model/orange.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
@@ -18,13 +17,12 @@ part 'fruit.g.dart';
 /// * [color] 
 /// * [kind] 
 /// * [count] 
-/// * [sweet] 
 @BuiltValue()
 abstract class Fruit implements Built<Fruit, FruitBuilder> {
   @BuiltValueField(wireName: r'color')
   String? get color;
 
-  /// One Of [Apple], [Banana], [Orange]
+  /// One Of [Apple], [Banana]
   OneOf get oneOf;
 
   Fruit._();
@@ -106,7 +104,7 @@ class _$FruitSerializer implements PrimitiveSerializer<Fruit> {
   }) {
     final result = FruitBuilder();
     Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(Apple), FullType(Banana), FullType(Orange), ]);
+    final targetType = const FullType(OneOf, [FullType(Apple), FullType(Banana), ]);
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

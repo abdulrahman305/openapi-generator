@@ -15,14 +15,7 @@ authors = [
   {name = "{{infoName}}{{^infoName}}OpenAPI Generator Community{{/infoName}}",email = "{{infoEmail}}{{^infoEmail}}team@openapitools.org{{/infoEmail}}"},
 ]
 {{/poetry1}}
-{{#licenseInfo}}
-{{#poetry1}}
-license = "{{{licenseInfo}}}"
-{{/poetry1}}
-{{^poetry1}}
-license = { text = "{{{licenseInfo}}}" }
-{{/poetry1}}
-{{/licenseInfo}}
+license = "{{{licenseInfo}}}{{^licenseInfo}}NoLicense{{/licenseInfo}}"
 readme = "README.md"
 {{#poetry1}}
 repository = "https://{{{gitHost}}}/{{{gitUserId}}}/{{{gitRepoId}}}"
@@ -39,9 +32,6 @@ python-dateutil = ">= 2.8.2"
 aiohttp = ">= 3.8.4"
 aiohttp-retry = ">= 2.8.3"
 {{/asyncio}}
-{{#httpx}}
-httpx = ">= 0.28.1"
-{{/httpx}}
 {{#tornado}}
 tornado = ">=4.2, <5"
 {{/tornado}}
@@ -51,20 +41,17 @@ pycryptodome = ">= 3.9.0"
 {{/hasHttpSignatureMethods}}
 pydantic = ">= 2"
 typing-extensions = ">= 4.7.1"
-{{#lazyImports}}
-lazy-imports = ">= 1, < 2"
-{{/lazyImports}}
 {{/poetry1}}
 {{^poetry1}}
-requires-python = ">=3.9"
+requires-python = "^3.9"
 
 dependencies = [
   "urllib3 (>=2.1.0,<3.0.0)",
   "python-dateutil (>=2.8.2)",
-{{#async}}
+{{#asyncio}}
   "aiohttp (>=3.8.4)",
   "aiohttp-retry (>=2.8.3)",
-{{/async}}
+{{/asyncio}}
 {{#tornado}}
   "tornado (>=4.2,<5)",
 {{/tornado}}
@@ -73,10 +60,7 @@ dependencies = [
   "pycryptodome (>=3.9.0)",
 {{/hasHttpSignatureMethods}}
   "pydantic (>=2)",
-  "typing-extensions (>=4.7.1)",
-{{#lazyImports}}
-  "lazy-imports (>=1,<2)"
-{{/lazyImports}}
+  "typing-extensions (>=4.7.1)"
 ]
 
 [project.urls]

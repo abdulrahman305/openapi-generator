@@ -16,17 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MixedPropertiesAndAdditionalPropertiesClass  {
   
   @ApiModelProperty(value = "")
-
   private UUID uuid;
 
   @ApiModelProperty(value = "")
-
   private Date dateTime;
 
   @ApiModelProperty(value = "")
-
   @Valid
-
   private Map<String, Animal> map = new HashMap<>();
  /**
    * Get uuid

@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * EnumArrays
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class EnumArrays {
 
   /**
@@ -102,7 +102,7 @@ public class EnumArrays {
   @Valid
   private List<ArrayEnumEnum> arrayEnum = new ArrayList<>();
 
-  public EnumArrays justSymbol(@Nullable JustSymbolEnum justSymbol) {
+  public EnumArrays justSymbol(JustSymbolEnum justSymbol) {
     this.justSymbol = justSymbol;
     return this;
   }
@@ -114,11 +114,11 @@ public class EnumArrays {
   
   @ApiModelProperty(value = "")
   @JsonProperty("just_symbol")
-  public @Nullable JustSymbolEnum getJustSymbol() {
+  public JustSymbolEnum getJustSymbol() {
     return justSymbol;
   }
 
-  public void setJustSymbol(@Nullable JustSymbolEnum justSymbol) {
+  public void setJustSymbol(JustSymbolEnum justSymbol) {
     this.justSymbol = justSymbol;
   }
 

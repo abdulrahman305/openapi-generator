@@ -22,6 +22,7 @@ import type { BranchDto } from './branch-dto';
 
 /**
  * @type RemoteAuthenticatedUserDto
+ * @export
  */
 export type RemoteAuthenticatedUserDto = AbstractUserDto;
 

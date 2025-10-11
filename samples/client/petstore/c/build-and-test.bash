@@ -2,10 +2,6 @@
 
 set -e
 
-# project
-mkdir -p build
-cd build
-
 #install latest curl
 wget https://curl.haxx.se/download/curl-7.61.1.zip
 unzip curl-7.61.1.zip
@@ -15,9 +11,10 @@ make
 sudo make install
 cd ..
 
-# build project
-cmake ..
-make
+# project
+cmake .
+
+make 
 
 if [ -f unit-manual-PetAPI ]; then ./unit-manual-PetAPI; fi
 if [ -f unit-manual-UserAPI ]; then ./unit-manual-UserAPI; fi

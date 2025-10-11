@@ -1,6 +1,5 @@
 =begin
 {{> api_info}}
-
 =end
 
 module {{moduleName}}
@@ -104,15 +103,12 @@ module {{moduleName}}
 
 {{#isTyphoeus}}
 {{> configuration_typhoeus_partial}}
-
 {{/isTyphoeus}}
 {{#isFaraday}}
 {{> configuration_faraday_partial}}
-
 {{/isFaraday}}
 {{#isHttpx}}
 {{> configuration_httpx_partial}}
-
 {{/isHttpx}}
 
     attr_accessor :inject_format

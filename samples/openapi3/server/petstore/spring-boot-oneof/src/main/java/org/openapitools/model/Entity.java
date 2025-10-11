@@ -36,7 +36,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = PizzaSpeziale.class, name = "PizzaSpeziale")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Entity {
 
   private @Nullable String href;
@@ -60,7 +60,7 @@ public class Entity {
     this.atType = atType;
   }
 
-  public Entity href(@Nullable String href) {
+  public Entity href(String href) {
     this.href = href;
     return this;
   }
@@ -72,15 +72,15 @@ public class Entity {
   
   @Schema(name = "href", description = "Hyperlink reference", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("href")
-  public @Nullable String getHref() {
+  public String getHref() {
     return href;
   }
 
-  public void setHref(@Nullable String href) {
+  public void setHref(String href) {
     this.href = href;
   }
 
-  public Entity id(@Nullable String id) {
+  public Entity id(String id) {
     this.id = id;
     return this;
   }
@@ -92,15 +92,15 @@ public class Entity {
   
   @Schema(name = "id", description = "unique identifier", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public @Nullable String getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(@Nullable String id) {
+  public void setId(String id) {
     this.id = id;
   }
 
-  public Entity atSchemaLocation(@Nullable String atSchemaLocation) {
+  public Entity atSchemaLocation(String atSchemaLocation) {
     this.atSchemaLocation = atSchemaLocation;
     return this;
   }
@@ -112,15 +112,15 @@ public class Entity {
   
   @Schema(name = "@schemaLocation", description = "A URI to a JSON-Schema file that defines additional attributes and relationships", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("@schemaLocation")
-  public @Nullable String getAtSchemaLocation() {
+  public String getAtSchemaLocation() {
     return atSchemaLocation;
   }
 
-  public void setAtSchemaLocation(@Nullable String atSchemaLocation) {
+  public void setAtSchemaLocation(String atSchemaLocation) {
     this.atSchemaLocation = atSchemaLocation;
   }
 
-  public Entity atBaseType(@Nullable String atBaseType) {
+  public Entity atBaseType(String atBaseType) {
     this.atBaseType = atBaseType;
     return this;
   }
@@ -132,11 +132,11 @@ public class Entity {
   
   @Schema(name = "@baseType", description = "When sub-classing, this defines the super-class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("@baseType")
-  public @Nullable String getAtBaseType() {
+  public String getAtBaseType() {
     return atBaseType;
   }
 
-  public void setAtBaseType(@Nullable String atBaseType) {
+  public void setAtBaseType(String atBaseType) {
     this.atBaseType = atBaseType;
   }
 

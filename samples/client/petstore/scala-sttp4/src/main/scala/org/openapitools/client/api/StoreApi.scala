@@ -46,11 +46,11 @@ class StoreApi(baseUrl: String) {
    * Available security schemes:
    *   api_key (apiKey)
    */
-  def getInventory(apiKeyHeader: String)(): Request[Either[ResponseException[String, Exception], Map[String, Int]]] =
+  def getInventory(apiKey: String)(): Request[Either[ResponseException[String, Exception], Map[String, Int]]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/store/inventory")
       .contentType("application/json")
-      .header("api_key", apiKeyHeader)
+      .header("api_key", apiKey)
       .response(asJson[Map[String, Int]])
 
   /**

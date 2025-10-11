@@ -6,10 +6,12 @@ import (
 	{{#hasBodyParams}}
 	"encoding/json"
 	{{/hasBodyParams}}
-	{{#hasOptionalBodyParams}}
+	{{#isBodyParam}}
+	    {{^required}}
 	"errors"
 	"io"
-	{{/hasOptionalBodyParams}}
+	    {{/required}}
+	{{/isBodyParam}}
 	"net/http"
 	"strings"
 {{#imports}}	"{{import}}"

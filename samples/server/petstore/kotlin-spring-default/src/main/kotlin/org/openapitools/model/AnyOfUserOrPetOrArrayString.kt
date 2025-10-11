@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -79,7 +78,7 @@ data class AnyOfUserOrPetOrArrayString(
     @Schema(example = "null", description = "pet status in the store")
     @Deprecated(message = "")
     @get:JsonProperty("status") val status: AnyOfUserOrPetOrArrayString.Status? = null
-) {
+    ) {
 
     /**
     * pet status in the store
@@ -95,8 +94,7 @@ data class AnyOfUserOrPetOrArrayString(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AnyOfUserOrPetOrArrayString'")
+                return values().first{it -> it.value == value}
             }
         }
     }

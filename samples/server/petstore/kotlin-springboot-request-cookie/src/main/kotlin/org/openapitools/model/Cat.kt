@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.openapitools.model.Animal
@@ -29,7 +28,7 @@ data class Cat(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("color") override val color: kotlin.String? = "red"
-) : Animal {
+    ) : Animal{
 
 }
 

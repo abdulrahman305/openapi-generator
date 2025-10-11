@@ -25,13 +25,14 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,8 +43,8 @@ import org.openapitools.client.ApiClient;
 @JsonPropertyOrder({
   TestInlineFreeformAdditionalPropertiesRequest.JSON_PROPERTY_SOME_PROPERTY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
-public class TestInlineFreeformAdditionalPropertiesRequest {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
+public class TestInlineFreeformAdditionalPropertiesRequest extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_SOME_PROPERTY = "someProperty";
   @javax.annotation.Nullable
   private String someProperty;
@@ -61,14 +62,14 @@ public class TestInlineFreeformAdditionalPropertiesRequest {
    * @return someProperty
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOME_PROPERTY, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_PROPERTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSomeProperty() {
     return someProperty;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SOME_PROPERTY, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_PROPERTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSomeProperty(@javax.annotation.Nullable String someProperty) {
     this.someProperty = someProperty;
@@ -135,6 +136,7 @@ public class TestInlineFreeformAdditionalPropertiesRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TestInlineFreeformAdditionalPropertiesRequest {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    someProperty: ").append(toIndentedString(someProperty)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -186,7 +188,7 @@ public class TestInlineFreeformAdditionalPropertiesRequest {
 
     // add `someProperty` to the URL query string
     if (getSomeProperty() != null) {
-      joiner.add(String.format(Locale.ROOT, "%ssomeProperty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSomeProperty()))));
+      joiner.add(String.format("%ssomeProperty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSomeProperty()))));
     }
 
     return joiner.toString();

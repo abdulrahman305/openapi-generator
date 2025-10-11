@@ -1,6 +1,5 @@
 //! CLI tool driving the API client
 use anyhow::{anyhow, Context, Result};
-use clap::Parser;
 use log::{debug, info};
 // models may be unused if all inputs are primitive types
 #[allow(unused_imports)]
@@ -9,7 +8,6 @@ use openapi_v3::{
     AnyOfGetResponse,
     CallbackWithHeaderPostResponse,
     ComplexQueryParamGetResponse,
-    ExamplesTestResponse,
     FormTestResponse,
     GetWithBooleanParameterResponse,
     JsonComplexQueryParamGetResponse,
@@ -39,6 +37,7 @@ use openapi_v3::{
     GetRepoInfoResponse,
 };
 use simple_logger::SimpleLogger;
+use structopt::StructOpt;
 use swagger::{AuthData, ContextBuilder, EmptyContext, Push, XSpanIdString};
 
 type ClientContext = swagger::make_context_ty!(
@@ -48,79 +47,73 @@ type ClientContext = swagger::make_context_ty!(
     XSpanIdString
 );
 
-#[derive(Parser, Debug)]
-#[clap(
+#[derive(StructOpt, Debug)]
+#[structopt(
     name = "My title",
     version = "1.0.7",
     about = "CLI access to My title"
 )]
 struct Cli {
-    #[clap(subcommand)]
+    #[structopt(subcommand)]
     operation: Operation,
 
     /// Address or hostname of the server hosting this API, including optional port
-    #[clap(short = 'a', long, default_value = "http://localhost")]
+    #[structopt(short = "a", long, default_value = "http://localhost")]
     server_address: String,
 
     /// Path to the client private key if using client-side TLS authentication
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_certificate", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-certificate", "server-certificate"]))]
     client_key: Option<String>,
 
     /// Path to the client's public certificate associated with the private key
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_key", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-key", "server-certificate"]))]
     client_certificate: Option<String>,
 
     /// Path to CA certificate used to authenticate the server
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long)]
+    #[structopt(long)]
     server_certificate: Option<String>,
 
     /// If set, write output to file instead of stdout
-    #[clap(short, long)]
+    #[structopt(short, long)]
     output_file: Option<String>,
 
-    #[command(flatten)]
+    #[structopt(flatten)]
     verbosity: clap_verbosity_flag::Verbosity,
 
     /// Bearer token if used for authentication
-    #[arg(env = "OPENAPI_V3_BEARER_TOKEN", hide_env = true)]
+    #[structopt(env = "OPENAPI_V3_BEARER_TOKEN", hide_env_values = true)]
     bearer_token: Option<String>,
 }
 
-#[derive(Parser, Debug)]
+#[derive(StructOpt, Debug)]
 enum Operation {
     AnyOfGet {
         /// list of any of objects
-        #[clap(value_parser = parse_json::<Vec<models::AnyOfObject>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         any_of: Option<Vec<models::AnyOfObject>>,
     },
     CallbackWithHeaderPost {
         url: String,
     },
     ComplexQueryParamGet {
-        #[clap(value_parser = parse_json::<Vec<models::StringObject>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         list_of_strings: Option<Vec<models::StringObject>>,
-    },
-    /// Test examples
-    ExamplesTest {
-        /// A list of IDs to get
-        #[clap(value_parser = parse_json::<Vec<String>>, long)]
-        ids: Option<Vec<String>>,
     },
     /// Test a Form Post
     FormTest {
-        #[clap(value_parser = parse_json::<Vec<String>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         required_array: Option<Vec<String>>,
     },
     GetWithBooleanParameter {
         /// Let's check apostrophes get encoded properly!
-        #[clap(short, long)]
+        #[structopt(short, long)]
         iambool: bool,
     },
     JsonComplexQueryParamGet {
-        #[clap(value_parser = parse_json::<Vec<models::StringObject>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         list_of_strings: Option<Vec<models::StringObject>>,
     },
     MandatoryRequestHeaderGet {
@@ -140,13 +133,13 @@ enum Operation {
     /// Get some stuff with parameters.
     ParamgetGet {
         /// The stuff to get
-        #[clap(value_parser = parse_json::<uuid::Uuid>)]
+        #[structopt(parse(try_from_str = parse_json))]
         uuid: Option<uuid::Uuid>,
         /// Some object to pass as query parameter
-        #[clap(value_parser = parse_json::<models::ObjectParam>)]
+        #[structopt(parse(try_from_str = parse_json))]
         some_object: Option<models::ObjectParam>,
         /// Some list to pass as query parameter
-        #[clap(value_parser = parse_json::<models::MyIdList>)]
+        #[structopt(parse(try_from_str = parse_json))]
         some_list: Option<models::MyIdList>,
     },
     ReadonlyAuthSchemeGet {
@@ -155,7 +148,7 @@ enum Operation {
         url: String,
     },
     RequiredOctetStreamPut {
-        #[clap(value_parser = parse_json::<swagger::ByteArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: swagger::ByteArray,
     },
     ResponsesWithHeadersGet {
@@ -163,40 +156,40 @@ enum Operation {
     Rfc7807Get {
     },
     TwoFirstLetterHeaders {
-        #[clap(long)]
+        #[structopt(long)]
         x_header_one: Option<bool>,
-        #[clap(long)]
+        #[structopt(long)]
         x_header_two: Option<bool>,
     },
     UntypedPropertyGet {
-        #[clap(value_parser = parse_json::<models::ObjectUntypedProps>)]
+        #[structopt(parse(try_from_str = parse_json))]
         object_untyped_props: Option<models::ObjectUntypedProps>,
     },
     UuidGet {
     },
     XmlExtraPost {
-        #[clap(value_parser = parse_json::<models::DuplicateXmlObject>)]
+        #[structopt(parse(try_from_str = parse_json))]
         duplicate_xml_object: Option<models::DuplicateXmlObject>,
     },
     XmlOtherPost {
-        #[clap(value_parser = parse_json::<models::AnotherXmlObject>)]
+        #[structopt(parse(try_from_str = parse_json))]
         another_xml_object: Option<models::AnotherXmlObject>,
     },
     XmlOtherPut {
-        #[clap(value_parser = parse_json::<models::AnotherXmlArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         another_xml_array: Option<models::AnotherXmlArray>,
     },
     /// Post an array.  It's important we test apostrophes, so include one here.
     XmlPost {
-        #[clap(value_parser = parse_json::<models::XmlArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         xml_array: Option<models::XmlArray>,
     },
     XmlPut {
-        #[clap(value_parser = parse_json::<models::XmlObject>)]
+        #[structopt(parse(try_from_str = parse_json))]
         xml_object: Option<models::XmlObject>,
     },
     EnumInPathPathParamGet {
-        #[clap(value_parser = parse_json::<models::StringEnum>)]
+        #[structopt(parse(try_from_str = parse_json))]
         path_param: models::StringEnum,
     },
     MultiplePathParamsWithVeryLongPathToTestFormattingPathParamAPathParamBGet {
@@ -204,7 +197,7 @@ enum Operation {
         path_param_b: String,
     },
     CreateRepo {
-        #[clap(value_parser = parse_json::<models::ObjectParam>)]
+        #[structopt(parse(try_from_str = parse_json))]
         object_param: models::ObjectParam,
     },
     GetRepoInfo {
@@ -247,7 +240,7 @@ fn create_client(args: &Cli, context: ClientContext) -> Result<Box<dyn ApiNoCont
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let args = Cli::parse();
+    let args = Cli::from_args();
     if let Some(log_level) = args.verbosity.log_level() {
         SimpleLogger::new().with_level(log_level.to_level_filter()).init()?;
     }
@@ -258,7 +251,7 @@ async fn main() -> Result<()> {
 
     if let Some(ref bearer_token) = args.bearer_token {
         debug!("Using bearer token");
-        auth_data = AuthData::bearer(bearer_token);
+        auth_data = Some(AuthData::bearer(bearer_token));
     }
 
     #[allow(trivial_casts)]
@@ -330,24 +323,6 @@ async fn main() -> Result<()> {
                 ComplexQueryParamGetResponse::Success
                 => "Success\n".to_string()
                     ,
-            }
-        }
-        Operation::ExamplesTest {
-            ids,
-        } => {
-            info!("Performing a ExamplesTest request");
-
-            let result = client.examples_test(
-                ids.as_ref(),
-            ).await?;
-            debug!("Result: {:?}", result);
-
-            match result {
-                ExamplesTestResponse::OK
-                (body)
-                => "OK\n".to_string()
-                   +
-                    &serde_json::to_string_pretty(&body)?,
             }
         }
         Operation::FormTest {
@@ -896,6 +871,6 @@ async fn main() -> Result<()> {
 
 // May be unused if all inputs are primitive types
 #[allow(dead_code)]
-fn parse_json<T: serde::de::DeserializeOwned>(json_string: &str) -> Result<T> {
+fn parse_json<'a, T: serde::de::Deserialize<'a>>(json_string: &'a str) -> Result<T> {
     serde_json::from_str(json_string).map_err(|err| anyhow!("Error parsing input: {}", err))
 }

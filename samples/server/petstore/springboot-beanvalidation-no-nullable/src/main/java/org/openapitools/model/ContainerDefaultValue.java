@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * ContainerDefaultValue
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ContainerDefaultValue {
 
   @Valid
@@ -49,7 +49,7 @@ public class ContainerDefaultValue {
     this.requiredArray = requiredArray;
   }
 
-  public ContainerDefaultValue nullableArray(@Nullable List<String> nullableArray) {
+  public ContainerDefaultValue nullableArray(List<String> nullableArray) {
     this.nullableArray = nullableArray;
     return this;
   }
@@ -69,11 +69,11 @@ public class ContainerDefaultValue {
   
   @ApiModelProperty(value = "")
   @JsonProperty("nullable_array")
-  public @Nullable List<String> getNullableArray() {
+  public List<String> getNullableArray() {
     return nullableArray;
   }
 
-  public void setNullableArray(@Nullable List<String> nullableArray) {
+  public void setNullableArray(List<String> nullableArray) {
     this.nullableArray = nullableArray;
   }
 
@@ -133,7 +133,7 @@ public class ContainerDefaultValue {
     this.requiredArray = requiredArray;
   }
 
-  public ContainerDefaultValue nullableArrayWithDefault(@Nullable List<String> nullableArrayWithDefault) {
+  public ContainerDefaultValue nullableArrayWithDefault(List<String> nullableArrayWithDefault) {
     this.nullableArrayWithDefault = nullableArrayWithDefault;
     return this;
   }
@@ -153,11 +153,11 @@ public class ContainerDefaultValue {
   
   @ApiModelProperty(value = "")
   @JsonProperty("nullable_array_with_default")
-  public @Nullable List<String> getNullableArrayWithDefault() {
+  public List<String> getNullableArrayWithDefault() {
     return nullableArrayWithDefault;
   }
 
-  public void setNullableArrayWithDefault(@Nullable List<String> nullableArrayWithDefault) {
+  public void setNullableArrayWithDefault(List<String> nullableArrayWithDefault) {
     this.nullableArrayWithDefault = nullableArrayWithDefault;
   }
 

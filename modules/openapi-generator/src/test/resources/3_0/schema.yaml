@@ -65,14 +65,6 @@ components:
           oneOf:
             - type: string
             - type: integer
-    ObjectSchema:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-        address:
-          type: string
     anyof1:
       anyOf:
         - type: string

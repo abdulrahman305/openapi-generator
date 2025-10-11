@@ -185,16 +185,13 @@ export class ObjectSerializer {
             }
             return transformedData;
         } else if (type === "Date") {
-            if (!(data instanceof Date)) {
-                return data;
-            }
             if (format == "date") {
                 let month = data.getMonth()+1
-                let monthStr = month < 10 ? "0" + month.toString() : month.toString()
+                month = month < 10 ? "0" + month.toString() : month.toString()
                 let day = data.getDate();
-                let dayStr = day < 10 ? "0" + day.toString() : day.toString();
+                day = day < 10 ? "0" + day.toString() : day.toString();
 
-                return data.getFullYear() + "-" + monthStr + "-" + dayStr;
+                return data.getFullYear() + "-" + month + "-" + day;
             } else {
                 return data.toISOString();
             }

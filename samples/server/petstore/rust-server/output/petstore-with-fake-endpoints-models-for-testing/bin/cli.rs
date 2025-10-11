@@ -1,6 +1,5 @@
 //! CLI tool driving the API client
 use anyhow::{anyhow, Context, Result};
-use clap::Parser;
 use dialoguer::Confirm;
 use log::{debug, info};
 // models may be unused if all inputs are primitive types
@@ -44,6 +43,7 @@ use petstore_with_fake_endpoints_models_for_testing::{
     UpdateUserResponse,
 };
 use simple_logger::SimpleLogger;
+use structopt::StructOpt;
 use swagger::{AuthData, ContextBuilder, EmptyContext, Push, XSpanIdString};
 
 type ClientContext = swagger::make_context_ty!(
@@ -53,93 +53,93 @@ type ClientContext = swagger::make_context_ty!(
     XSpanIdString
 );
 
-#[derive(Parser, Debug)]
-#[clap(
+#[derive(StructOpt, Debug)]
+#[structopt(
     name = "OpenAPI Petstore",
     version = "1.0.0",
     about = "CLI access to OpenAPI Petstore"
 )]
 struct Cli {
-    #[clap(subcommand)]
+    #[structopt(subcommand)]
     operation: Operation,
 
     /// Address or hostname of the server hosting this API, including optional port
-    #[clap(short = 'a', long, default_value = "http://localhost")]
+    #[structopt(short = "a", long, default_value = "http://localhost")]
     server_address: String,
 
     /// Path to the client private key if using client-side TLS authentication
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_certificate", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-certificate", "server-certificate"]))]
     client_key: Option<String>,
 
     /// Path to the client's public certificate associated with the private key
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_key", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-key", "server-certificate"]))]
     client_certificate: Option<String>,
 
     /// Path to CA certificate used to authenticate the server
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long)]
+    #[structopt(long)]
     server_certificate: Option<String>,
 
     /// If set, write output to file instead of stdout
-    #[clap(short, long)]
+    #[structopt(short, long)]
     output_file: Option<String>,
 
-    #[command(flatten)]
+    #[structopt(flatten)]
     verbosity: clap_verbosity_flag::Verbosity,
 
     /// Don't ask for any confirmation prompts
     #[allow(dead_code)]
-    #[clap(short, long)]
+    #[structopt(short, long)]
     force: bool,
 
     /// Bearer token if used for authentication
-    #[arg(env = "PETSTORE_WITH_FAKE_ENDPOINTS_MODELS_FOR_TESTING_BEARER_TOKEN", hide_env = true)]
+    #[structopt(env = "PETSTORE_WITH_FAKE_ENDPOINTS_MODELS_FOR_TESTING_BEARER_TOKEN", hide_env_values = true)]
     bearer_token: Option<String>,
 }
 
-#[derive(Parser, Debug)]
+#[derive(StructOpt, Debug)]
 enum Operation {
     /// To test special tags
     TestSpecialTags {
         /// client model
-        #[clap(value_parser = parse_json::<models::Client>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Client,
     },
     Call123example {
     },
     FakeOuterBooleanSerialize {
         /// Input boolean as post body
-        #[clap(value_parser = parse_json::<models::OuterBoolean>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: Option<models::OuterBoolean>,
     },
     FakeOuterCompositeSerialize {
         /// Input composite as post body
-        #[clap(value_parser = parse_json::<models::OuterComposite>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: Option<models::OuterComposite>,
     },
     FakeOuterNumberSerialize {
         /// Input number as post body
-        #[clap(value_parser = parse_json::<models::OuterNumber>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: Option<models::OuterNumber>,
     },
     FakeOuterStringSerialize {
         /// Input string as post body
-        #[clap(value_parser = parse_json::<models::OuterString>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: Option<models::OuterString>,
     },
     FakeResponseWithNumericalDescription {
     },
     TestBodyWithQueryParams {
         query: String,
-        #[clap(value_parser = parse_json::<models::User>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::User,
     },
     /// To test \"client\" model
     TestClientModel {
         /// client model
-        #[clap(value_parser = parse_json::<models::Client>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Client,
     },
     /// Fake endpoint for testing various parameters  假端點  偽のエンドポイント  가짜 엔드 포인트
@@ -151,7 +151,7 @@ enum Operation {
         /// None
         pattern_without_delimiter: String,
         /// None
-        #[clap(value_parser = parse_json::<swagger::ByteArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         byte: swagger::ByteArray,
         /// None
         integer: Option<i32>,
@@ -164,7 +164,7 @@ enum Operation {
         /// None
         string: Option<String>,
         /// None
-        #[clap(value_parser = parse_json::<swagger::ByteArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         binary: Option<swagger::ByteArray>,
         /// None
         date: Option<chrono::naive::NaiveDate>,
@@ -178,30 +178,30 @@ enum Operation {
     /// To test enum parameters
     TestEnumParameters {
         /// Header parameter enum test (string array)
-        #[clap(value_parser = parse_json::<Vec<models::TestEnumParametersEnumHeaderStringArrayParameterInner>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         enum_header_string_array: Option<Vec<models::TestEnumParametersEnumHeaderStringArrayParameterInner>>,
         /// Header parameter enum test (string)
-        #[clap(value_parser = parse_json::<models::TestEnumParametersEnumHeaderStringParameter>)]
+        #[structopt(parse(try_from_str = parse_json))]
         enum_header_string: Option<models::TestEnumParametersEnumHeaderStringParameter>,
         /// Query parameter enum test (string array)
-        #[clap(value_parser = parse_json::<Vec<models::TestEnumParametersEnumHeaderStringArrayParameterInner>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         enum_query_string_array: Option<Vec<models::TestEnumParametersEnumHeaderStringArrayParameterInner>>,
         /// Query parameter enum test (string)
-        #[clap(value_parser = parse_json::<models::TestEnumParametersEnumHeaderStringParameter>)]
+        #[structopt(parse(try_from_str = parse_json))]
         enum_query_string: Option<models::TestEnumParametersEnumHeaderStringParameter>,
         /// Query parameter enum test (double)
-        #[clap(value_parser = parse_json::<models::TestEnumParametersEnumQueryIntegerParameter>)]
+        #[structopt(parse(try_from_str = parse_json))]
         enum_query_integer: Option<models::TestEnumParametersEnumQueryIntegerParameter>,
         /// Query parameter enum test (double)
-        #[clap(value_parser = parse_json::<models::TestEnumParametersEnumQueryDoubleParameter>)]
+        #[structopt(parse(try_from_str = parse_json))]
         enum_query_double: Option<models::TestEnumParametersEnumQueryDoubleParameter>,
-        #[clap(value_parser = parse_json::<models::TestEnumParametersRequestEnumFormString>)]
+        #[structopt(parse(try_from_str = parse_json))]
         enum_form_string: Option<models::TestEnumParametersRequestEnumFormString>,
     },
     /// test inline additionalProperties
     TestInlineAdditionalProperties {
         /// request body
-        #[clap(value_parser = parse_json::<std::collections::HashMap<String, String>>)]
+        #[structopt(parse(try_from_str = parse_json))]
         param: std::collections::HashMap<String, String>,
     },
     /// test json serialization of form data
@@ -218,31 +218,31 @@ enum Operation {
     /// To test class name in snake case
     TestClassname {
         /// client model
-        #[clap(value_parser = parse_json::<models::Client>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Client,
     },
     /// Add a new pet to the store
     AddPet {
         /// Pet object that needs to be added to the store
-        #[clap(value_parser = parse_json::<models::Pet>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Pet,
     },
     /// Finds Pets by status
     FindPetsByStatus {
         /// Status values that need to be considered for filter
-        #[clap(value_parser = parse_json::<Vec<models::FindPetsByStatusStatusParameterInner>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         status: Vec<models::FindPetsByStatusStatusParameterInner>,
     },
     /// Finds Pets by tags
     FindPetsByTags {
         /// Tags to filter by
-        #[clap(value_parser = parse_json::<Vec<String>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         tags: Vec<String>,
     },
     /// Update an existing pet
     UpdatePet {
         /// Pet object that needs to be added to the store
-        #[clap(value_parser = parse_json::<models::Pet>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Pet,
     },
     /// Deletes a pet
@@ -272,7 +272,7 @@ enum Operation {
         /// Additional data to pass to server
         additional_metadata: Option<String>,
         /// file to upload
-        #[clap(value_parser = parse_json::<swagger::ByteArray>)]
+        #[structopt(parse(try_from_str = parse_json))]
         file: Option<swagger::ByteArray>,
     },
     /// Returns pet inventories by status
@@ -281,7 +281,7 @@ enum Operation {
     /// Place an order for a pet
     PlaceOrder {
         /// order placed for purchasing the pet
-        #[clap(value_parser = parse_json::<models::Order>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::Order,
     },
     /// Delete purchase order by ID
@@ -297,19 +297,19 @@ enum Operation {
     /// Create user
     CreateUser {
         /// Created user object
-        #[clap(value_parser = parse_json::<models::User>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::User,
     },
     /// Creates list of users with given input array
     CreateUsersWithArrayInput {
         /// List of user object
-        #[clap(value_parser = parse_json::<Vec<models::User>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         body: Vec<models::User>,
     },
     /// Creates list of users with given input array
     CreateUsersWithListInput {
         /// List of user object
-        #[clap(value_parser = parse_json::<Vec<models::User>>, long)]
+        #[structopt(parse(try_from_str = parse_json), long)]
         body: Vec<models::User>,
     },
     /// Logs user into the system
@@ -337,7 +337,7 @@ enum Operation {
         /// name that need to be deleted
         username: String,
         /// Updated user object
-        #[clap(value_parser = parse_json::<models::User>)]
+        #[structopt(parse(try_from_str = parse_json))]
         body: models::User,
     },
 }
@@ -377,7 +377,7 @@ fn create_client(args: &Cli, context: ClientContext) -> Result<Box<dyn ApiNoCont
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let args = Cli::parse();
+    let args = Cli::from_args();
     if let Some(log_level) = args.verbosity.log_level() {
         SimpleLogger::new().with_level(log_level.to_level_filter()).init()?;
     }
@@ -388,7 +388,7 @@ async fn main() -> Result<()> {
 
     if let Some(ref bearer_token) = args.bearer_token {
         debug!("Using bearer token");
-        auth_data = AuthData::bearer(bearer_token);
+        auth_data = Some(AuthData::bearer(bearer_token));
     }
 
     #[allow(trivial_casts)]
@@ -1148,6 +1148,6 @@ fn prompt(force: bool, text: &str) -> Result<()> {
 
 // May be unused if all inputs are primitive types
 #[allow(dead_code)]
-fn parse_json<T: serde::de::DeserializeOwned>(json_string: &str) -> Result<T> {
+fn parse_json<'a, T: serde::de::Deserialize<'a>>(json_string: &'a str) -> Result<T> {
     serde_json::from_str(json_string).map_err(|err| anyhow!("Error parsing input: {}", err))
 }

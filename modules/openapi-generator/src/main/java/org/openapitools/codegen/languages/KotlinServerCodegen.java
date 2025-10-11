@@ -419,11 +419,6 @@ public class KotlinServerCodegen extends AbstractKotlinCodegen implements BeanVa
 
                         doDataTypeAssignment(resp.dataType, new DataTypeAssigner() {
                             @Override
-                            public void setIsVoid(Boolean isVoid) {
-                                resp.isVoid = isVoid;
-                            }
-
-                            @Override
                             public void setReturnType(final String returnType) {
                                 resp.dataType = returnType;
                             }
@@ -437,10 +432,6 @@ public class KotlinServerCodegen extends AbstractKotlinCodegen implements BeanVa
                 }
 
                 doDataTypeAssignment(operation.returnType, new DataTypeAssigner() {
-                    @Override
-                    public void setIsVoid(Boolean isVoid) {
-                        operation.isVoid = isVoid;
-                    }
 
                     @Override
                     public void setReturnType(final String returnType) {

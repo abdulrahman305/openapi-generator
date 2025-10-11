@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +38,7 @@ import io.github.threetenjaxb.core.*;
   MapTest.JSON_PROPERTY_DIRECT_MAP,
   MapTest.JSON_PROPERTY_INDIRECT_MAP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 @XmlRootElement(name = "MapTest")
 @XmlAccessorType(XmlAccessType.FIELD)
 @JacksonXmlRootElement(localName = "MapTest")
@@ -125,7 +124,7 @@ public class MapTest {
    * @return mapMapOfString
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAP_MAP_OF_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MAP_MAP_OF_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "map_map_of_string")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -135,7 +134,7 @@ public class MapTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MAP_MAP_OF_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MAP_MAP_OF_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "map_map_of_string")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -162,7 +161,7 @@ public class MapTest {
    * @return mapOfEnumString
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAP_OF_ENUM_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MAP_OF_ENUM_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "map_of_enum_string")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -172,7 +171,7 @@ public class MapTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MAP_OF_ENUM_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MAP_OF_ENUM_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "map_of_enum_string")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -199,7 +198,7 @@ public class MapTest {
    * @return directMap
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DIRECT_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_DIRECT_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "direct_map")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -209,7 +208,7 @@ public class MapTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DIRECT_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_DIRECT_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "direct_map")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -236,7 +235,7 @@ public class MapTest {
    * @return indirectMap
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INDIRECT_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_INDIRECT_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "indirect_map")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -246,7 +245,7 @@ public class MapTest {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_INDIRECT_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_INDIRECT_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "indirect_map")
   @JacksonXmlElementWrapper(useWrapping = false)

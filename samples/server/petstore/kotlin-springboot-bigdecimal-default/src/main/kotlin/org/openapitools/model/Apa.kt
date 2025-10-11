@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import javax.validation.constraints.DecimalMax
@@ -43,7 +42,7 @@ data class Apa(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("gepa") val gepa: java.math.BigDecimal? = null
-) {
+    ) {
 
 }
 

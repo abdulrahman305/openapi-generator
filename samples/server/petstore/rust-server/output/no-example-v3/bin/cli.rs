@@ -1,6 +1,5 @@
 //! CLI tool driving the API client
 use anyhow::{anyhow, Context, Result};
-use clap::Parser;
 use log::{debug, info};
 // models may be unused if all inputs are primitive types
 #[allow(unused_imports)]
@@ -9,6 +8,7 @@ use no_example_v3::{
     OpGetResponse,
 };
 use simple_logger::SimpleLogger;
+use structopt::StructOpt;
 use swagger::{AuthData, ContextBuilder, EmptyContext, Push, XSpanIdString};
 
 type ClientContext = swagger::make_context_ty!(
@@ -18,47 +18,47 @@ type ClientContext = swagger::make_context_ty!(
     XSpanIdString
 );
 
-#[derive(Parser, Debug)]
-#[clap(
+#[derive(StructOpt, Debug)]
+#[structopt(
     name = "Regression test for an API which doesn&#39;t have any example",
     version = "0.0.1",
     about = "CLI access to Regression test for an API which doesn&#39;t have any example"
 )]
 struct Cli {
-    #[clap(subcommand)]
+    #[structopt(subcommand)]
     operation: Operation,
 
     /// Address or hostname of the server hosting this API, including optional port
-    #[clap(short = 'a', long, default_value = "http://localhost")]
+    #[structopt(short = "a", long, default_value = "http://localhost")]
     server_address: String,
 
     /// Path to the client private key if using client-side TLS authentication
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_certificate", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-certificate", "server-certificate"]))]
     client_key: Option<String>,
 
     /// Path to the client's public certificate associated with the private key
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long, requires_all(&["client_key", "server_certificate"]))]
+    #[structopt(long, requires_all(&["client-key", "server-certificate"]))]
     client_certificate: Option<String>,
 
     /// Path to CA certificate used to authenticate the server
     #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-    #[clap(long)]
+    #[structopt(long)]
     server_certificate: Option<String>,
 
     /// If set, write output to file instead of stdout
-    #[clap(short, long)]
+    #[structopt(short, long)]
     output_file: Option<String>,
 
-    #[command(flatten)]
+    #[structopt(flatten)]
     verbosity: clap_verbosity_flag::Verbosity,
 }
 
-#[derive(Parser, Debug)]
+#[derive(StructOpt, Debug)]
 enum Operation {
     OpGet {
-        #[clap(value_parser = parse_json::<models::OpGetRequest>)]
+        #[structopt(parse(try_from_str = parse_json))]
         op_get_request: models::OpGetRequest,
     },
 }
@@ -98,7 +98,7 @@ fn create_client(args: &Cli, context: ClientContext) -> Result<Box<dyn ApiNoCont
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let args = Cli::parse();
+    let args = Cli::from_args();
     if let Some(log_level) = args.verbosity.log_level() {
         SimpleLogger::new().with_level(log_level.to_level_filter()).init()?;
     }
@@ -146,6 +146,6 @@ async fn main() -> Result<()> {
 
 // May be unused if all inputs are primitive types
 #[allow(dead_code)]
-fn parse_json<T: serde::de::DeserializeOwned>(json_string: &str) -> Result<T> {
+fn parse_json<'a, T: serde::de::Deserialize<'a>>(json_string: &'a str) -> Result<T> {
     serde_json::from_str(json_string).map_err(|err| anyhow!("Error parsing input: {}", err))
 }

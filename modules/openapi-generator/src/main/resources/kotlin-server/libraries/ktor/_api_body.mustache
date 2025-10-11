@@ -1,6 +1,5 @@
 {{#hasAuthMethods}}
 {{>libraries/ktor/_principal}}
-
 {{#examples}}
 {{#-first}}
 {{#lambda.indented}}{{>_response}}{{/lambda.indented}}
@@ -14,7 +13,6 @@ call.respond(HttpStatusCode.NotImplemented)
 {{#examples}}
 {{#-first}}
 {{>libraries/ktor/_response}}
-
 {{/-first}}
 {{/examples}}
 {{^examples}}

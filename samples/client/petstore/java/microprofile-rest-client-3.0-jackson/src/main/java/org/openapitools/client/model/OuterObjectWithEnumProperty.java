@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,12 +35,11 @@ public class OuterObjectWithEnumProperty  {
   
   private OuterEnumInteger value;
 
-
   /**
    * Get value
    * @return value
    **/
-  @JsonProperty(value = JSON_PROPERTY_VALUE, required = true)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OuterEnumInteger getValue() {
     return value;
@@ -52,7 +48,7 @@ public class OuterObjectWithEnumProperty  {
   /**
    * Set value
    */
-  @JsonProperty(value = JSON_PROPERTY_VALUE, required = true)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setValue(OuterEnumInteger value) {
     this.value = value;

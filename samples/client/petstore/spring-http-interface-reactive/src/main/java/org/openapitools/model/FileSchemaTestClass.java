@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  * FileSchemaTestClass
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class FileSchemaTestClass {
 
   private @Nullable File file;
@@ -29,7 +29,7 @@ public class FileSchemaTestClass {
   
   private List<File> files = new ArrayList<>();
 
-  public FileSchemaTestClass file(@Nullable File file) {
+  public FileSchemaTestClass file(File file) {
     this.file = file;
     return this;
   }
@@ -40,11 +40,11 @@ public class FileSchemaTestClass {
    */
   
   @JsonProperty("file")
-  public @Nullable File getFile() {
+  public File getFile() {
     return file;
   }
 
-  public void setFile(@Nullable File file) {
+  public void setFile(File file) {
     this.file = file;
   }
 

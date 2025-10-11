@@ -18,7 +18,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +38,7 @@ import org.openapitools.client.JSON;
   Apple.JSON_PROPERTY_ORIGIN
 })
 @JsonTypeName("apple")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Apple {
   public static final String JSON_PROPERTY_CULTIVAR = "cultivar";
   @jakarta.annotation.Nullable
@@ -63,7 +62,7 @@ public class Apple {
    */
   @jakarta.annotation.Nullable
  @Pattern(regexp="^[a-zA-Z\\s]*$")
-  @JsonProperty(value = JSON_PROPERTY_CULTIVAR, required = false)
+  @JsonProperty(JSON_PROPERTY_CULTIVAR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCultivar() {
@@ -71,7 +70,7 @@ public class Apple {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CULTIVAR, required = false)
+  @JsonProperty(JSON_PROPERTY_CULTIVAR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCultivar(@jakarta.annotation.Nullable String cultivar) {
     this.cultivar = cultivar;
@@ -89,7 +88,7 @@ public class Apple {
    */
   @jakarta.annotation.Nullable
  @Pattern(regexp="/^[A-Z\\s]*$/i")
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getOrigin() {
@@ -97,7 +96,7 @@ public class Apple {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrigin(@jakarta.annotation.Nullable String origin) {
     this.origin = origin;

@@ -16,8 +16,7 @@ class AsyncTest extends TestCase
 
     public function setUp(): void
     {
-        $config = (new Configuration())->setHost('http://localhost/v2');
-        $this->api = new Api\PetApi(null, $config);
+        $this->api = new Api\PetApi();
 
         $this->petId = 10005;
         $pet = new Model\Pet;

@@ -145,7 +145,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, PetStatus petStatus, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(PetStatusValueConverter.ToJsonValue(petStatus).ToString());
+            writer.WriteStringValue(petStatus.ToString());
         }
     }
 
@@ -176,14 +176,14 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Writes the PetStatus to the json writer
+        /// Writes the DateTime to the json writer
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="petStatus"></param>
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, PetStatus? petStatus, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(petStatus.HasValue ? PetStatusValueConverter.ToJsonValue(petStatus.Value).ToString() : "null");
+            writer.WriteStringValue(petStatus?.ToString() ?? "null");
         }
     }
 }

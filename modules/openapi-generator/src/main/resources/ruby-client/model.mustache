@@ -1,6 +1,5 @@
 =begin
 {{> api_info}}
-
 =end
 
 require 'date'
@@ -11,25 +10,21 @@ module {{moduleName}}
 {{#model}}
 {{#isEnum}}
 {{>partial_model_enum_class}}
-
 {{/isEnum}}
 {{^isEnum}}
 {{#oneOf}}
 {{#-first}}
 {{>partial_oneof_module}}
-
 {{/-first}}
 {{/oneOf}}
 {{#anyOf}}
 {{#-first}}
 {{>partial_anyof_module}}
-
 {{/-first}}
 {{/anyOf}}
 {{^oneOf}}
 {{^anyOf}}
 {{>partial_model_generic}}
-
 {{/anyOf}}
 {{/oneOf}}
 {{/isEnum}}

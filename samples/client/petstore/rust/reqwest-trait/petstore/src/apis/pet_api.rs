@@ -174,6 +174,7 @@ impl PetApi for PetApiClient {
                 "multi" => local_var_req_builder.query(&param_value.into_iter().map(|p| ("type".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
                 _ => local_var_req_builder.query(&[("type", &param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
             };
+            local_var_req_builder = local_var_req_builder.query(&[("type", &param_value.to_string())]);
         }
         if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
             local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -510,7 +511,7 @@ impl PetApi for PetApiClient {
 
 }
 
-/// struct for typed errors of method [`PetApi::add_pet`]
+/// struct for typed errors of method [`add_pet`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddPetError {
@@ -518,7 +519,7 @@ pub enum AddPetError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::delete_pet`]
+/// struct for typed errors of method [`delete_pet`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeletePetError {
@@ -526,7 +527,7 @@ pub enum DeletePetError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::find_pets_by_status`]
+/// struct for typed errors of method [`find_pets_by_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FindPetsByStatusError {
@@ -534,7 +535,7 @@ pub enum FindPetsByStatusError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::find_pets_by_tags`]
+/// struct for typed errors of method [`find_pets_by_tags`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FindPetsByTagsError {
@@ -542,7 +543,7 @@ pub enum FindPetsByTagsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::get_pet_by_id`]
+/// struct for typed errors of method [`get_pet_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPetByIdError {
@@ -551,7 +552,7 @@ pub enum GetPetByIdError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::pets_explode_post`]
+/// struct for typed errors of method [`pets_explode_post`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PetsExplodePostError {
@@ -559,7 +560,7 @@ pub enum PetsExplodePostError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::pets_post`]
+/// struct for typed errors of method [`pets_post`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PetsPostError {
@@ -567,7 +568,7 @@ pub enum PetsPostError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::update_pet`]
+/// struct for typed errors of method [`update_pet`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdatePetError {
@@ -577,7 +578,7 @@ pub enum UpdatePetError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::update_pet_with_form`]
+/// struct for typed errors of method [`update_pet_with_form`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdatePetWithFormError {
@@ -585,7 +586,7 @@ pub enum UpdatePetWithFormError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`PetApi::upload_file`]
+/// struct for typed errors of method [`upload_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UploadFileError {

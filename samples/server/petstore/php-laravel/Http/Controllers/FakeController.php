@@ -64,8 +64,13 @@ class FakeController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-
-        $apiResult = $this->api->fakeBigDecimalMap();
+        try {
+            $apiResult = $this->api->fakeBigDecimalMap();
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\FakeBigDecimalMap200Response) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -98,8 +103,13 @@ class FakeController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-
-        $apiResult = $this->api->fakeHealthGet();
+        try {
+            $apiResult = $this->api->fakeHealthGet();
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\HealthCheckResult) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -138,8 +148,13 @@ class FakeController extends Controller
 
         $header1 = $request->string('header1')->value();
 
-
-        $apiResult = $this->api->fakeHttpSignatureTest($pet, $query1, $header1);
+        try {
+            $apiResult = $this->api->fakeHttpSignatureTest($pet, $query1, $header1);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -174,8 +189,13 @@ class FakeController extends Controller
 
         $body = $request->boolean('body');
 
-
-        $apiResult = $this->api->fakeOuterBooleanSerialize($body);
+        try {
+            $apiResult = $this->api->fakeOuterBooleanSerialize($body);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof bool) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -210,8 +230,13 @@ class FakeController extends Controller
 
         $outerComposite = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\OuterComposite::class);
 
-
-        $apiResult = $this->api->fakeOuterCompositeSerialize($outerComposite);
+        try {
+            $apiResult = $this->api->fakeOuterCompositeSerialize($outerComposite);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\OuterComposite) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -246,8 +271,13 @@ class FakeController extends Controller
 
         $body = $request->float('body');
 
-
-        $apiResult = $this->api->fakeOuterNumberSerialize($body);
+        try {
+            $apiResult = $this->api->fakeOuterNumberSerialize($body);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof float) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -282,8 +312,13 @@ class FakeController extends Controller
 
         $body = $request->string('body')->value();
 
-
-        $apiResult = $this->api->fakeOuterStringSerialize($body);
+        try {
+            $apiResult = $this->api->fakeOuterStringSerialize($body);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof string) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -318,8 +353,13 @@ class FakeController extends Controller
 
         $outerObjectWithEnumProperty = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\OuterObjectWithEnumProperty::class);
 
-
-        $apiResult = $this->api->fakePropertyEnumIntegerSerialize($outerObjectWithEnumProperty);
+        try {
+            $apiResult = $this->api->fakePropertyEnumIntegerSerialize($outerObjectWithEnumProperty);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\OuterObjectWithEnumProperty) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -354,8 +394,13 @@ class FakeController extends Controller
 
         $requestBody = $request->get('requestBody');
 
-
-        $apiResult = $this->api->testAdditionalPropertiesReference($requestBody);
+        try {
+            $apiResult = $this->api->testAdditionalPropertiesReference($requestBody);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -390,8 +435,13 @@ class FakeController extends Controller
 
         $body = $request->file('body');
 
-
-        $apiResult = $this->api->testBodyWithBinary($body);
+        try {
+            $apiResult = $this->api->testBodyWithBinary($body);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -426,8 +476,13 @@ class FakeController extends Controller
 
         $fileSchemaTestClass = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\FileSchemaTestClass::class);
 
-
-        $apiResult = $this->api->testBodyWithFileSchema($fileSchemaTestClass);
+        try {
+            $apiResult = $this->api->testBodyWithFileSchema($fileSchemaTestClass);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -464,8 +519,13 @@ class FakeController extends Controller
 
         $user = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\User::class);
 
-
-        $apiResult = $this->api->testBodyWithQueryParams($query, $user);
+        try {
+            $apiResult = $this->api->testBodyWithQueryParams($query, $user);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -500,8 +560,13 @@ class FakeController extends Controller
 
         $client = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\Client::class);
 
-
-        $apiResult = $this->api->testClientModel($client);
+        try {
+            $apiResult = $this->api->testClientModel($client);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\Client) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -616,8 +681,13 @@ class FakeController extends Controller
 
         $callback = $request->string('callback')->value();
 
-
-        $apiResult = $this->api->testEndpointParameters($number, $double, $patternWithoutDelimiter, $byte, $integer, $int32, $int64, $float, $string, $binary, $date, $dateTime, $password, $callback);
+        try {
+            $apiResult = $this->api->testEndpointParameters($number, $double, $patternWithoutDelimiter, $byte, $integer, $int32, $int64, $float, $string, $binary, $date, $dateTime, $password, $callback);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent400) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 400);
@@ -694,8 +764,13 @@ class FakeController extends Controller
 
         $enumFormString = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\TestEnumParametersRequestEnumFormString::class);
 
-
-        $apiResult = $this->api->testEnumParameters($enumHeaderStringArray, $enumHeaderString, $enumQueryStringArray, $enumQueryString, $enumQueryInteger, $enumQueryDouble, $enumQueryModelArray, $enumFormStringArray, $enumFormString);
+        try {
+            $apiResult = $this->api->testEnumParameters($enumHeaderStringArray, $enumHeaderString, $enumQueryStringArray, $enumQueryString, $enumQueryInteger, $enumQueryDouble, $enumQueryModelArray, $enumFormStringArray, $enumFormString);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent400) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 400);
@@ -765,8 +840,13 @@ class FakeController extends Controller
 
         $int64Group = $request->integer('int64Group');
 
-
-        $apiResult = $this->api->testGroupParameters($requiredStringGroup, $requiredBooleanGroup, $requiredInt64Group, $stringGroup, $booleanGroup, $int64Group);
+        try {
+            $apiResult = $this->api->testGroupParameters($requiredStringGroup, $requiredBooleanGroup, $requiredInt64Group, $stringGroup, $booleanGroup, $int64Group);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent400) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 400);
@@ -801,8 +881,13 @@ class FakeController extends Controller
 
         $requestBody = $request->get('requestBody');
 
-
-        $apiResult = $this->api->testInlineAdditionalProperties($requestBody);
+        try {
+            $apiResult = $this->api->testInlineAdditionalProperties($requestBody);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -837,8 +922,13 @@ class FakeController extends Controller
 
         $testInlineFreeformAdditionalPropertiesRequest = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\TestInlineFreeformAdditionalPropertiesRequest::class);
 
-
-        $apiResult = $this->api->testInlineFreeformAdditionalProperties($testInlineFreeformAdditionalPropertiesRequest);
+        try {
+            $apiResult = $this->api->testInlineFreeformAdditionalProperties($testInlineFreeformAdditionalPropertiesRequest);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -883,8 +973,13 @@ class FakeController extends Controller
 
         $param2 = $request->string('param2')->value();
 
-
-        $apiResult = $this->api->testJsonFormData($param, $param2);
+        try {
+            $apiResult = $this->api->testJsonFormData($param, $param2);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -919,8 +1014,13 @@ class FakeController extends Controller
 
         $childWithNullable = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\ChildWithNullable::class);
 
-
-        $apiResult = $this->api->testNullable($childWithNullable);
+        try {
+            $apiResult = $this->api->testNullable($childWithNullable);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -993,8 +1093,13 @@ class FakeController extends Controller
 
         $language = $request->get('language');
 
-
-        $apiResult = $this->api->testQueryParameterCollectionFormat($pipe, $ioutil, $http, $url, $context, $allowEmpty, $language);
+        try {
+            $apiResult = $this->api->testQueryParameterCollectionFormat($pipe, $ioutil, $http, $url, $context, $allowEmpty, $language);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -1029,8 +1134,13 @@ class FakeController extends Controller
 
         $requestBody = $request->get('requestBody');
 
-
-        $apiResult = $this->api->testStringMapReference($requestBody);
+        try {
+            $apiResult = $this->api->testStringMapReference($requestBody);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent200) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);

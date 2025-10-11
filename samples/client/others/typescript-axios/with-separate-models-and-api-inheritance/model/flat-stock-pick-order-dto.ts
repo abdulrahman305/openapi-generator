@@ -19,6 +19,7 @@ import type { AbstractFlatStockPickOrderBaseDto } from './abstract-flat-stock-pi
 
 /**
  * @type FlatStockPickOrderDto
+ * @export
  */
 export type FlatStockPickOrderDto = AbstractFlatStockPickOrderBaseDto;
 

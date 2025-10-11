@@ -7,60 +7,6 @@ use validator::Validate;
 use crate::header;
 use crate::{models, types::*};
 
-#[allow(dead_code)]
-pub fn check_xss_string(v: &str) -> std::result::Result<(), validator::ValidationError> {
-    if ammonia::is_html(v) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_vec_string(v: &[String]) -> std::result::Result<(), validator::ValidationError> {
-    if v.iter().any(|i| ammonia::is_html(i)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map_string(
-    v: &std::collections::HashMap<String, String>,
-) -> std::result::Result<(), validator::ValidationError> {
-    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| ammonia::is_html(v)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map_nested<T>(
-    v: &std::collections::HashMap<String, T>,
-) -> std::result::Result<(), validator::ValidationError>
-where
-    T: validator::Validate,
-{
-    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| v.validate().is_err()) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map<T>(
-    v: &std::collections::HashMap<String, T>,
-) -> std::result::Result<(), validator::ValidationError> {
-    if v.keys().any(|k| ammonia::is_html(k)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GetPaymentMethodByIdPathParams {
@@ -73,7 +19,7 @@ pub struct GetPaymentMethodByIdPathParams {
 pub struct Amount {
     /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     #[serde(rename = "currency")]
-    #[validate(length(min = 3, max = 3), custom(function = "check_xss_string"))]
+    #[validate(length(min = 3, max = 3))]
     pub currency: String,
 
     /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
@@ -135,7 +81,7 @@ impl std::str::FromStr for Amount {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing Amount".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -153,7 +99,7 @@ impl std::str::FromStr for Amount {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing Amount".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -191,7 +137,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Amount>> for HeaderValue {
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for Amount - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for Amount - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -209,12 +156,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Amount> {
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into Amount - {err}"#
+                        "Unable to convert header value '{}' into Amount - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -225,12 +174,10 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Amount> {
 pub struct CheckoutError {
     /// Error code
     #[serde(rename = "code")]
-    #[validate(custom(function = "check_xss_string"))]
     pub code: String,
 
     /// User-friendly message
     #[serde(rename = "message")]
-    #[validate(custom(function = "check_xss_string"))]
     pub message: String,
 }
 
@@ -288,7 +235,7 @@ impl std::str::FromStr for CheckoutError {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing CheckoutError".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -306,7 +253,7 @@ impl std::str::FromStr for CheckoutError {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing CheckoutError".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -344,7 +291,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<CheckoutError>> for HeaderVal
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for CheckoutError - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for CheckoutError - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -362,12 +310,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CheckoutErro
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into CheckoutError - {err}"#
+                        "Unable to convert header value '{}' into CheckoutError - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -377,25 +327,20 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CheckoutErro
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Payment {
     #[serde(rename = "paymentMethod")]
-    #[validate(nested)]
     pub payment_method: models::PaymentMethod,
 
     #[serde(rename = "amount")]
-    #[validate(nested)]
     pub amount: models::Amount,
 
     #[serde(rename = "merchantAccount")]
-    #[validate(custom(function = "check_xss_string"))]
     pub merchant_account: String,
 
     #[serde(rename = "reference")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reference: Option<String>,
 
     /// Note: inline enums are not fully supported by openapi-generator
     #[serde(rename = "channel")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub channel: Option<String>,
 }
@@ -474,7 +419,7 @@ impl std::str::FromStr for Payment {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing Payment".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -506,7 +451,7 @@ impl std::str::FromStr for Payment {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing Payment".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -551,7 +496,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Payment>> for HeaderValue {
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for Payment - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for Payment - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -569,12 +515,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Payment> {
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into Payment - {err}"#
+                        "Unable to convert header value '{}' into Payment - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -586,15 +534,13 @@ pub struct PaymentMethod {
     /// Name of the payment method
     /// Note: inline enums are not fully supported by openapi-generator
     #[serde(rename = "name")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
 
     /// Type of the payment method
     #[serde(rename = "type")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub r_type: Option<String>,
+    pub r#type: Option<String>,
 }
 
 impl PaymentMethod {
@@ -602,7 +548,7 @@ impl PaymentMethod {
     pub fn new() -> PaymentMethod {
         PaymentMethod {
             name: None,
-            r_type: None,
+            r#type: None,
         }
     }
 }
@@ -616,9 +562,9 @@ impl std::fmt::Display for PaymentMethod {
             self.name
                 .as_ref()
                 .map(|name| ["name".to_string(), name.to_string()].join(",")),
-            self.r_type
+            self.r#type
                 .as_ref()
-                .map(|r_type| ["type".to_string(), r_type.to_string()].join(",")),
+                .map(|r#type| ["type".to_string(), r#type.to_string()].join(",")),
         ];
 
         write!(
@@ -641,7 +587,7 @@ impl std::str::FromStr for PaymentMethod {
         #[allow(dead_code)]
         struct IntermediateRep {
             pub name: Vec<String>,
-            pub r_type: Vec<String>,
+            pub r#type: Vec<String>,
         }
 
         let mut intermediate_rep = IntermediateRep::default();
@@ -656,7 +602,7 @@ impl std::str::FromStr for PaymentMethod {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing PaymentMethod".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -668,13 +614,13 @@ impl std::str::FromStr for PaymentMethod {
                         <String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?,
                     ),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r_type.push(
+                    "type" => intermediate_rep.r#type.push(
                         <String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?,
                     ),
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing PaymentMethod".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -686,7 +632,7 @@ impl std::str::FromStr for PaymentMethod {
         // Use the intermediate representation to return the struct
         std::result::Result::Ok(PaymentMethod {
             name: intermediate_rep.name.into_iter().next(),
-            r_type: intermediate_rep.r_type.into_iter().next(),
+            r#type: intermediate_rep.r#type.into_iter().next(),
         })
     }
 }
@@ -704,7 +650,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PaymentMethod>> for HeaderVal
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for PaymentMethod - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for PaymentMethod - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -722,12 +669,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PaymentMetho
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into PaymentMethod - {err}"#
+                        "Unable to convert header value '{}' into PaymentMethod - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -738,13 +687,11 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PaymentMetho
 pub struct PaymentResult {
     /// PSP ref
     #[serde(rename = "pspReference")]
-    #[validate(custom(function = "check_xss_string"))]
     pub psp_reference: String,
 
     /// Result code
     /// Note: inline enums are not fully supported by openapi-generator
     #[serde(rename = "resultCode")]
-    #[validate(custom(function = "check_xss_string"))]
     pub result_code: String,
 }
 
@@ -805,7 +752,7 @@ impl std::str::FromStr for PaymentResult {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing PaymentResult".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -823,7 +770,7 @@ impl std::str::FromStr for PaymentResult {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing PaymentResult".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -861,7 +808,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PaymentResult>> for HeaderVal
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for PaymentResult - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for PaymentResult - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -879,12 +827,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PaymentResul
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into PaymentResult - {err}"#
+                        "Unable to convert header value '{}' into PaymentResult - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }

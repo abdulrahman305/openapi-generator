@@ -19,8 +19,6 @@ package org.openapitools.codegen.languages;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.*;
-import org.openapitools.codegen.meta.GeneratorMetadata;
-import org.openapitools.codegen.meta.Stability;
 import org.openapitools.codegen.meta.features.*;
 import org.openapitools.codegen.model.ModelMap;
 import org.openapitools.codegen.model.ModelsMap;
@@ -62,10 +60,6 @@ public class ScalaLagomServerCodegen extends AbstractScalaCodegen implements Cod
                         ParameterFeature.Cookie
                 )
         );
-
-        generatorMetadata = GeneratorMetadata.newBuilder(generatorMetadata)
-                .stability(Stability.DEPRECATED)
-                .build();
 
         outputFolder = "generated-code/scala-lagom-server";
         modelTemplateFiles.put("model.mustache", ".scala");
@@ -155,12 +149,12 @@ public class ScalaLagomServerCodegen extends AbstractScalaCodegen implements Cod
 
     @Override
     public String getName() {
-        return "scala-lagom-server-deprecated";
+        return "scala-lagom-server";
     }
 
     @Override
     public String getHelp() {
-        return "Generates a Lagom API server (Beta) in scala. IMPORTANT: this generator has been deprecated";
+        return "Generates a Lagom API server (Beta) in scala";
     }
 
     @Override
@@ -226,4 +220,6 @@ public class ScalaLagomServerCodegen extends AbstractScalaCodegen implements Cod
         }
         return objs;
     }
+
+
 }

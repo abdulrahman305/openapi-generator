@@ -21,11 +21,9 @@ public interface {{classname}}  {
     //{{#vendorExtensions}}{{x-serviceid}}{{/vendorExtensions}}
     {{#rxInterface}}
 {{>RxMethod}}
-
     {{/rxInterface}}
     {{^rxInterface}}
 {{>AsyncMethod}}
-
     {{/rxInterface}}
 
 {{/operation}}

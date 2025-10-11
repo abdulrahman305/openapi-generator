@@ -22,6 +22,7 @@ import type { BranchDto } from './branch-dto';
 
 /**
  * @type InternalAuthenticatedUserDto
+ * @export
  */
 export type InternalAuthenticatedUserDto = AbstractUserDto;
 

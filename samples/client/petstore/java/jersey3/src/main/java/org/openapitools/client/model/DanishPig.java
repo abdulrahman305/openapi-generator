@@ -18,7 +18,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,7 +36,7 @@ import org.openapitools.client.JSON;
 @JsonPropertyOrder({
   DanishPig.JSON_PROPERTY_CLASS_NAME
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class DanishPig {
   public static final String JSON_PROPERTY_CLASS_NAME = "className";
   @jakarta.annotation.Nonnull
@@ -58,7 +57,7 @@ public class DanishPig {
   @jakarta.annotation.Nonnull
   @NotNull
 
-  @JsonProperty(value = JSON_PROPERTY_CLASS_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getClassName() {
@@ -66,7 +65,7 @@ public class DanishPig {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CLASS_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setClassName(@jakarta.annotation.Nonnull String className) {
     this.className = className;

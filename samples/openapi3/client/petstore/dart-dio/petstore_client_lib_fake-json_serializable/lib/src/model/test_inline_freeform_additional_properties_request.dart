@@ -3,13 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'test_inline_freeform_additional_properties_request.g.dart';
 
 
-@CopyWith()
 @JsonSerializable(
   checked: true,
   createToJson: true,

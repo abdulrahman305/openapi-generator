@@ -29,7 +29,7 @@ import javax.annotation.Generated;
  * ObjectWithUniqueItems
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ObjectWithUniqueItems {
 
   @Valid
@@ -163,7 +163,7 @@ public class ObjectWithUniqueItems {
     this.notNullList = notNullList;
   }
 
-  public ObjectWithUniqueItems notNullDateField(@Nullable OffsetDateTime notNullDateField) {
+  public ObjectWithUniqueItems notNullDateField(OffsetDateTime notNullDateField) {
     this.notNullDateField = notNullDateField;
     return this;
   }
@@ -175,15 +175,15 @@ public class ObjectWithUniqueItems {
   @Valid 
   @Schema(name = "notNullDateField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("notNullDateField")
-  public @Nullable OffsetDateTime getNotNullDateField() {
+  public OffsetDateTime getNotNullDateField() {
     return notNullDateField;
   }
 
-  public void setNotNullDateField(@Nullable OffsetDateTime notNullDateField) {
+  public void setNotNullDateField(OffsetDateTime notNullDateField) {
     this.notNullDateField = notNullDateField;
   }
 
-  public ObjectWithUniqueItems nullDateField(@Nullable OffsetDateTime nullDateField) {
+  public ObjectWithUniqueItems nullDateField(OffsetDateTime nullDateField) {
     this.nullDateField = nullDateField;
     return this;
   }
@@ -195,11 +195,11 @@ public class ObjectWithUniqueItems {
   @Valid 
   @Schema(name = "nullDateField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nullDateField")
-  public @Nullable OffsetDateTime getNullDateField() {
+  public OffsetDateTime getNullDateField() {
     return nullDateField;
   }
 
-  public void setNullDateField(@Nullable OffsetDateTime nullDateField) {
+  public void setNullDateField(OffsetDateTime nullDateField) {
     this.nullDateField = nullDateField;
   }
 

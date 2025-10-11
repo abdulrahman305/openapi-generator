@@ -14,7 +14,7 @@ To see how to make this your own, look here:
 [README]((https://openapi-generator.tech))
 
 - API version: 1.0.7
-- Generator version: 7.17.0-SNAPSHOT
+- Generator version: 7.14.0-SNAPSHOT
 
 
 
@@ -89,7 +89,6 @@ To run a client, follow one of the following simple steps:
 cargo run --example client AnyOfGet
 cargo run --example client CallbackWithHeaderPost
 cargo run --example client ComplexQueryParamGet
-cargo run --example client ExamplesTest
 cargo run --example client FormTest
 cargo run --example client GetWithBooleanParameter
 cargo run --example client JsonComplexQueryParamGet
@@ -154,7 +153,6 @@ Method | HTTP request | Description
 [****](docs/default_api.md#) | **GET** /any-of | 
 [****](docs/default_api.md#) | **POST** /callback-with-header | 
 [****](docs/default_api.md#) | **GET** /complex-query-param | 
-[**ExamplesTest**](docs/default_api.md#ExamplesTest) | **GET** /examples-test | Test examples
 [**FormTest**](docs/default_api.md#FormTest) | **POST** /form-test | Test a Form Post
 [**GetWithBooleanParameter**](docs/default_api.md#GetWithBooleanParameter) | **GET** /get-with-bool | 
 [****](docs/default_api.md#) | **GET** /json-complex-query-param | 

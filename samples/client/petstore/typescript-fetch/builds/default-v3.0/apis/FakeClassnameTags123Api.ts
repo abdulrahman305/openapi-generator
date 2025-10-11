@@ -53,11 +53,8 @@ export class FakeClassnameTags123Api extends runtime.BaseAPI {
             queryParameters["api_key_query"] = await this.configuration.apiKey("api_key_query"); // api_key_query authentication
         }
 
-
-        let urlPath = `/fake_classname_test`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake_classname_test`,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

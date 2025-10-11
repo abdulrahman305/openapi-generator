@@ -22,14 +22,12 @@ namespace {{packageName}}.Models
         {{#items}}
         {{^complexType}}
 {{>enumClass}}
-
         {{/complexType}}
         {{/items}}
         {{/items.isEnum}}
         {{#isEnum}}
         {{^complexType}}
 {{>enumClass}}
-
         {{/complexType}}
         {{/isEnum}}
         /// <summary>

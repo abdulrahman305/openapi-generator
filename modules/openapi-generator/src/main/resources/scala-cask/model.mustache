@@ -24,10 +24,10 @@ object {{{classname}}} {
 {{/vendorExtensions.x-has-one-of}}
 {{^vendorExtensions.x-has-one-of}}
     {{#isEnum}}
-        {{>modelEnum}}{{! prevent indent}}
+        {{>modelEnum}}
     {{/isEnum}}
     {{^isEnum}}
-        {{>modelClass}}{{! prevent indent}}
+        {{>modelClass}}
     {{/isEnum}}
 {{/vendorExtensions.x-has-one-of}}
 

@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ObjectWithDeprecatedFields.JSON_PROPERTY_DEPRECATED_REF,
   ObjectWithDeprecatedFields.JSON_PROPERTY_BARS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ObjectWithDeprecatedFields {
   public static final String JSON_PROPERTY_UUID = "uuid";
   @javax.annotation.Nullable
@@ -80,7 +79,7 @@ public class ObjectWithDeprecatedFields {
    * @return uuid
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
+  @JsonProperty(JSON_PROPERTY_UUID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getUuid() {
@@ -88,7 +87,7 @@ public class ObjectWithDeprecatedFields {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
+  @JsonProperty(JSON_PROPERTY_UUID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(@javax.annotation.Nullable String uuid) {
     this.uuid = uuid;
@@ -107,7 +106,7 @@ public class ObjectWithDeprecatedFields {
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getId() {
@@ -115,7 +114,7 @@ public class ObjectWithDeprecatedFields {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable BigDecimal id) {
     this.id = id;
@@ -134,7 +133,7 @@ public class ObjectWithDeprecatedFields {
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DEPRECATED_REF, required = false)
+  @JsonProperty(JSON_PROPERTY_DEPRECATED_REF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public DeprecatedObject getDeprecatedRef() {
@@ -142,7 +141,7 @@ public class ObjectWithDeprecatedFields {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DEPRECATED_REF, required = false)
+  @JsonProperty(JSON_PROPERTY_DEPRECATED_REF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeprecatedRef(@javax.annotation.Nullable DeprecatedObject deprecatedRef) {
     this.deprecatedRef = deprecatedRef;
@@ -169,7 +168,7 @@ public class ObjectWithDeprecatedFields {
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BARS, required = false)
+  @JsonProperty(JSON_PROPERTY_BARS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<String> getBars() {
@@ -177,7 +176,7 @@ public class ObjectWithDeprecatedFields {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BARS, required = false)
+  @JsonProperty(JSON_PROPERTY_BARS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBars(@javax.annotation.Nullable List<String> bars) {
     this.bars = bars;

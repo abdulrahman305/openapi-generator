@@ -149,11 +149,9 @@ No authorization required
 
 <a id="placeOrder"></a>
 # **placeOrder**
-> Order placeOrder(order)
+> Order placeOrder(body)
 
 Place an order for a pet
-
-
 
 ### Example
 ```kotlin
@@ -162,9 +160,9 @@ Place an order for a pet
 //import org.openapitools.client.models.*
 
 val apiInstance = StoreApi()
-val order : Order =  // Order | order placed for purchasing the pet
+val body : Order =  // Order | order placed for purchasing the pet
 try {
-    val result : Order = apiInstance.placeOrder(order)
+    val result : Order = apiInstance.placeOrder(body)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling StoreApi#placeOrder")
@@ -178,7 +176,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **order** | [**Order**](Order.md)| order placed for purchasing the pet | |
+| **body** | [**Order**](Order.md)| order placed for purchasing the pet | |
 
 ### Return type
 
@@ -190,6 +188,6 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/xml, application/json
 

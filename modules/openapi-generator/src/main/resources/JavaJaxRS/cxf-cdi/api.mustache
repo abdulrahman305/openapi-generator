@@ -27,11 +27,10 @@ import {{javaxPackage}}.validation.Valid;
 @Path("{{commonPath}}")
 @RequestScoped
 
-@Api
+@Api(description = "the {{{baseName}}} API")
 {{#hasConsumes}}@Consumes({ {{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}} }){{/hasConsumes}}
 {{#hasProduces}}@Produces({ {{#produces}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/produces}} }){{/hasProduces}}
 {{>generatedAnnotation}}
-
 
 public class {{classname}}  {
 

@@ -23,7 +23,7 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("XmlItem")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class XmlItemDto {
 
   private @Nullable String attributeString;
@@ -93,7 +93,7 @@ public class XmlItemDto {
   
   private List<Integer> prefixNsWrappedArray = new ArrayList<>();
 
-  public XmlItemDto attributeString(@Nullable String attributeString) {
+  public XmlItemDto attributeString(String attributeString) {
     this.attributeString = attributeString;
     return this;
   }
@@ -104,15 +104,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("attribute_string")
-  public @Nullable String getAttributeString() {
+  public String getAttributeString() {
     return attributeString;
   }
 
-  public void setAttributeString(@Nullable String attributeString) {
+  public void setAttributeString(String attributeString) {
     this.attributeString = attributeString;
   }
 
-  public XmlItemDto attributeNumber(@Nullable BigDecimal attributeNumber) {
+  public XmlItemDto attributeNumber(BigDecimal attributeNumber) {
     this.attributeNumber = attributeNumber;
     return this;
   }
@@ -123,15 +123,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("attribute_number")
-  public @Nullable BigDecimal getAttributeNumber() {
+  public BigDecimal getAttributeNumber() {
     return attributeNumber;
   }
 
-  public void setAttributeNumber(@Nullable BigDecimal attributeNumber) {
+  public void setAttributeNumber(BigDecimal attributeNumber) {
     this.attributeNumber = attributeNumber;
   }
 
-  public XmlItemDto attributeInteger(@Nullable Integer attributeInteger) {
+  public XmlItemDto attributeInteger(Integer attributeInteger) {
     this.attributeInteger = attributeInteger;
     return this;
   }
@@ -142,15 +142,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("attribute_integer")
-  public @Nullable Integer getAttributeInteger() {
+  public Integer getAttributeInteger() {
     return attributeInteger;
   }
 
-  public void setAttributeInteger(@Nullable Integer attributeInteger) {
+  public void setAttributeInteger(Integer attributeInteger) {
     this.attributeInteger = attributeInteger;
   }
 
-  public XmlItemDto attributeBoolean(@Nullable Boolean attributeBoolean) {
+  public XmlItemDto attributeBoolean(Boolean attributeBoolean) {
     this.attributeBoolean = attributeBoolean;
     return this;
   }
@@ -161,11 +161,11 @@ public class XmlItemDto {
    */
   
   @JsonProperty("attribute_boolean")
-  public @Nullable Boolean getAttributeBoolean() {
+  public Boolean getAttributeBoolean() {
     return attributeBoolean;
   }
 
-  public void setAttributeBoolean(@Nullable Boolean attributeBoolean) {
+  public void setAttributeBoolean(Boolean attributeBoolean) {
     this.attributeBoolean = attributeBoolean;
   }
 
@@ -196,7 +196,7 @@ public class XmlItemDto {
     this.wrappedArray = wrappedArray;
   }
 
-  public XmlItemDto nameString(@Nullable String nameString) {
+  public XmlItemDto nameString(String nameString) {
     this.nameString = nameString;
     return this;
   }
@@ -207,15 +207,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("name_string")
-  public @Nullable String getNameString() {
+  public String getNameString() {
     return nameString;
   }
 
-  public void setNameString(@Nullable String nameString) {
+  public void setNameString(String nameString) {
     this.nameString = nameString;
   }
 
-  public XmlItemDto nameNumber(@Nullable BigDecimal nameNumber) {
+  public XmlItemDto nameNumber(BigDecimal nameNumber) {
     this.nameNumber = nameNumber;
     return this;
   }
@@ -226,15 +226,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("name_number")
-  public @Nullable BigDecimal getNameNumber() {
+  public BigDecimal getNameNumber() {
     return nameNumber;
   }
 
-  public void setNameNumber(@Nullable BigDecimal nameNumber) {
+  public void setNameNumber(BigDecimal nameNumber) {
     this.nameNumber = nameNumber;
   }
 
-  public XmlItemDto nameInteger(@Nullable Integer nameInteger) {
+  public XmlItemDto nameInteger(Integer nameInteger) {
     this.nameInteger = nameInteger;
     return this;
   }
@@ -245,15 +245,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("name_integer")
-  public @Nullable Integer getNameInteger() {
+  public Integer getNameInteger() {
     return nameInteger;
   }
 
-  public void setNameInteger(@Nullable Integer nameInteger) {
+  public void setNameInteger(Integer nameInteger) {
     this.nameInteger = nameInteger;
   }
 
-  public XmlItemDto nameBoolean(@Nullable Boolean nameBoolean) {
+  public XmlItemDto nameBoolean(Boolean nameBoolean) {
     this.nameBoolean = nameBoolean;
     return this;
   }
@@ -264,11 +264,11 @@ public class XmlItemDto {
    */
   
   @JsonProperty("name_boolean")
-  public @Nullable Boolean getNameBoolean() {
+  public Boolean getNameBoolean() {
     return nameBoolean;
   }
 
-  public void setNameBoolean(@Nullable Boolean nameBoolean) {
+  public void setNameBoolean(Boolean nameBoolean) {
     this.nameBoolean = nameBoolean;
   }
 
@@ -326,7 +326,7 @@ public class XmlItemDto {
     this.nameWrappedArray = nameWrappedArray;
   }
 
-  public XmlItemDto prefixString(@Nullable String prefixString) {
+  public XmlItemDto prefixString(String prefixString) {
     this.prefixString = prefixString;
     return this;
   }
@@ -337,15 +337,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_string")
-  public @Nullable String getPrefixString() {
+  public String getPrefixString() {
     return prefixString;
   }
 
-  public void setPrefixString(@Nullable String prefixString) {
+  public void setPrefixString(String prefixString) {
     this.prefixString = prefixString;
   }
 
-  public XmlItemDto prefixNumber(@Nullable BigDecimal prefixNumber) {
+  public XmlItemDto prefixNumber(BigDecimal prefixNumber) {
     this.prefixNumber = prefixNumber;
     return this;
   }
@@ -356,15 +356,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_number")
-  public @Nullable BigDecimal getPrefixNumber() {
+  public BigDecimal getPrefixNumber() {
     return prefixNumber;
   }
 
-  public void setPrefixNumber(@Nullable BigDecimal prefixNumber) {
+  public void setPrefixNumber(BigDecimal prefixNumber) {
     this.prefixNumber = prefixNumber;
   }
 
-  public XmlItemDto prefixInteger(@Nullable Integer prefixInteger) {
+  public XmlItemDto prefixInteger(Integer prefixInteger) {
     this.prefixInteger = prefixInteger;
     return this;
   }
@@ -375,15 +375,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_integer")
-  public @Nullable Integer getPrefixInteger() {
+  public Integer getPrefixInteger() {
     return prefixInteger;
   }
 
-  public void setPrefixInteger(@Nullable Integer prefixInteger) {
+  public void setPrefixInteger(Integer prefixInteger) {
     this.prefixInteger = prefixInteger;
   }
 
-  public XmlItemDto prefixBoolean(@Nullable Boolean prefixBoolean) {
+  public XmlItemDto prefixBoolean(Boolean prefixBoolean) {
     this.prefixBoolean = prefixBoolean;
     return this;
   }
@@ -394,11 +394,11 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_boolean")
-  public @Nullable Boolean getPrefixBoolean() {
+  public Boolean getPrefixBoolean() {
     return prefixBoolean;
   }
 
-  public void setPrefixBoolean(@Nullable Boolean prefixBoolean) {
+  public void setPrefixBoolean(Boolean prefixBoolean) {
     this.prefixBoolean = prefixBoolean;
   }
 
@@ -456,7 +456,7 @@ public class XmlItemDto {
     this.prefixWrappedArray = prefixWrappedArray;
   }
 
-  public XmlItemDto namespaceString(@Nullable String namespaceString) {
+  public XmlItemDto namespaceString(String namespaceString) {
     this.namespaceString = namespaceString;
     return this;
   }
@@ -467,15 +467,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("namespace_string")
-  public @Nullable String getNamespaceString() {
+  public String getNamespaceString() {
     return namespaceString;
   }
 
-  public void setNamespaceString(@Nullable String namespaceString) {
+  public void setNamespaceString(String namespaceString) {
     this.namespaceString = namespaceString;
   }
 
-  public XmlItemDto namespaceNumber(@Nullable BigDecimal namespaceNumber) {
+  public XmlItemDto namespaceNumber(BigDecimal namespaceNumber) {
     this.namespaceNumber = namespaceNumber;
     return this;
   }
@@ -486,15 +486,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("namespace_number")
-  public @Nullable BigDecimal getNamespaceNumber() {
+  public BigDecimal getNamespaceNumber() {
     return namespaceNumber;
   }
 
-  public void setNamespaceNumber(@Nullable BigDecimal namespaceNumber) {
+  public void setNamespaceNumber(BigDecimal namespaceNumber) {
     this.namespaceNumber = namespaceNumber;
   }
 
-  public XmlItemDto namespaceInteger(@Nullable Integer namespaceInteger) {
+  public XmlItemDto namespaceInteger(Integer namespaceInteger) {
     this.namespaceInteger = namespaceInteger;
     return this;
   }
@@ -505,15 +505,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("namespace_integer")
-  public @Nullable Integer getNamespaceInteger() {
+  public Integer getNamespaceInteger() {
     return namespaceInteger;
   }
 
-  public void setNamespaceInteger(@Nullable Integer namespaceInteger) {
+  public void setNamespaceInteger(Integer namespaceInteger) {
     this.namespaceInteger = namespaceInteger;
   }
 
-  public XmlItemDto namespaceBoolean(@Nullable Boolean namespaceBoolean) {
+  public XmlItemDto namespaceBoolean(Boolean namespaceBoolean) {
     this.namespaceBoolean = namespaceBoolean;
     return this;
   }
@@ -524,11 +524,11 @@ public class XmlItemDto {
    */
   
   @JsonProperty("namespace_boolean")
-  public @Nullable Boolean getNamespaceBoolean() {
+  public Boolean getNamespaceBoolean() {
     return namespaceBoolean;
   }
 
-  public void setNamespaceBoolean(@Nullable Boolean namespaceBoolean) {
+  public void setNamespaceBoolean(Boolean namespaceBoolean) {
     this.namespaceBoolean = namespaceBoolean;
   }
 
@@ -586,7 +586,7 @@ public class XmlItemDto {
     this.namespaceWrappedArray = namespaceWrappedArray;
   }
 
-  public XmlItemDto prefixNsString(@Nullable String prefixNsString) {
+  public XmlItemDto prefixNsString(String prefixNsString) {
     this.prefixNsString = prefixNsString;
     return this;
   }
@@ -597,15 +597,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_ns_string")
-  public @Nullable String getPrefixNsString() {
+  public String getPrefixNsString() {
     return prefixNsString;
   }
 
-  public void setPrefixNsString(@Nullable String prefixNsString) {
+  public void setPrefixNsString(String prefixNsString) {
     this.prefixNsString = prefixNsString;
   }
 
-  public XmlItemDto prefixNsNumber(@Nullable BigDecimal prefixNsNumber) {
+  public XmlItemDto prefixNsNumber(BigDecimal prefixNsNumber) {
     this.prefixNsNumber = prefixNsNumber;
     return this;
   }
@@ -616,15 +616,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_ns_number")
-  public @Nullable BigDecimal getPrefixNsNumber() {
+  public BigDecimal getPrefixNsNumber() {
     return prefixNsNumber;
   }
 
-  public void setPrefixNsNumber(@Nullable BigDecimal prefixNsNumber) {
+  public void setPrefixNsNumber(BigDecimal prefixNsNumber) {
     this.prefixNsNumber = prefixNsNumber;
   }
 
-  public XmlItemDto prefixNsInteger(@Nullable Integer prefixNsInteger) {
+  public XmlItemDto prefixNsInteger(Integer prefixNsInteger) {
     this.prefixNsInteger = prefixNsInteger;
     return this;
   }
@@ -635,15 +635,15 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_ns_integer")
-  public @Nullable Integer getPrefixNsInteger() {
+  public Integer getPrefixNsInteger() {
     return prefixNsInteger;
   }
 
-  public void setPrefixNsInteger(@Nullable Integer prefixNsInteger) {
+  public void setPrefixNsInteger(Integer prefixNsInteger) {
     this.prefixNsInteger = prefixNsInteger;
   }
 
-  public XmlItemDto prefixNsBoolean(@Nullable Boolean prefixNsBoolean) {
+  public XmlItemDto prefixNsBoolean(Boolean prefixNsBoolean) {
     this.prefixNsBoolean = prefixNsBoolean;
     return this;
   }
@@ -654,11 +654,11 @@ public class XmlItemDto {
    */
   
   @JsonProperty("prefix_ns_boolean")
-  public @Nullable Boolean getPrefixNsBoolean() {
+  public Boolean getPrefixNsBoolean() {
     return prefixNsBoolean;
   }
 
-  public void setPrefixNsBoolean(@Nullable Boolean prefixNsBoolean) {
+  public void setPrefixNsBoolean(Boolean prefixNsBoolean) {
     this.prefixNsBoolean = prefixNsBoolean;
   }
 

@@ -27,6 +27,7 @@ import type { ApiResponse } from '../../../model/some/levels/deep';
 import type { Pet } from '../../../model/some/levels/deep';
 /**
  * PetApi - axios parameter creator
+ * @export
  */
 export const PetApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -381,6 +382,7 @@ export const PetApiAxiosParamCreator = function (configuration?: Configuration) 
 
 /**
  * PetApi - functional programming interface
+ * @export
  */
 export const PetApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PetApiAxiosParamCreator(configuration)
@@ -500,6 +502,7 @@ export const PetApiFp = function(configuration?: Configuration) {
 
 /**
  * PetApi - factory interface
+ * @export
  */
 export const PetApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PetApiFp(configuration)
@@ -595,6 +598,9 @@ export const PetApiFactory = function (configuration?: Configuration, basePath?:
 
 /**
  * PetApi - object-oriented interface
+ * @export
+ * @class PetApi
+ * @extends {BaseAPI}
  */
 export class PetApi extends BaseAPI {
     /**
@@ -603,6 +609,7 @@ export class PetApi extends BaseAPI {
      * @param {Pet} body Pet object that needs to be added to the store
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public addPet(body: Pet, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).addPet(body, options).then((request) => request(this.axios, this.basePath));
@@ -615,6 +622,7 @@ export class PetApi extends BaseAPI {
      * @param {string} [apiKey] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public deletePet(petId: number, apiKey?: string, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).deletePet(petId, apiKey, options).then((request) => request(this.axios, this.basePath));
@@ -626,6 +634,7 @@ export class PetApi extends BaseAPI {
      * @param {Array<FindPetsByStatusStatusEnum>} status Status values that need to be considered for filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public findPetsByStatus(status: Array<FindPetsByStatusStatusEnum>, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).findPetsByStatus(status, options).then((request) => request(this.axios, this.basePath));
@@ -638,6 +647,7 @@ export class PetApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public findPetsByTags(tags: Array<string>, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).findPetsByTags(tags, options).then((request) => request(this.axios, this.basePath));
@@ -649,6 +659,7 @@ export class PetApi extends BaseAPI {
      * @param {number} petId ID of pet to return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public getPetById(petId: number, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).getPetById(petId, options).then((request) => request(this.axios, this.basePath));
@@ -660,6 +671,7 @@ export class PetApi extends BaseAPI {
      * @param {Pet} body Pet object that needs to be added to the store
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public updatePet(body: Pet, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).updatePet(body, options).then((request) => request(this.axios, this.basePath));
@@ -673,6 +685,7 @@ export class PetApi extends BaseAPI {
      * @param {string} [status] Updated status of the pet
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public updatePetWithForm(petId: number, name?: string, status?: string, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).updatePetWithForm(petId, name, status, options).then((request) => request(this.axios, this.basePath));
@@ -686,12 +699,16 @@ export class PetApi extends BaseAPI {
      * @param {File} [file] file to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof PetApi
      */
     public uploadFile(petId: number, additionalMetadata?: string, file?: File, options?: RawAxiosRequestConfig) {
         return PetApiFp(this.configuration).uploadFile(petId, additionalMetadata, file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
+/**
+ * @export
+ */
 export const FindPetsByStatusStatusEnum = {
     Available: 'available',
     Pending: 'pending',

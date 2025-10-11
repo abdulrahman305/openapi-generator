@@ -5,7 +5,7 @@ inputSpec: modules/openapi-generator/src/test/resources/3_0/rust/petstore.yaml
 templateDir: modules/openapi-generator/src/main/resources/rust
 additionalProperties:
   topLevelApiClient: true
-  packageName: petstore-reqwest-trait
+  packageName: petstore-reqwest
   mockall: true
 enumNameMappings:
   delivered: shipped

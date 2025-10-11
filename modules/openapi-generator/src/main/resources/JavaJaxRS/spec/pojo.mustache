@@ -21,11 +21,11 @@ public class {{classname}} {{#parent}}extends {{{.}}}{{/parent}} {{#vendorExtens
   {{#vars}}
   {{#isEnum}}
   {{^isContainer}}
-  {{>enumClass}}{{! prevent indent}}
+  {{>enumClass}}
   {{/isContainer}}
   {{#isContainer}}
   {{#mostInnerItems}}
-  {{>enumClass}}{{! prevent indent}}
+  {{>enumClass}}
   {{/mostInnerItems}}
   {{/isContainer}}
   {{/isEnum}}

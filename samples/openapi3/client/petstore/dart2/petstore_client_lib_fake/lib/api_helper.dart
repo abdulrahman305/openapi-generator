@@ -73,9 +73,6 @@ String parameterToString(dynamic value) {
   if (value is SingleRefType) {
     return SingleRefTypeTypeTransformer().encode(value).toString();
   }
-  if (value is TestEnum) {
-    return TestEnumTypeTransformer().encode(value).toString();
-  }
   return value.toString();
 }
 

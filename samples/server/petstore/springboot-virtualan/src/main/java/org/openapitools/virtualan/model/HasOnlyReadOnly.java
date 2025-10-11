@@ -21,14 +21,14 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("hasOnlyReadOnly")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class HasOnlyReadOnly {
 
   private @Nullable String bar;
 
   private @Nullable String foo;
 
-  public HasOnlyReadOnly bar(@Nullable String bar) {
+  public HasOnlyReadOnly bar(String bar) {
     this.bar = bar;
     return this;
   }
@@ -40,15 +40,15 @@ public class HasOnlyReadOnly {
   
   @Schema(name = "bar", accessMode = Schema.AccessMode.READ_ONLY, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("bar")
-  public @Nullable String getBar() {
+  public String getBar() {
     return bar;
   }
 
-  public void setBar(@Nullable String bar) {
+  public void setBar(String bar) {
     this.bar = bar;
   }
 
-  public HasOnlyReadOnly foo(@Nullable String foo) {
+  public HasOnlyReadOnly foo(String foo) {
     this.foo = foo;
     return this;
   }
@@ -60,11 +60,11 @@ public class HasOnlyReadOnly {
   
   @Schema(name = "foo", accessMode = Schema.AccessMode.READ_ONLY, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foo")
-  public @Nullable String getFoo() {
+  public String getFoo() {
     return foo;
   }
 
-  public void setFoo(@Nullable String foo) {
+  public void setFoo(String foo) {
     this.foo = foo;
   }
 

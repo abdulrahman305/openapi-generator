@@ -16,11 +16,9 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 <a id="addPet"></a>
 # **addPet**
-> Pet addPet(pet)
+> addPet(body)
 
 Add a new pet to the store
-
-
 
 ### Example
 ```kotlin
@@ -29,10 +27,9 @@ Add a new pet to the store
 //import org.openapitools.client.models.*
 
 val apiInstance = PetApi()
-val pet : Pet =  // Pet | Pet object that needs to be added to the store
+val body : Pet =  // Pet | Pet object that needs to be added to the store
 try {
-    val result : Pet = apiInstance.addPet(pet)
-    println(result)
+    apiInstance.addPet(body)
 } catch (e: ClientException) {
     println("4xx response calling PetApi#addPet")
     e.printStackTrace()
@@ -45,11 +42,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **pet** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | |
+| **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | |
 
 ### Return type
 
-[**Pet**](Pet.md)
+null (empty response body)
 
 ### Authorization
 
@@ -60,15 +57,13 @@ Configure petstore_auth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+ - **Accept**: Not defined
 
 <a id="deletePet"></a>
 # **deletePet**
 > deletePet(petId, apiKey)
 
 Deletes a pet
-
-
 
 ### Example
 ```kotlin
@@ -258,11 +253,9 @@ Configure api_key:
 
 <a id="updatePet"></a>
 # **updatePet**
-> Pet updatePet(pet)
+> updatePet(body)
 
 Update an existing pet
-
-
 
 ### Example
 ```kotlin
@@ -271,10 +264,9 @@ Update an existing pet
 //import org.openapitools.client.models.*
 
 val apiInstance = PetApi()
-val pet : Pet =  // Pet | Pet object that needs to be added to the store
+val body : Pet =  // Pet | Pet object that needs to be added to the store
 try {
-    val result : Pet = apiInstance.updatePet(pet)
-    println(result)
+    apiInstance.updatePet(body)
 } catch (e: ClientException) {
     println("4xx response calling PetApi#updatePet")
     e.printStackTrace()
@@ -287,11 +279,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **pet** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | |
+| **body** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | |
 
 ### Return type
 
-[**Pet**](Pet.md)
+null (empty response body)
 
 ### Authorization
 
@@ -302,15 +294,13 @@ Configure petstore_auth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+ - **Accept**: Not defined
 
 <a id="updatePetWithForm"></a>
 # **updatePetWithForm**
 > updatePetWithForm(petId, name, status)
 
 Updates a pet in the store with form data
-
-
 
 ### Example
 ```kotlin
@@ -360,8 +350,6 @@ Configure petstore_auth:
 > ModelApiResponse uploadFile(petId, additionalMetadata, file)
 
 uploads an image
-
-
 
 ### Example
 ```kotlin

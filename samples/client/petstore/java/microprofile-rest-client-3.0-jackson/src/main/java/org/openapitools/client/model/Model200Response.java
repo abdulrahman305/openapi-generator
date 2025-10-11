@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -46,12 +43,11 @@ public class Model200Response  {
   
   private String propertyClass;
 
-
   /**
    * Get name
    * @return name
    **/
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getName() {
     return name;
@@ -60,7 +56,7 @@ public class Model200Response  {
   /**
    * Set name
    */
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(Integer name) {
     this.name = name;
@@ -75,7 +71,7 @@ public class Model200Response  {
    * Get propertyClass
    * @return propertyClass
    **/
-  @JsonProperty(value = JSON_PROPERTY_PROPERTY_CLASS, required = false)
+  @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPropertyClass() {
     return propertyClass;
@@ -84,7 +80,7 @@ public class Model200Response  {
   /**
    * Set propertyClass
    */
-  @JsonProperty(value = JSON_PROPERTY_PROPERTY_CLASS, required = false)
+  @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

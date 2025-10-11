@@ -48,7 +48,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 {{/generateSwagger2Annotations}}
 
 {{>common/generatedAnnotation}}
-
 {{^generateControllerAsAbstract}}
 @Controller
 {{/generateControllerAsAbstract}}
@@ -90,7 +89,7 @@ public {{#generateControllerAsAbstract}}abstract {{/generateControllerAsAbstract
      * This method will be delegated to when the controller gets a request
      */
     public {{^generateOperationsToReturnNotImplemented}}abstract {{/generateOperationsToReturnNotImplemented}}{{>common/operationReturnType}} {{nickname}}({{#allParams}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}}){{^generateOperationsToReturnNotImplemented}};{{/generateOperationsToReturnNotImplemented}}{{#generateOperationsToReturnNotImplemented}} {{openbrace}}
-    {{>server/controllerOperationBody}}{{! prevent indent}}
+    {{>server/controllerOperationBody}}
     {{closebrace}}{{/generateOperationsToReturnNotImplemented}}{{/generateControllerAsAbstract}}
     {{^-last}}
 

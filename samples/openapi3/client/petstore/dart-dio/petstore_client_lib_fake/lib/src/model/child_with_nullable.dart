@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/parent_with_nullable.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -47,7 +48,7 @@ class _$ChildWithNullableSerializer implements PrimitiveSerializer<ChildWithNull
       yield r'type';
       yield serializers.serialize(
         object.type,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(ParentWithNullableTypeEnum),
       );
     }
     if (object.nullableProperty != null) {
@@ -90,8 +91,8 @@ class _$ChildWithNullableSerializer implements PrimitiveSerializer<ChildWithNull
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(ParentWithNullableTypeEnum),
+          ) as ParentWithNullableTypeEnum;
           result.type = valueDes;
           break;
         case r'nullableProperty':
@@ -136,5 +137,20 @@ class _$ChildWithNullableSerializer implements PrimitiveSerializer<ChildWithNull
     );
     return result.build();
   }
+}
+
+class ChildWithNullableTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'ChildWithNullable')
+  static const ChildWithNullableTypeEnum childWithNullable = _$childWithNullableTypeEnum_childWithNullable;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const ChildWithNullableTypeEnum unknownDefaultOpenApi = _$childWithNullableTypeEnum_unknownDefaultOpenApi;
+
+  static Serializer<ChildWithNullableTypeEnum> get serializer => _$childWithNullableTypeEnumSerializer;
+
+  const ChildWithNullableTypeEnum._(String name): super(name);
+
+  static BuiltSet<ChildWithNullableTypeEnum> get values => _$childWithNullableTypeEnumValues;
+  static ChildWithNullableTypeEnum valueOf(String name) => _$childWithNullableTypeEnumValueOf(name);
 }
 

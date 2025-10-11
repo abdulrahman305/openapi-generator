@@ -56,7 +56,6 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import static org.openapitools.codegen.CodegenConstants.X_PARENT;
 import static org.openapitools.codegen.utils.OnceLogger.once;
 
 public class ModelUtils {
@@ -560,9 +559,7 @@ public class ModelUtils {
         }
 
         // additionalProperties explicitly set to false
-        if ((schema.getAdditionalProperties() instanceof Boolean && Boolean.FALSE.equals(schema.getAdditionalProperties())) ||
-            (schema.getAdditionalProperties() instanceof Schema && Boolean.FALSE.equals(((Schema) schema.getAdditionalProperties()).getBooleanSchemaValue()))
-        ) {
+        if (schema.getAdditionalProperties() instanceof Boolean && Boolean.FALSE.equals(schema.getAdditionalProperties())) {
             return false;
         }
 
@@ -811,13 +808,7 @@ public class ModelUtils {
                 (null != schema.getProperties() && !schema.getProperties().isEmpty()) &&
                 // no additionalProperties is set
                 (schema.getAdditionalProperties() == null ||
-                // additionalProperties is boolean and set to false
-                (schema.getAdditionalProperties() instanceof Boolean && !(Boolean) schema.getAdditionalProperties()) ||
-                // additionalProperties is a schema with its boolean value set to false
-                (schema.getAdditionalProperties() instanceof Schema &&
-                        ((Schema) schema.getAdditionalProperties()).getBooleanSchemaValue() != null &&
-                              !((Schema) schema.getAdditionalProperties()).getBooleanSchemaValue())
-                );
+                        (schema.getAdditionalProperties() instanceof Boolean && !(Boolean) schema.getAdditionalProperties()));
     }
 
     public static boolean hasValidation(Schema sc) {
@@ -1574,7 +1565,6 @@ public class ModelUtils {
         List<String> refedWithoutDiscriminator = new ArrayList<>();
 
         if (interfaces != null && !interfaces.isEmpty()) {
-            List<String> parentNameCandidates = new ArrayList<>(interfaces.size());
             for (Schema schema : interfaces) {
                 // get the actual schema
                 if (StringUtils.isNotEmpty(schema.get$ref())) {
@@ -1582,10 +1572,10 @@ public class ModelUtils {
                     Schema s = allSchemas.get(parentName);
                     if (s == null) {
                         LOGGER.error("Failed to obtain schema from {}", parentName);
-                        parentNameCandidates.add("UNKNOWN_PARENT_NAME");
+                        return "UNKNOWN_PARENT_NAME";
                     } else if (hasOrInheritsDiscriminator(s, allSchemas, new ArrayList<Schema>())) {
                         // discriminator.propertyName is used or x-parent is used
-                        parentNameCandidates.add(parentName);
+                        return parentName;
                     } else {
                         // not a parent since discriminator.propertyName or x-parent is not set
                         hasAmbiguousParents = true;
@@ -1601,12 +1591,6 @@ public class ModelUtils {
                         nullSchemaChildrenCount++;
                     }
                 }
-            }
-            if (parentNameCandidates.size() > 1) {
-                // unclear which one should be the parent
-                return null;
-            } else if (parentNameCandidates.size() == 1) {
-                return parentNameCandidates.get(0);
             }
             if (refedWithoutDiscriminator.size() == 1 && nullSchemaChildrenCount == 1) {
                 // One schema is a $ref and the other is the 'null' type, so the parent is obvious.
@@ -1717,7 +1701,7 @@ public class ModelUtils {
             return false;
         }
 
-        Object xParent = schema.getExtensions().get(X_PARENT);
+        Object xParent = schema.getExtensions().get("x-parent");
         if (xParent == null) {
             return false;
         } else if (xParent instanceof Boolean) {
@@ -1942,7 +1926,7 @@ public class ModelUtils {
         if (multipleOf != null) target.setMultipleOf(multipleOf);
         if (minimum != null) {
             if (isIntegerSchema(schema)) {
-                target.setMinimum(String.valueOf(minimum.toBigInteger()));
+                target.setMinimum(String.valueOf(minimum.longValue()));
             } else {
                 target.setMinimum(String.valueOf(minimum));
             }
@@ -1950,7 +1934,7 @@ public class ModelUtils {
         }
         if (maximum != null) {
             if (isIntegerSchema(schema)) {
-                target.setMaximum(String.valueOf(maximum.toBigInteger()));
+                target.setMaximum(String.valueOf(maximum.longValue()));
             } else {
                 target.setMaximum(String.valueOf(maximum));
             }
@@ -2181,22 +2165,6 @@ public class ModelUtils {
     }
 
     /**
-     * Set schema type.
-     * For 3.1 spec, set as types, for 3.0, type
-     *
-     * @param schema the schema
-     * @return schema type
-     */
-    public static void setType(Schema schema, String type) {
-        if (schema instanceof JsonSchema) {
-            schema.setTypes(null);
-            schema.addType(type);
-        } else {
-            schema.setType(type);
-        }
-    }
-
-    /**
      * Returns true if any of the common attributes of the schema (e.g. readOnly, default, maximum, etc) is defined.
      *
      * @param schema the schema
@@ -2259,24 +2227,17 @@ public class ModelUtils {
      * @param subSchemas The oneOf or AnyOf schemas
      * @return The simplified schema
      */
-    public static Schema simplifyOneOfAnyOfWithOnlyOneNonNullSubSchema(OpenAPI openAPI, Schema schema, List<Schema> subSchemas) {
+    public static Schema simplyOneOfAnyOfWithOnlyOneNonNullSubSchema(OpenAPI openAPI, Schema schema, List<Schema> subSchemas) {
         if (subSchemas.removeIf(subSchema -> isNullTypeSchema(openAPI, subSchema))) {
             schema.setNullable(true);
         }
 
         // if only one element left, simplify to just the element (schema)
         if (subSchemas.size() == 1) {
-            Schema<?> subSchema = subSchemas.get(0);
             if (Boolean.TRUE.equals(schema.getNullable())) { // retain nullable setting
-                subSchema.setNullable(true);
+                subSchemas.get(0).setNullable(true);
             }
-            if (Boolean.TRUE.equals(schema.getReadOnly())) {
-                subSchema.setReadOnly(true);
-            }
-            if (Boolean.TRUE.equals(schema.getWriteOnly())) {
-                subSchema.setWriteOnly(true);
-            }
-            return subSchema;
+            return subSchemas.get(0);
         }
 
         return schema;
@@ -2454,7 +2415,7 @@ public class ModelUtils {
      * For example, a schema that only has a `description` without any `properties` or `$ref` defined.
      *
      * @param schema the schema
-     * @return if the schema is only metadata and not an actual type
+     * @return       if the schema is only metadata and not an actual type
      */
     public static boolean isMetadataOnlySchema(Schema schema) {
         return !(schema.get$ref() != null ||
@@ -2474,19 +2435,6 @@ public class ModelUtils {
                 schema.getContentSchema() != null);
     }
 
-    /**
-     * Returns true if the OpenAPI specification contains any schemas which are enums.
-     * @param openAPI   OpenAPI specification
-     * @return          true if the OpenAPI specification contains any schemas which are enums.
-     */
-    public static boolean containsEnums(OpenAPI openAPI) {
-        Map<String, Schema> schemaMap = getSchemas(openAPI);
-        if (schemaMap.isEmpty()) {
-            return false;
-        }
-
-        return schemaMap.values().stream().anyMatch(ModelUtils::isEnumSchema);
-    }
 
     @FunctionalInterface
     private interface OpenAPISchemaVisitor {

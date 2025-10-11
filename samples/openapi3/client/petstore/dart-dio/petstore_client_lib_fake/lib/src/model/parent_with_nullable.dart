@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/child_with_nullable.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,7 +18,8 @@ part 'parent_with_nullable.g.dart';
 @BuiltValue(instantiable: false)
 abstract class ParentWithNullable  {
   @BuiltValueField(wireName: r'type')
-  String? get type;
+  ParentWithNullableTypeEnum? get type;
+  // enum typeEnum {  ChildWithNullable,  };
 
   @BuiltValueField(wireName: r'nullableProperty')
   String? get nullableProperty;
@@ -65,7 +67,7 @@ class _$ParentWithNullableSerializer implements PrimitiveSerializer<ParentWithNu
       yield r'type';
       yield serializers.serialize(
         object.type,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(ParentWithNullableTypeEnum),
       );
     }
     if (object.nullableProperty != null) {
@@ -152,8 +154,8 @@ class _$$ParentWithNullableSerializer implements PrimitiveSerializer<$ParentWith
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(ParentWithNullableTypeEnum),
+          ) as ParentWithNullableTypeEnum;
           result.type = valueDes;
           break;
         case r'nullableProperty':
@@ -191,5 +193,20 @@ class _$$ParentWithNullableSerializer implements PrimitiveSerializer<$ParentWith
     );
     return result.build();
   }
+}
+
+class ParentWithNullableTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'ChildWithNullable')
+  static const ParentWithNullableTypeEnum childWithNullable = _$parentWithNullableTypeEnum_childWithNullable;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const ParentWithNullableTypeEnum unknownDefaultOpenApi = _$parentWithNullableTypeEnum_unknownDefaultOpenApi;
+
+  static Serializer<ParentWithNullableTypeEnum> get serializer => _$parentWithNullableTypeEnumSerializer;
+
+  const ParentWithNullableTypeEnum._(String name): super(name);
+
+  static BuiltSet<ParentWithNullableTypeEnum> get values => _$parentWithNullableTypeEnumValues;
+  static ParentWithNullableTypeEnum valueOf(String name) => _$parentWithNullableTypeEnumValueOf(name);
 }
 

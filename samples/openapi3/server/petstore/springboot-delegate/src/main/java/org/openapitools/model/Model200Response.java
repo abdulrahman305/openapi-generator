@@ -22,14 +22,14 @@ import javax.annotation.Generated;
 
 @Schema(name = "200_response", description = "Model for testing model name starting with number")
 @JsonTypeName("200_response")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Model200Response {
 
   private @Nullable Integer name;
 
   private @Nullable String propertyClass;
 
-  public Model200Response name(@Nullable Integer name) {
+  public Model200Response name(Integer name) {
     this.name = name;
     return this;
   }
@@ -41,15 +41,15 @@ public class Model200Response {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public @Nullable Integer getName() {
+  public Integer getName() {
     return name;
   }
 
-  public void setName(@Nullable Integer name) {
+  public void setName(Integer name) {
     this.name = name;
   }
 
-  public Model200Response propertyClass(@Nullable String propertyClass) {
+  public Model200Response propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -61,11 +61,11 @@ public class Model200Response {
   
   @Schema(name = "class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("class")
-  public @Nullable String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(@Nullable String propertyClass) {
+  public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

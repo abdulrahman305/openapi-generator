@@ -18,7 +18,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -40,7 +39,7 @@ import org.openapitools.client.JSON;
   OuterComposite.JSON_PROPERTY_MY_STRING,
   OuterComposite.JSON_PROPERTY_MY_BOOLEAN
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class OuterComposite {
   public static final String JSON_PROPERTY_MY_NUMBER = "my_number";
   @jakarta.annotation.Nullable
@@ -69,7 +68,7 @@ public class OuterComposite {
   @jakarta.annotation.Nullable
   @Valid
 
-  @JsonProperty(value = JSON_PROPERTY_MY_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getMyNumber() {
@@ -77,7 +76,7 @@ public class OuterComposite {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MY_NUMBER, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMyNumber(@jakarta.annotation.Nullable BigDecimal myNumber) {
     this.myNumber = myNumber;
@@ -95,7 +94,7 @@ public class OuterComposite {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_MY_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getMyString() {
@@ -103,7 +102,7 @@ public class OuterComposite {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MY_STRING, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMyString(@jakarta.annotation.Nullable String myString) {
     this.myString = myString;
@@ -121,7 +120,7 @@ public class OuterComposite {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_MY_BOOLEAN, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_BOOLEAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getMyBoolean() {
@@ -129,7 +128,7 @@ public class OuterComposite {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MY_BOOLEAN, required = false)
+  @JsonProperty(JSON_PROPERTY_MY_BOOLEAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMyBoolean(@jakarta.annotation.Nullable Boolean myBoolean) {
     this.myBoolean = myBoolean;

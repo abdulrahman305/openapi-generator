@@ -6,14 +6,12 @@ public class {{classname}}{{#parent}} extends {{{.}}}{{/parent}}{{#interfaces}}{
     {{#isEnum}}
     {{^isContainer}}
 {{>modelInnerEnum}}
-
     {{/isContainer}}
     {{/isEnum}}
     {{#items.isEnum}}
       {{#items}}
       {{^isContainer}}
 {{>modelInnerEnum}}
-
       {{/isContainer}}
       {{/items}}
     {{/items.isEnum}}

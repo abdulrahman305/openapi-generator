@@ -1,6 +1,5 @@
 class {{{classname}}} {
 {{>dart_constructor}}
-
 {{#vars}}
   {{#description}}
   /// {{{.}}}
@@ -290,13 +289,11 @@ class {{{classname}}} {
         {{^isContainer}}
 
 {{>serialization/native/native_enum_inline}}
-
         {{/isContainer}}
         {{#isContainer}}
             {{#mostInnerItems}}
 
 {{>serialization/native/native_enum_inline}}
-
             {{/mostInnerItems}}
         {{/isContainer}}
     {{/isEnum}}

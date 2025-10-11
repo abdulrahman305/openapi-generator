@@ -12,7 +12,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/fruit"
+                $ref: '#/components/schemas/fruit'
           description: desc
 components:
   schemas:
@@ -20,9 +20,8 @@ components:
       example:
         color: color
       oneOf:
-      - $ref: "#/components/schemas/apple"
-      - $ref: "#/components/schemas/banana"
-      - $ref: "#/components/schemas/orange"
+      - $ref: '#/components/schemas/apple'
+      - $ref: '#/components/schemas/banana'
       properties:
         color:
           type: string
@@ -38,11 +37,5 @@ components:
         count:
           type: number
       title: banana
-      type: object
-    orange:
-      properties:
-        sweet:
-          type: boolean
-      title: orange
       type: object
 

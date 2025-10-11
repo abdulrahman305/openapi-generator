@@ -11,7 +11,6 @@ import kotlinx.serialization.Serializable
  */
 {{#kotlinx_serialization}}@Serializable{{/kotlinx_serialization}}
 {{>additionalModelTypeAnnotations}}
-
 {{#nonPublicApi}}internal {{/nonPublicApi}}enum class {{classname}}(val value: {{{dataType}}}) {
 {{#allowableValues}}{{#enumVars}}
 

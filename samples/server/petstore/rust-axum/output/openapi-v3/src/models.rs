@@ -7,60 +7,6 @@ use validator::Validate;
 use crate::header;
 use crate::{models, types::*};
 
-#[allow(dead_code)]
-pub fn check_xss_string(v: &str) -> std::result::Result<(), validator::ValidationError> {
-    if ammonia::is_html(v) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_vec_string(v: &[String]) -> std::result::Result<(), validator::ValidationError> {
-    if v.iter().any(|i| ammonia::is_html(i)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map_string(
-    v: &std::collections::HashMap<String, String>,
-) -> std::result::Result<(), validator::ValidationError> {
-    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| ammonia::is_html(v)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map_nested<T>(
-    v: &std::collections::HashMap<String, T>,
-) -> std::result::Result<(), validator::ValidationError>
-where
-    T: validator::Validate,
-{
-    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| v.validate().is_err()) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
-#[allow(dead_code)]
-pub fn check_xss_map<T>(
-    v: &std::collections::HashMap<String, T>,
-) -> std::result::Result<(), validator::ValidationError> {
-    if v.keys().any(|k| ammonia::is_html(k)) {
-        std::result::Result::Err(validator::ValidationError::new("xss detected"))
-    } else {
-        std::result::Result::Ok(())
-    }
-}
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AnyOfGetQueryParams {
@@ -90,15 +36,6 @@ pub struct ComplexQueryParamGetQueryParams {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct EnumInPathPathParamGetPathParams {
     pub path_param: models::StringEnum,
-}
-
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
-pub struct ExamplesTestQueryParams {
-    /// A list of IDs to get
-    #[serde(rename = "ids")]
-    #[serde(default)]
-    pub ids: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
@@ -226,9 +163,7 @@ impl ::std::str::FromStr for AdditionalPropertiesReferencedAnyOfObject {
     type Err = &'static str;
 
     fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-        std::result::Result::Err(
-            "Parsing additionalProperties for AdditionalPropertiesReferencedAnyOfObject is not supported",
-        )
+        std::result::Result::Err("Parsing additionalProperties for AdditionalPropertiesReferencedAnyOfObject is not supported")
     }
 }
 
@@ -304,7 +239,6 @@ pub struct AdditionalPropertiesWithNullable {
     pub nullable_string: Option<Nullable<String>>,
 
     #[serde(rename = "nullableMap")]
-    #[validate(custom(function = "check_xss_map_nested"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub nullable_map: Option<std::collections::HashMap<String, models::NullableObject>>,
 }
@@ -372,7 +306,7 @@ impl std::str::FromStr for AdditionalPropertiesWithNullable {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing AdditionalPropertiesWithNullable".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -412,10 +346,10 @@ impl std::convert::TryFrom<header::IntoHeaderValue<AdditionalPropertiesWithNulla
     ) -> std::result::Result<Self, Self::Error> {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
-            std::result::Result::Ok(value) => std::result::Result::Ok(value),
-            std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for AdditionalPropertiesWithNullable - value: {hdr_value} is invalid {e}"#
-            )),
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for AdditionalPropertiesWithNullable - value: {} is invalid {}",
+                     hdr_value, e))
         }
     }
 }
@@ -428,19 +362,17 @@ impl std::convert::TryFrom<HeaderValue>
 
     fn try_from(hdr_value: HeaderValue) -> std::result::Result<Self, Self::Error> {
         match hdr_value.to_str() {
-            std::result::Result::Ok(value) => {
-                match <AdditionalPropertiesWithNullable as std::str::FromStr>::from_str(value) {
-                    std::result::Result::Ok(value) => {
-                        std::result::Result::Ok(header::IntoHeaderValue(value))
+             std::result::Result::Ok(value) => {
+                    match <AdditionalPropertiesWithNullable as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into AdditionalPropertiesWithNullable - {}",
+                                value, err))
                     }
-                    std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into AdditionalPropertiesWithNullable - {err}"#
-                    )),
-                }
-            }
-            std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
-            )),
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
         }
     }
 }
@@ -557,7 +489,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<AnotherXmlArray>> for HeaderV
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for AnotherXmlArray - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for AnotherXmlArray - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -575,12 +508,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AnotherXmlAr
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into AnotherXmlArray - {err}"#
+                        "Unable to convert header value '{}' into AnotherXmlArray - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -639,7 +574,6 @@ impl std::ops::DerefMut for AnotherXmlInner {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AnotherXmlObject {
     #[serde(rename = "inner_string")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub inner_string: Option<String>,
 }
@@ -656,10 +590,10 @@ impl AnotherXmlObject {
 /// Should be implemented in a serde serializer
 impl std::fmt::Display for AnotherXmlObject {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let params: Vec<Option<String>> =
-            vec![self.inner_string.as_ref().map(|inner_string| {
-                ["inner_string".to_string(), inner_string.to_string()].join(",")
-            })];
+        let params: Vec<Option<String>> = vec![self
+            .inner_string
+            .as_ref()
+            .map(|inner_string| ["inner_string".to_string(), inner_string.to_string()].join(","))];
 
         write!(
             f,
@@ -695,7 +629,7 @@ impl std::str::FromStr for AnotherXmlObject {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing AnotherXmlObject".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -709,7 +643,7 @@ impl std::str::FromStr for AnotherXmlObject {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing AnotherXmlObject".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -738,7 +672,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<AnotherXmlObject>> for Header
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for AnotherXmlObject - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for AnotherXmlObject - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -756,31 +691,28 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AnotherXmlOb
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into AnotherXmlObject - {err}"#
+                        "Unable to convert header value '{}' into AnotherXmlObject - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
-#[serde(untagged)]
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
-pub enum AnyOfGet202Response {
-    String(String),
-    Uuid(uuid::Uuid),
-}
+/// Any of:
+/// - String
+/// - uuid::Uuid
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct AnyOfGet202Response(Box<serde_json::value::RawValue>);
 
 impl validator::Validate for AnyOfGet202Response {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        match self {
-            Self::String(_) => std::result::Result::Ok(()),
-            Self::Uuid(_) => std::result::Result::Ok(()),
-        }
+        std::result::Result::Ok(())
     }
 }
 
@@ -795,32 +727,22 @@ impl std::str::FromStr for AnyOfGet202Response {
     }
 }
 
-impl From<String> for AnyOfGet202Response {
-    fn from(value: String) -> Self {
-        Self::String(value)
-    }
-}
-impl From<uuid::Uuid> for AnyOfGet202Response {
-    fn from(value: uuid::Uuid) -> Self {
-        Self::Uuid(value)
+impl PartialEq for AnyOfGet202Response {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.get() == other.0.get()
     }
 }
 
 /// Test a model containing an anyOf of a hash map
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
-#[serde(untagged)]
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
-pub enum AnyOfHashMapObject {
-    String(String),
-    HashMapOfStringString(std::collections::HashMap<String, String>),
-}
+/// Any of:
+/// - String
+/// - std::collections::HashMap<String, String>
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct AnyOfHashMapObject(Box<serde_json::value::RawValue>);
 
 impl validator::Validate for AnyOfHashMapObject {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        match self {
-            Self::String(_) => std::result::Result::Ok(()),
-            Self::HashMapOfStringString(_) => std::result::Result::Ok(()),
-        }
+        std::result::Result::Ok(())
     }
 }
 
@@ -835,32 +757,21 @@ impl std::str::FromStr for AnyOfHashMapObject {
     }
 }
 
-impl From<String> for AnyOfHashMapObject {
-    fn from(value: String) -> Self {
-        Self::String(value)
-    }
-}
-impl From<std::collections::HashMap<String, String>> for AnyOfHashMapObject {
-    fn from(value: std::collections::HashMap<String, String>) -> Self {
-        Self::HashMapOfStringString(value)
+impl PartialEq for AnyOfHashMapObject {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.get() == other.0.get()
     }
 }
 
 /// Test a model containing an anyOf
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
-#[serde(untagged)]
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
-pub enum AnyOfObject {
-    String(String),
-    String1(String),
-}
+/// Any of:
+/// - String
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct AnyOfObject(Box<serde_json::value::RawValue>);
 
 impl validator::Validate for AnyOfObject {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        match self {
-            Self::String(_) => std::result::Result::Ok(()),
-            Self::String1(_) => std::result::Result::Ok(()),
-        }
+        std::result::Result::Ok(())
     }
 }
 
@@ -875,16 +786,20 @@ impl std::str::FromStr for AnyOfObject {
     }
 }
 
+impl PartialEq for AnyOfObject {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.get() == other.0.get()
+    }
+}
+
 /// Test containing an anyOf object
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AnyOfProperty {
     #[serde(rename = "requiredAnyOf")]
-    #[validate(nested)]
     pub required_any_of: models::AnyOfObject,
 
     #[serde(rename = "optionalAnyOf")]
-    #[validate(nested)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub optional_any_of: Option<models::Model12345AnyOfObject>,
 }
@@ -946,7 +861,7 @@ impl std::str::FromStr for AnyOfProperty {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing AnyOfProperty".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -966,7 +881,7 @@ impl std::str::FromStr for AnyOfProperty {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing AnyOfProperty".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -1000,7 +915,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<AnyOfProperty>> for HeaderVal
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for AnyOfProperty - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for AnyOfProperty - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -1018,12 +934,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AnyOfPropert
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into AnyOfProperty - {err}"#
+                        "Unable to convert header value '{}' into AnyOfProperty - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -1034,12 +952,10 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AnyOfPropert
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DuplicateXmlObject {
     #[serde(rename = "inner_string")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub inner_string: Option<String>,
 
     #[serde(rename = "inner_array")]
-    #[validate(nested)]
     pub inner_array: models::XmlArray,
 }
 
@@ -1100,7 +1016,7 @@ impl std::str::FromStr for DuplicateXmlObject {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing DuplicateXmlObject".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -1119,7 +1035,7 @@ impl std::str::FromStr for DuplicateXmlObject {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing DuplicateXmlObject".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -1153,7 +1069,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<DuplicateXmlObject>> for Head
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for DuplicateXmlObject - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for DuplicateXmlObject - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -1171,12 +1088,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DuplicateXml
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into DuplicateXmlObject - {err}"#
+                        "Unable to convert header value '{}' into DuplicateXmlObject - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -1186,7 +1105,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DuplicateXml
 /// Enumeration of values.
 /// Since this enum's variants do not hold data, we can easily define them as `#[repr(C)]`
 /// which helps with FFI.
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
+#[allow(non_camel_case_types)]
 #[repr(C)]
 #[derive(
     Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize,
@@ -1199,12 +1118,6 @@ pub enum EnumWithStarObject {
     Bar,
     #[serde(rename = "*")]
     Star,
-}
-
-impl validator::Validate for EnumWithStarObject {
-    fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        std::result::Result::Ok(())
-    }
 }
 
 impl std::fmt::Display for EnumWithStarObject {
@@ -1225,7 +1138,7 @@ impl std::str::FromStr for EnumWithStarObject {
             "FOO" => std::result::Result::Ok(EnumWithStarObject::Foo),
             "BAR" => std::result::Result::Ok(EnumWithStarObject::Bar),
             "*" => std::result::Result::Ok(EnumWithStarObject::Star),
-            _ => std::result::Result::Err(format!(r#"Value not valid: {s}"#)),
+            _ => std::result::Result::Err(format!("Value not valid: {}", s)),
         }
     }
 }
@@ -1330,7 +1243,6 @@ impl std::ops::DerefMut for Error {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FormTestRequest {
     #[serde(rename = "requiredArray")]
-    #[validate(custom(function = "check_xss_vec_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub required_array: Option<Vec<String>>,
 }
@@ -1396,7 +1308,7 @@ impl std::str::FromStr for FormTestRequest {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing FormTestRequest".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -1407,12 +1319,12 @@ impl std::str::FromStr for FormTestRequest {
                         return std::result::Result::Err(
                             "Parsing a container in this style is not supported in FormTestRequest"
                                 .to_string(),
-                        );
+                        )
                     }
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing FormTestRequest".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -1441,7 +1353,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FormTestRequest>> for HeaderV
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for FormTestRequest - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for FormTestRequest - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -1459,32 +1372,28 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FormTestRequ
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into FormTestRequest - {err}"#
+                        "Unable to convert header value '{}' into FormTestRequest - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
 }
 
 /// Test a model containing an anyOf that starts with a number
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
-#[serde(untagged)]
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
-pub enum Model12345AnyOfObject {
-    String(String),
-    String1(String),
-}
+/// Any of:
+/// - String
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct Model12345AnyOfObject(Box<serde_json::value::RawValue>);
 
 impl validator::Validate for Model12345AnyOfObject {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        match self {
-            Self::String(_) => std::result::Result::Ok(()),
-            Self::String1(_) => std::result::Result::Ok(()),
-        }
+        std::result::Result::Ok(())
     }
 }
 
@@ -1499,11 +1408,16 @@ impl std::str::FromStr for Model12345AnyOfObject {
     }
 }
 
+impl PartialEq for Model12345AnyOfObject {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.get() == other.0.get()
+    }
+}
+
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct MultigetGet201Response {
     #[serde(rename = "foo")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub foo: Option<String>,
 }
@@ -1520,11 +1434,10 @@ impl MultigetGet201Response {
 /// Should be implemented in a serde serializer
 impl std::fmt::Display for MultigetGet201Response {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let params: Vec<Option<String>> = vec![
-            self.foo
-                .as_ref()
-                .map(|foo| ["foo".to_string(), foo.to_string()].join(",")),
-        ];
+        let params: Vec<Option<String>> = vec![self
+            .foo
+            .as_ref()
+            .map(|foo| ["foo".to_string(), foo.to_string()].join(","))];
 
         write!(
             f,
@@ -1560,7 +1473,7 @@ impl std::str::FromStr for MultigetGet201Response {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing MultigetGet201Response".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -1574,7 +1487,7 @@ impl std::str::FromStr for MultigetGet201Response {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing MultigetGet201Response".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -1603,7 +1516,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<MultigetGet201Response>> for 
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for MultigetGet201Response - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for MultigetGet201Response - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -1621,12 +1535,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<MultigetGet2
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into MultigetGet201Response - {err}"#
+                        "Unable to convert header value '{}' into MultigetGet201Response - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -1779,7 +1695,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<MyIdList>> for HeaderValue {
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for MyIdList - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for MyIdList - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -1797,12 +1714,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<MyIdList> {
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into MyIdList - {err}"#
+                        "Unable to convert header value '{}' into MyIdList - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2051,7 +1970,7 @@ impl std::str::FromStr for NullableTest {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing NullableTest".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -2078,30 +1997,30 @@ impl std::str::FromStr for NullableTest {
                         return std::result::Result::Err(
                             "Parsing a container in this style is not supported in NullableTest"
                                 .to_string(),
-                        );
+                        )
                     }
                     "min_item_test" => {
                         return std::result::Result::Err(
                             "Parsing a container in this style is not supported in NullableTest"
                                 .to_string(),
-                        );
+                        )
                     }
                     "max_item_test" => {
                         return std::result::Result::Err(
                             "Parsing a container in this style is not supported in NullableTest"
                                 .to_string(),
-                        );
+                        )
                     }
                     "min_max_item_test" => {
                         return std::result::Result::Err(
                             "Parsing a container in this style is not supported in NullableTest"
                                 .to_string(),
-                        );
+                        )
                     }
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing NullableTest".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -2147,7 +2066,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<NullableTest>> for HeaderValu
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for NullableTest - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for NullableTest - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -2165,12 +2085,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<NullableTest
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into NullableTest - {err}"#
+                        "Unable to convert header value '{}' into NullableTest - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2251,7 +2173,7 @@ impl std::str::FromStr for ObjectHeader {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing ObjectHeader".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -2269,7 +2191,7 @@ impl std::str::FromStr for ObjectHeader {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing ObjectHeader".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -2303,7 +2225,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ObjectHeader>> for HeaderValu
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for ObjectHeader - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for ObjectHeader - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -2321,12 +2244,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ObjectHeader
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into ObjectHeader - {err}"#
+                        "Unable to convert header value '{}' into ObjectHeader - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2339,9 +2264,8 @@ pub struct ObjectParam {
     pub required_param: bool,
 
     #[serde(rename = "optionalParam")]
-    #[validate(range(min = 1u64, max = 10000000000000000000u64))]
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub optional_param: Option<u64>,
+    pub optional_param: Option<i32>,
 }
 
 impl ObjectParam {
@@ -2387,7 +2311,7 @@ impl std::str::FromStr for ObjectParam {
         #[allow(dead_code)]
         struct IntermediateRep {
             pub required_param: Vec<bool>,
-            pub optional_param: Vec<u64>,
+            pub optional_param: Vec<i32>,
         }
 
         let mut intermediate_rep = IntermediateRep::default();
@@ -2402,7 +2326,7 @@ impl std::str::FromStr for ObjectParam {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing ObjectParam".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -2415,12 +2339,12 @@ impl std::str::FromStr for ObjectParam {
                     ),
                     #[allow(clippy::redundant_clone)]
                     "optionalParam" => intermediate_rep.optional_param.push(
-                        <u64 as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?,
+                        <i32 as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?,
                     ),
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing ObjectParam".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -2454,7 +2378,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ObjectParam>> for HeaderValue
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for ObjectParam - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for ObjectParam - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -2472,12 +2397,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ObjectParam>
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into ObjectParam - {err}"#
+                        "Unable to convert header value '{}' into ObjectParam - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2569,7 +2496,7 @@ impl std::str::FromStr for ObjectUntypedProps {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing ObjectUntypedProps".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -2623,7 +2550,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ObjectUntypedProps>> for Head
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for ObjectUntypedProps - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for ObjectUntypedProps - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -2641,12 +2569,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ObjectUntype
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into ObjectUntypedProps - {err}"#
+                        "Unable to convert header value '{}' into ObjectUntypedProps - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2656,7 +2586,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ObjectUntype
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ObjectWithArrayOfObjects {
     #[serde(rename = "objectArray")]
-    #[validate(nested)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub object_array: Option<Vec<models::StringObject>>,
 }
@@ -2719,7 +2648,7 @@ impl std::str::FromStr for ObjectWithArrayOfObjects {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing ObjectWithArrayOfObjects".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -2755,7 +2684,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ObjectWithArrayOfObjects>> fo
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for ObjectWithArrayOfObjects - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for ObjectWithArrayOfObjects - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -2773,12 +2703,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ObjectWithAr
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into ObjectWithArrayOfObjects - {err}"#
+                        "Unable to convert header value '{}' into ObjectWithArrayOfObjects - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -2834,10 +2766,10 @@ impl std::ops::DerefMut for Ok {
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 #[serde(untagged)]
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
+#[allow(non_camel_case_types)]
 pub enum OneOfGet200Response {
-    I32(i32),
-    VecOfString(Vec<String>),
+    I32(Box<i32>),
+    VecOfString(Box<Vec<String>>),
 }
 
 impl validator::Validate for OneOfGet200Response {
@@ -2849,6 +2781,17 @@ impl validator::Validate for OneOfGet200Response {
     }
 }
 
+impl From<i32> for OneOfGet200Response {
+    fn from(value: i32) -> Self {
+        Self::I32(Box::new(value))
+    }
+}
+impl From<Vec<String>> for OneOfGet200Response {
+    fn from(value: Vec<String>) -> Self {
+        Self::VecOfString(Box::new(value))
+    }
+}
+
 /// Converts Query Parameters representation (style=form, explode=false) to a OneOfGet200Response value
 /// as specified in https://swagger.io/docs/specification/serialization/
 /// Should be implemented in a serde deserializer
@@ -2857,17 +2800,6 @@ impl std::str::FromStr for OneOfGet200Response {
 
     fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
         serde_json::from_str(s)
-    }
-}
-
-impl From<i32> for OneOfGet200Response {
-    fn from(value: i32) -> Self {
-        Self::I32(value)
-    }
-}
-impl From<Vec<String>> for OneOfGet200Response {
-    fn from(value: Vec<String>) -> Self {
-        Self::VecOfString(value)
     }
 }
 
@@ -2992,7 +2924,7 @@ impl std::ops::DerefMut for Result {
 /// Enumeration of values.
 /// Since this enum's variants do not hold data, we can easily define them as `#[repr(C)]`
 /// which helps with FFI.
-#[allow(non_camel_case_types, clippy::large_enum_variant)]
+#[allow(non_camel_case_types)]
 #[repr(C)]
 #[derive(
     Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize,
@@ -3003,12 +2935,6 @@ pub enum StringEnum {
     Foo,
     #[serde(rename = "BAR")]
     Bar,
-}
-
-impl validator::Validate for StringEnum {
-    fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
-        std::result::Result::Ok(())
-    }
 }
 
 impl std::fmt::Display for StringEnum {
@@ -3027,7 +2953,7 @@ impl std::str::FromStr for StringEnum {
         match s {
             "FOO" => std::result::Result::Ok(StringEnum::Foo),
             "BAR" => std::result::Result::Ok(StringEnum::Bar),
-            _ => std::result::Result::Err(format!(r#"Value not valid: {s}"#)),
+            _ => std::result::Result::Err(format!("Value not valid: {}", s)),
         }
     }
 }
@@ -3228,7 +3154,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<XmlArray>> for HeaderValue {
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for XmlArray - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for XmlArray - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -3246,12 +3173,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<XmlArray> {
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into XmlArray - {err}"#
+                        "Unable to convert header value '{}' into XmlArray - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }
@@ -3310,7 +3239,6 @@ impl std::ops::DerefMut for XmlInner {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct XmlObject {
     #[serde(rename = "innerString")]
-    #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub inner_string: Option<String>,
 
@@ -3382,7 +3310,7 @@ impl std::str::FromStr for XmlObject {
                 None => {
                     return std::result::Result::Err(
                         "Missing value while parsing XmlObject".to_string(),
-                    );
+                    )
                 }
             };
 
@@ -3400,7 +3328,7 @@ impl std::str::FromStr for XmlObject {
                     _ => {
                         return std::result::Result::Err(
                             "Unexpected key while parsing XmlObject".to_string(),
-                        );
+                        )
                     }
                 }
             }
@@ -3430,7 +3358,8 @@ impl std::convert::TryFrom<header::IntoHeaderValue<XmlObject>> for HeaderValue {
         match HeaderValue::from_str(&hdr_value) {
             std::result::Result::Ok(value) => std::result::Result::Ok(value),
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Invalid header value for XmlObject - value: {hdr_value} is invalid {e}"#
+                "Invalid header value for XmlObject - value: {} is invalid {}",
+                hdr_value, e
             )),
         }
     }
@@ -3448,12 +3377,14 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<XmlObject> {
                         std::result::Result::Ok(header::IntoHeaderValue(value))
                     }
                     std::result::Result::Err(err) => std::result::Result::Err(format!(
-                        r#"Unable to convert header value '{value}' into XmlObject - {err}"#
+                        "Unable to convert header value '{}' into XmlObject - {}",
+                        value, err
                     )),
                 }
             }
             std::result::Result::Err(e) => std::result::Result::Err(format!(
-                r#"Unable to convert header: {hdr_value:?} to string: {e}"#
+                "Unable to convert header: {:?} to string: {}",
+                hdr_value, e
             )),
         }
     }

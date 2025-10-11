@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -27,7 +26,7 @@ data class ApiError(
 
     @field:Valid
     @get:JsonProperty("reasonCode") val reasonCode: ReasonCode? = null
-) {
+    ) {
 
     /**
     * 
@@ -42,8 +41,7 @@ data class ApiError(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.Int): ErrorCode {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ApiError'")
+                return values().first{it -> it.value == value}
             }
         }
     }

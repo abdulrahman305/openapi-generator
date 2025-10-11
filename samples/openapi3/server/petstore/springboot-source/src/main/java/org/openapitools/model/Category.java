@@ -18,14 +18,14 @@ import javax.annotation.Generated;
  * A category for a pet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class Category {
 
   private @Nullable Long id;
 
   private @Nullable String name;
 
-  public Category id(@Nullable Long id) {
+  public Category id(Long id) {
     this.id = id;
     return this;
   }
@@ -36,15 +36,15 @@ public class Category {
    */
   
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public Category name(@Nullable String name) {
+  public Category name(String name) {
     this.name = name;
     return this;
   }
@@ -55,11 +55,11 @@ public class Category {
    */
   @Pattern(regexp = "^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$") 
   @JsonProperty("name")
-  public @Nullable String getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(String name) {
     this.name = name;
   }
 

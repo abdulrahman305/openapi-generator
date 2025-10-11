@@ -15,7 +15,6 @@ package org.openapitools.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +38,7 @@ import io.github.threetenjaxb.core.*;
   FakeBigDecimalMap200Response.JSON_PROPERTY_SOME_MAP
 })
 @JsonTypeName("fakeBigDecimalMap_200_response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 @XmlRootElement(name = "FakeBigDecimalMap200Response")
 @XmlAccessorType(XmlAccessType.FIELD)
 @JacksonXmlRootElement(localName = "FakeBigDecimalMap200Response")
@@ -68,7 +67,7 @@ public class FakeBigDecimalMap200Response {
    * @return someId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOME_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "someId")
 
@@ -77,7 +76,7 @@ public class FakeBigDecimalMap200Response {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SOME_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "someId")
   public void setSomeId(@javax.annotation.Nullable BigDecimal someId) {
@@ -103,7 +102,7 @@ public class FakeBigDecimalMap200Response {
    * @return someMap
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOME_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "someMap")
   @JacksonXmlElementWrapper(useWrapping = false)
@@ -113,7 +112,7 @@ public class FakeBigDecimalMap200Response {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SOME_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   @JacksonXmlProperty(localName = "someMap")
   @JacksonXmlElementWrapper(useWrapping = false)

@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
 from petstore_api.models.task_activity import TaskActivity
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +27,7 @@ class Task(BaseModel):
     """
     Used to test oneOf enums with only one string value.
     """ # noqa: E501
-    id: UUID
+    id: StrictStr
     activity: TaskActivity
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "activity"]

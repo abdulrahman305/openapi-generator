@@ -479,13 +479,11 @@ public class JavaHelidonClientCodegen extends JavaHelidonCommonCodegen {
 
     @Override
     public void addImportsToOneOfInterface(List<Map<String, String>> imports) {
-        if(additionalProperties.containsKey(SERIALIZATION_LIBRARY_JACKSON)) {
-            for (String i : Arrays.asList("JsonSubTypes", "JsonTypeInfo", "JsonIgnoreProperties")) {
-                Map<String, String> oneImport = new HashMap<>();
-                oneImport.put("import", importMapping.get(i));
-                if (!imports.contains(oneImport)) {
-                    imports.add(oneImport);
-                }
+        for (String i : Arrays.asList("JsonSubTypes", "JsonTypeInfo", "JsonIgnoreProperties")) {
+            Map<String, String> oneImport = new HashMap<>();
+            oneImport.put("import", importMapping.get(i));
+            if (!imports.contains(oneImport)) {
+                imports.add(oneImport);
             }
         }
     }

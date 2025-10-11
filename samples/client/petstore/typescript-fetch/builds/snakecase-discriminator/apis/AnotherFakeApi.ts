@@ -49,11 +49,8 @@ export class AnotherFakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/another-fake/dummy`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/another-fake/dummy`,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

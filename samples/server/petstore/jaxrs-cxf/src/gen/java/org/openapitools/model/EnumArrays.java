@@ -48,7 +48,6 @@ GREATER_THAN_OR_EQUAL_TO(String.valueOf(">=")), DOLLAR(String.valueOf("$"));
 }
 
   @ApiModelProperty(value = "")
-
   private JustSymbolEnum justSymbol;
 
 public enum ArrayEnumEnum {
@@ -84,7 +83,6 @@ FISH(String.valueOf("fish")), CRAB(String.valueOf("crab"));
 }
 
   @ApiModelProperty(value = "")
-
   private List<ArrayEnumEnum> arrayEnum = new ArrayList<>();
  /**
    * Get justSymbol

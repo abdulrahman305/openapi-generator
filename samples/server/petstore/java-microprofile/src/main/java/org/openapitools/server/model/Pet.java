@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
  *
@@ -14,9 +14,6 @@ package org.openapitools.server.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -103,12 +100,11 @@ public class Pet  {
   
   private StatusEnum status;
 
-
   /**
    * Get id
    * @return id
    **/
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getId() {
     return id;
@@ -117,7 +113,7 @@ public class Pet  {
   /**
    * Set id
    */
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(Long id) {
     this.id = id;
@@ -132,7 +128,7 @@ public class Pet  {
    * Get category
    * @return category
    **/
-  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonProperty(JSON_PROPERTY_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Category getCategory() {
     return category;
@@ -141,7 +137,7 @@ public class Pet  {
   /**
    * Set category
    */
-  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonProperty(JSON_PROPERTY_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(Category category) {
     this.category = category;
@@ -156,7 +152,7 @@ public class Pet  {
    * Get name
    * @return name
    **/
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
@@ -165,7 +161,7 @@ public class Pet  {
   /**
    * Set name
    */
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
@@ -180,7 +176,7 @@ public class Pet  {
    * Get photoUrls
    * @return photoUrls
    **/
-  @JsonProperty(value = JSON_PROPERTY_PHOTO_URLS, required = true)
+  @JsonProperty(JSON_PROPERTY_PHOTO_URLS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getPhotoUrls() {
     return photoUrls;
@@ -189,7 +185,7 @@ public class Pet  {
   /**
    * Set photoUrls
    */
-  @JsonProperty(value = JSON_PROPERTY_PHOTO_URLS, required = true)
+  @JsonProperty(JSON_PROPERTY_PHOTO_URLS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPhotoUrls(List<String> photoUrls) {
     this.photoUrls = photoUrls;
@@ -212,7 +208,7 @@ public class Pet  {
    * Get tags
    * @return tags
    **/
-  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
+  @JsonProperty(JSON_PROPERTY_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Tag> getTags() {
     return tags;
@@ -221,7 +217,7 @@ public class Pet  {
   /**
    * Set tags
    */
-  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
+  @JsonProperty(JSON_PROPERTY_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTags(List<Tag> tags) {
     this.tags = tags;
@@ -246,7 +242,7 @@ public class Pet  {
    * @deprecated
    **/
   @Deprecated
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StatusEnum getStatus() {
     return status;
@@ -255,7 +251,7 @@ public class Pet  {
   /**
    * Set status
    */
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;

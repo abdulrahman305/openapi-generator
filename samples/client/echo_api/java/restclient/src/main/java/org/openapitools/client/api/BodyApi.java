@@ -27,7 +27,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient.ResponseSpec;
 import org.springframework.web.client.RestClientResponseException;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class BodyApi {
     private ApiClient apiClient;
 
@@ -111,7 +111,6 @@ public class BodyApi {
     public ResponseSpec testBinaryGifWithResponseSpec() throws RestClientResponseException {
         return testBinaryGifRequestCreation();
     }
-
     /**
      * Test body parameter(s)
      * Test body parameter(s)
@@ -182,7 +181,6 @@ public class BodyApi {
     public ResponseSpec testBodyApplicationOctetstreamBinaryWithResponseSpec(@jakarta.annotation.Nullable File body) throws RestClientResponseException {
         return testBodyApplicationOctetstreamBinaryRequestCreation(body);
     }
-
     /**
      * Test array of binary in multipart mime
      * Test array of binary in multipart mime
@@ -260,7 +258,6 @@ public class BodyApi {
     public ResponseSpec testBodyMultipartFormdataArrayOfBinaryWithResponseSpec(@jakarta.annotation.Nonnull List<File> files) throws RestClientResponseException {
         return testBodyMultipartFormdataArrayOfBinaryRequestCreation(files);
     }
-
     /**
      * Test single binary in multipart mime
      * Test single binary in multipart mime
@@ -334,7 +331,6 @@ public class BodyApi {
     public ResponseSpec testBodyMultipartFormdataSingleBinaryWithResponseSpec(@jakarta.annotation.Nullable File myFile) throws RestClientResponseException {
         return testBodyMultipartFormdataSingleBinaryRequestCreation(myFile);
     }
-
     /**
      * Test body parameter(s)
      * Test body parameter(s)
@@ -405,7 +401,6 @@ public class BodyApi {
     public ResponseSpec testEchoBodyAllOfPetWithResponseSpec(@jakarta.annotation.Nullable Pet pet) throws RestClientResponseException {
         return testEchoBodyAllOfPetRequestCreation(pet);
     }
-
     /**
      * Test free form object
      * Test free form object
@@ -476,7 +471,6 @@ public class BodyApi {
     public ResponseSpec testEchoBodyFreeFormObjectResponseStringWithResponseSpec(@jakarta.annotation.Nullable Object body) throws RestClientResponseException {
         return testEchoBodyFreeFormObjectResponseStringRequestCreation(body);
     }
-
     /**
      * Test body parameter(s)
      * Test body parameter(s)
@@ -547,7 +541,6 @@ public class BodyApi {
     public ResponseSpec testEchoBodyPetWithResponseSpec(@jakarta.annotation.Nullable Pet pet) throws RestClientResponseException {
         return testEchoBodyPetRequestCreation(pet);
     }
-
     /**
      * Test empty response body
      * Test empty response body
@@ -618,7 +611,6 @@ public class BodyApi {
     public ResponseSpec testEchoBodyPetResponseStringWithResponseSpec(@jakarta.annotation.Nullable Pet pet) throws RestClientResponseException {
         return testEchoBodyPetResponseStringRequestCreation(pet);
     }
-
     /**
      * Test string enum response body
      * Test string enum response body
@@ -689,7 +681,6 @@ public class BodyApi {
     public ResponseSpec testEchoBodyStringEnumWithResponseSpec(@jakarta.annotation.Nullable String body) throws RestClientResponseException {
         return testEchoBodyStringEnumRequestCreation(body);
     }
-
     /**
      * Test empty json (request body)
      * Test empty json (request body)

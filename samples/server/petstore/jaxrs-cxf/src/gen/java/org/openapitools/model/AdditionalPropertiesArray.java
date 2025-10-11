@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AdditionalPropertiesArray extends HashMap<String, List> {
   
   @ApiModelProperty(value = "")
-
   private String name;
  /**
    * Get name

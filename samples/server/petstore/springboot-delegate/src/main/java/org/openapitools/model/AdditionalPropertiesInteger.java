@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
  * AdditionalPropertiesInteger
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class AdditionalPropertiesInteger {
 
   private @Nullable String name;
@@ -40,7 +40,7 @@ public class AdditionalPropertiesInteger {
       this.name = name;
   }
 
-  public AdditionalPropertiesInteger name(@Nullable String name) {
+  public AdditionalPropertiesInteger name(String name) {
     this.name = name;
     return this;
   }
@@ -52,11 +52,11 @@ public class AdditionalPropertiesInteger {
   
   @ApiModelProperty(value = "")
   @JsonProperty("name")
-  public @Nullable String getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(String name) {
     this.name = name;
   }
     /**

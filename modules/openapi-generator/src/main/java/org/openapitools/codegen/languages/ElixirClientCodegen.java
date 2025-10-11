@@ -226,7 +226,6 @@ public class ElixirClientCodegen extends DefaultCodegen {
         typeMapping.put("date", "Date.t");
         typeMapping.put("date-time", "DateTime.t");
         // other
-        typeMapping.put("AnyType", "any()");
         typeMapping.put("ByteArray", "binary()");
         typeMapping.put("DateTime", "DateTime.t");
         typeMapping.put("UUID", "String.t");

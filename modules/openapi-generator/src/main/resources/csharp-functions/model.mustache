@@ -28,7 +28,6 @@ namespace {{modelPackage}}
         {{#items}}
         {{^complexType}}
 {{>enumClass}}
-
         {{/complexType}}
         {{/items}}
         {{/items.isEnum}}
@@ -36,7 +35,6 @@ namespace {{modelPackage}}
         {{#isEnum}}
         {{^complexType}}
 {{>enumClass}}
-
         {{/complexType}}
         {{/isEnum}}
         {{/items.isEnum}}

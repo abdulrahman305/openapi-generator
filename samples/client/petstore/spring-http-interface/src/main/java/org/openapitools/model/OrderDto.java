@@ -22,7 +22,7 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Order")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class OrderDto {
 
   private @Nullable Long id;
@@ -75,7 +75,7 @@ public class OrderDto {
 
   private Boolean complete = false;
 
-  public OrderDto id(@Nullable Long id) {
+  public OrderDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -86,15 +86,15 @@ public class OrderDto {
    */
   
   @JsonProperty("id")
-  public @Nullable Long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(@Nullable Long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public OrderDto petId(@Nullable Long petId) {
+  public OrderDto petId(Long petId) {
     this.petId = petId;
     return this;
   }
@@ -105,15 +105,15 @@ public class OrderDto {
    */
   
   @JsonProperty("petId")
-  public @Nullable Long getPetId() {
+  public Long getPetId() {
     return petId;
   }
 
-  public void setPetId(@Nullable Long petId) {
+  public void setPetId(Long petId) {
     this.petId = petId;
   }
 
-  public OrderDto quantity(@Nullable Integer quantity) {
+  public OrderDto quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -124,15 +124,15 @@ public class OrderDto {
    */
   
   @JsonProperty("quantity")
-  public @Nullable Integer getQuantity() {
+  public Integer getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(@Nullable Integer quantity) {
+  public void setQuantity(Integer quantity) {
     this.quantity = quantity;
   }
 
-  public OrderDto shipDate(@Nullable OffsetDateTime shipDate) {
+  public OrderDto shipDate(OffsetDateTime shipDate) {
     this.shipDate = shipDate;
     return this;
   }
@@ -143,15 +143,15 @@ public class OrderDto {
    */
   
   @JsonProperty("shipDate")
-  public @Nullable OffsetDateTime getShipDate() {
+  public OffsetDateTime getShipDate() {
     return shipDate;
   }
 
-  public void setShipDate(@Nullable OffsetDateTime shipDate) {
+  public void setShipDate(OffsetDateTime shipDate) {
     this.shipDate = shipDate;
   }
 
-  public OrderDto status(@Nullable StatusEnum status) {
+  public OrderDto status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -162,11 +162,11 @@ public class OrderDto {
    */
   
   @JsonProperty("status")
-  public @Nullable StatusEnum getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(@Nullable StatusEnum status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 

@@ -9,6 +9,7 @@
     #define PET_ID 12345
     #define QUANTITY 50
     #define SHIP_DATE "2018-09-24T10:19:09.592Z"
+    #define STATUS placed
     #define COMPLETE true
 
 /*
@@ -26,7 +27,7 @@ int main() {
 	                                 PET_ID,
 	                                 QUANTITY,
 	                                 shipdate,
-	                                 openapi_petstore_order_STATUS_placed,
+	                                 STATUS,
 	                                 COMPLETE);
 
 	order_t *returnorder = StoreAPI_placeOrder(apiClient, neworder);

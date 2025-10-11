@@ -18,12 +18,12 @@ import jakarta.annotation.Generated;
  * NumberOnly
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class NumberOnly {
 
   private @Nullable BigDecimal justNumber;
 
-  public NumberOnly justNumber(@Nullable BigDecimal justNumber) {
+  public NumberOnly justNumber(BigDecimal justNumber) {
     this.justNumber = justNumber;
     return this;
   }
@@ -34,11 +34,11 @@ public class NumberOnly {
    */
   
   @JsonProperty("JustNumber")
-  public @Nullable BigDecimal getJustNumber() {
+  public BigDecimal getJustNumber() {
     return justNumber;
   }
 
-  public void setJustNumber(@Nullable BigDecimal justNumber) {
+  public void setJustNumber(BigDecimal justNumber) {
     this.justNumber = justNumber;
   }
 

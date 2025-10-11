@@ -19,14 +19,14 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("ReadOnlyFirst")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ReadOnlyFirstDto {
 
   private @Nullable String bar;
 
   private @Nullable String baz;
 
-  public ReadOnlyFirstDto bar(@Nullable String bar) {
+  public ReadOnlyFirstDto bar(String bar) {
     this.bar = bar;
     return this;
   }
@@ -37,15 +37,15 @@ public class ReadOnlyFirstDto {
    */
   
   @JsonProperty("bar")
-  public @Nullable String getBar() {
+  public String getBar() {
     return bar;
   }
 
-  public void setBar(@Nullable String bar) {
+  public void setBar(String bar) {
     this.bar = bar;
   }
 
-  public ReadOnlyFirstDto baz(@Nullable String baz) {
+  public ReadOnlyFirstDto baz(String baz) {
     this.baz = baz;
     return this;
   }
@@ -56,11 +56,11 @@ public class ReadOnlyFirstDto {
    */
   
   @JsonProperty("baz")
-  public @Nullable String getBaz() {
+  public String getBaz() {
     return baz;
   }
 
-  public void setBaz(@Nullable String baz) {
+  public void setBaz(String baz) {
     this.baz = baz;
   }
 

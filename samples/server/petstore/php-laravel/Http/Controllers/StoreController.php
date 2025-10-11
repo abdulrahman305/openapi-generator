@@ -69,8 +69,13 @@ class StoreController extends Controller
         }
 
 
-
-        $apiResult = $this->api->deleteOrder($orderId);
+        try {
+            $apiResult = $this->api->deleteOrder($orderId);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\NoContent400) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 400);
@@ -107,8 +112,13 @@ class StoreController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-
-        $apiResult = $this->api->getInventory();
+        try {
+            $apiResult = $this->api->getInventory();
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if (is_array($apiResult)) {
             $serialized = array_map(fn ($item) => $this->serde->serialize($item, format: 'array'), $apiResult);
@@ -149,8 +159,13 @@ class StoreController extends Controller
         }
 
 
-
-        $apiResult = $this->api->getOrderById($orderId);
+        try {
+            $apiResult = $this->api->getOrderById($orderId);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\Order) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);
@@ -193,8 +208,13 @@ class StoreController extends Controller
 
         $order = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\Order::class);
 
-
-        $apiResult = $this->api->placeOrder($order);
+        try {
+            $apiResult = $this->api->placeOrder($order);
+        } catch (\Exception $exception) {
+            // This shouldn't happen
+            report($exception);
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
 
         if ($apiResult instanceof \OpenAPI\Server\Model\Order) {
             return response()->json($this->serde->serialize($apiResult, format: 'array'), 200);

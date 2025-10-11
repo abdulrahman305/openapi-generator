@@ -15,13 +15,13 @@ import java.time.ZonedDateTime
 /**
 * Describes the result of uploading an image resource
 * @param code 
-* @param `type` 
+* @param _type 
 * @param message 
 */
 
 case class ApiResponse(
   code: Option[Int],
-  `type`: Option[String],
+  _type: Option[String],
   message: Option[String]
 )
 object ApiResponse {

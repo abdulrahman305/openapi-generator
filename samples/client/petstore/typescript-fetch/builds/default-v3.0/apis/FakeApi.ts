@@ -181,11 +181,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-
-        let urlPath = `/fake/BigDecimalMap`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/BigDecimalMap`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -210,11 +207,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-
-        let urlPath = `/fake/health`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/health`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -256,11 +250,8 @@ export class FakeApi extends runtime.BaseAPI {
             headerParameters['header_1'] = String(requestParameters['header1']);
         }
 
-
-        let urlPath = `/fake/http-signature-test`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/http-signature-test`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -287,11 +278,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/outer/boolean`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/outer/boolean`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -323,11 +311,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/outer/composite`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/outer/composite`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -355,11 +340,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/outer/number`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/outer/number`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -391,11 +373,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/outer/string`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/outer/string`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -434,11 +413,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/property/enum-int`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/property/enum-int`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -474,11 +450,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/additionalProperties-reference`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/additionalProperties-reference`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -513,11 +486,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'image/png';
 
-
-        let urlPath = `/fake/body-with-binary`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/body-with-binary`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -551,11 +521,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/body-with-file-schema`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/body-with-file-schema`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -599,11 +566,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/body-with-query-params`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/body-with-query-params`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -637,11 +601,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake`,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -772,11 +733,8 @@ export class FakeApi extends runtime.BaseAPI {
             formParams.append('callback', requestParameters['callback'] as any);
         }
 
-
-        let urlPath = `/fake`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -853,11 +811,8 @@ export class FakeApi extends runtime.BaseAPI {
             formParams.append('enum_form_string', requestParameters['enumFormString'] as any);
         }
 
-
-        let urlPath = `/fake`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -937,11 +892,8 @@ export class FakeApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/fake`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake`,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -976,11 +928,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/inline-additionalProperties`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/inline-additionalProperties`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1016,11 +965,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/inline-freeform-additionalProperties`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/inline-freeform-additionalProperties`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1083,11 +1029,8 @@ export class FakeApi extends runtime.BaseAPI {
             formParams.append('param2', requestParameters['param2'] as any);
         }
 
-
-        let urlPath = `/fake/jsonFormData`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/jsonFormData`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1123,11 +1066,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/nullable`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/nullable`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1223,11 +1163,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-
-        let urlPath = `/fake/test-query-parameters`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/test-query-parameters`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1261,11 +1198,8 @@ export class FakeApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-
-        let urlPath = `/fake/stringMap-reference`;
-
         const response = await this.request({
-            path: urlPath,
+            path: `/fake/stringMap-reference`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

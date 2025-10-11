@@ -1,4 +1,4 @@
-/*
+/**
  * OpenAPI Petstore
  * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -46,12 +43,11 @@ public class FakeBigDecimalMap200Response  {
   
   private Map<String, BigDecimal> someMap = null;
 
-
   /**
    * Get someId
    * @return someId
    **/
-  @JsonProperty(value = JSON_PROPERTY_SOME_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BigDecimal getSomeId() {
     return someId;
@@ -60,7 +56,7 @@ public class FakeBigDecimalMap200Response  {
   /**
    * Set someId
    */
-  @JsonProperty(value = JSON_PROPERTY_SOME_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSomeId(BigDecimal someId) {
     this.someId = someId;
@@ -75,7 +71,7 @@ public class FakeBigDecimalMap200Response  {
    * Get someMap
    * @return someMap
    **/
-  @JsonProperty(value = JSON_PROPERTY_SOME_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, BigDecimal> getSomeMap() {
     return someMap;
@@ -84,7 +80,7 @@ public class FakeBigDecimalMap200Response  {
   /**
    * Set someMap
    */
-  @JsonProperty(value = JSON_PROPERTY_SOME_MAP, required = false)
+  @JsonProperty(JSON_PROPERTY_SOME_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSomeMap(Map<String, BigDecimal> someMap) {
     this.someMap = someMap;

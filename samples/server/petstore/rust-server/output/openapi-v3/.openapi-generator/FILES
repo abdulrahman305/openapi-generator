@@ -1,4 +1,4 @@
-.cargo/config.toml
+.cargo/config
 .gitignore
 Cargo.toml
 README.md

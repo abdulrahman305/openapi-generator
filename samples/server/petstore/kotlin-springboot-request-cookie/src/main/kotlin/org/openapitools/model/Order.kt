@@ -1,6 +1,5 @@
 package org.openapitools.model
 
-import java.util.Locale
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -44,7 +43,7 @@ data class Order(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("complete") val complete: kotlin.Boolean? = false
-) {
+    ) {
 
     /**
     * Order Status
@@ -60,8 +59,7 @@ data class Order(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Order'")
+                return values().first{it -> it.value == value}
             }
         }
     }

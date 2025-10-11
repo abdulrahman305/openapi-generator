@@ -18,7 +18,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -52,7 +51,7 @@ import org.openapitools.client.JSON;
   User.JSON_PROPERTY_ANY_TYPE_PROP,
   User.JSON_PROPERTY_ANY_TYPE_PROP_NULLABLE
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class User {
   public static final String JSON_PROPERTY_ID = "id";
   @jakarta.annotation.Nullable
@@ -113,7 +112,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getId() {
@@ -121,7 +120,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@jakarta.annotation.Nullable Long id) {
     this.id = id;
@@ -139,7 +138,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
+  @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getUsername() {
@@ -147,7 +146,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
+  @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(@jakarta.annotation.Nullable String username) {
     this.username = username;
@@ -165,7 +164,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_FIRST_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getFirstName() {
@@ -173,7 +172,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FIRST_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFirstName(@jakarta.annotation.Nullable String firstName) {
     this.firstName = firstName;
@@ -191,7 +190,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_LAST_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_LAST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getLastName() {
@@ -199,7 +198,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_LAST_NAME, required = false)
+  @JsonProperty(JSON_PROPERTY_LAST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastName(@jakarta.annotation.Nullable String lastName) {
     this.lastName = lastName;
@@ -217,7 +216,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getEmail() {
@@ -225,7 +224,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(@jakarta.annotation.Nullable String email) {
     this.email = email;
@@ -243,7 +242,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPassword() {
@@ -251,7 +250,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassword(@jakarta.annotation.Nullable String password) {
     this.password = password;
@@ -269,7 +268,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonProperty(JSON_PROPERTY_PHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPhone() {
@@ -277,7 +276,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonProperty(JSON_PROPERTY_PHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhone(@jakarta.annotation.Nullable String phone) {
     this.phone = phone;
@@ -295,7 +294,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_USER_STATUS, required = false)
+  @JsonProperty(JSON_PROPERTY_USER_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getUserStatus() {
@@ -303,7 +302,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USER_STATUS, required = false)
+  @JsonProperty(JSON_PROPERTY_USER_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserStatus(@jakarta.annotation.Nullable Integer userStatus) {
     this.userStatus = userStatus;
@@ -321,7 +320,7 @@ public class User {
    */
   @jakarta.annotation.Nullable
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Object getObjectWithNoDeclaredProps() {
@@ -329,7 +328,7 @@ public class User {
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectWithNoDeclaredProps(@jakarta.annotation.Nullable Object objectWithNoDeclaredProps) {
     this.objectWithNoDeclaredProps = objectWithNoDeclaredProps;
@@ -353,7 +352,7 @@ public class User {
         return objectWithNoDeclaredPropsNullable.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_OBJECT_WITH_NO_DECLARED_PROPS_NULLABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getObjectWithNoDeclaredPropsNullable_JsonNullable() {
@@ -387,7 +386,7 @@ public class User {
         return anyTypeProp.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_ANY_TYPE_PROP, required = false)
+  @JsonProperty(JSON_PROPERTY_ANY_TYPE_PROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getAnyTypeProp_JsonNullable() {
@@ -421,7 +420,7 @@ public class User {
         return anyTypePropNullable.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_ANY_TYPE_PROP_NULLABLE, required = false)
+  @JsonProperty(JSON_PROPERTY_ANY_TYPE_PROP_NULLABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getAnyTypePropNullable_JsonNullable() {

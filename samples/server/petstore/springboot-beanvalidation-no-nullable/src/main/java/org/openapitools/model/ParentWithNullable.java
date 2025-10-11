@@ -32,7 +32,7 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = ChildWithNullable.class, name = "ChildWithNullable")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class ParentWithNullable {
 
   /**
@@ -72,7 +72,7 @@ public class ParentWithNullable {
 
   private @Nullable String nullableProperty = null;
 
-  public ParentWithNullable type(@Nullable TypeEnum type) {
+  public ParentWithNullable type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -84,15 +84,15 @@ public class ParentWithNullable {
   
   @ApiModelProperty(value = "")
   @JsonProperty("type")
-  public @Nullable TypeEnum getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@Nullable TypeEnum type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
-  public ParentWithNullable nullableProperty(@Nullable String nullableProperty) {
+  public ParentWithNullable nullableProperty(String nullableProperty) {
     this.nullableProperty = nullableProperty;
     return this;
   }
@@ -104,11 +104,11 @@ public class ParentWithNullable {
   
   @ApiModelProperty(value = "")
   @JsonProperty("nullableProperty")
-  public @Nullable String getNullableProperty() {
+  public String getNullableProperty() {
     return nullableProperty;
   }
 
-  public void setNullableProperty(@Nullable String nullableProperty) {
+  public void setNullableProperty(String nullableProperty) {
     this.nullableProperty = nullableProperty;
   }
 
